@@ -8,6 +8,7 @@
 
 import _ from 'lodash';
 import * as endpoints from '../../endpoints';
+import { normalizeResponse } from './common';
 
 export default class LocalCart {
   constructor(api) {
@@ -55,16 +56,6 @@ export default class LocalCart {
   }
 
   /**
-   * @method setShippingAddressById(shippingAddressId: Number): void
-   * Creates shipping address for the cart by a given address id.
-   */
-  setShippingAddressById(shippingAddressId) {
-    this.payload.addresses.shippingAddress = {
-      shippingAddressId,
-    }
-  }
-
-  /**
    * @method updateShippingAddress(shippingAddress: UpdateAddressPayload): void
    * Updates shipping address for the cart.
    */
@@ -84,11 +75,11 @@ export default class LocalCart {
   }
 
   /**
-   * @method checkout(): void
+   * @method checkout(): Promise<FullOrder>
    * Place order from cart.
    */
   checkout() {
-    // @TODO
+    return this.api.post(endpoints.cartCheckout, this.payload).then(normalizeResponse);
   }
 
   /**
