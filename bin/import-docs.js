@@ -241,7 +241,7 @@ const importData = {
     'StoreCreditAdjustments',
     'StoreCreditTotals'
   ],
-  'Cart': [
+  'BackendCart': [
     'FullOrder',
     'UpdateLineItemsPayload',
     'GiftCardPaymentPayload'

@@ -1,5 +1,5 @@
 
-@miniclass LineItemState (Cart)
+@miniclass LineItemState (BackendCart)
 @aka lineitemstate
 
 @field state: String = Cart
@@ -14,7 +14,7 @@ Available values:
 <li>`Shipped`</li>
 </ul>
 
-@miniclass OrderState (Cart)
+@miniclass OrderState (BackendCart)
 @aka orderstate
 
 @field orderState: String = Cart
@@ -31,7 +31,7 @@ Available values:
 <li>`Shipped`</li>
 </ul>
 
-@miniclass PaymentState (Cart)
+@miniclass PaymentState (BackendCart)
 @aka paymentstate
 
 @field paymentState?: String = Cart
@@ -48,24 +48,7 @@ Available values:
 <li>`Shipped`</li>
 </ul>
 
-@miniclass ShippingState (Cart)
-@aka shippingstate
-
-@field shippingState: String = Cart
-Shipping state.
-Available values:
-<ul class="collapsible collapsed">
-<li>`Cart`</li>
-<li>`Ordered`</li>
-<li>`FraudHold`</li>
-<li>`RemorseHold`</li>
-<li>`ManualHold`</li>
-<li>`Canceled`</li>
-<li>`FulfillmentStarted`</li>
-<li>`Shipped`</li>
-</ul>
-
-@miniclass FullOrder (Cart)
+@miniclass FullOrder (BackendCart)
 @aka fullorder
 @inherits OrderState
 @inherits ShippingState
@@ -98,7 +81,7 @@ Shipping method.
 @field shippingAddress?: OrderShippingAddress
 Shipping address.
 
-@field remorsePeriodEnd?: String = `2015-09-10T14:55:50Z`
+@field remorsePeriodEnd?: String = `2020-01-01T12:00:00Z`
 Remorse period end.
 
 @field paymentMethods?: Array<DisplayPayment>
@@ -110,7 +93,7 @@ Currently locked by.
 @field warnings?: Array<String> = `List of validation errors and warnings`
 Warnings.
 
-@miniclass OrderShippingAddress (Cart)
+@miniclass OrderShippingAddress (BackendCart)
 @aka ordershippingaddress
 
 @field id: Number = 1
@@ -137,7 +120,7 @@ Zip code.
 @field isDefault: Boolean = false
 Defines whether shipping address is default.
 
-@miniclass ShippingMethod (Cart)
+@miniclass ShippingMethod (BackendCart)
 @aka shippingmethod
 
 @field id: Number = 1
@@ -152,7 +135,7 @@ Price of shipping.
 @field isEnabled: Boolean = true
 Defines whether shipping method is enabled in store.
 
-@miniclass DisplayPayment (Cart)
+@miniclass DisplayPayment (BackendCart)
 @aka displaypayment
 
 @field type: String
@@ -164,7 +147,7 @@ Available values:
 <li>`StoreCredit`</li>
 </ul>
 
-@miniclass Totals (Cart)
+@miniclass Totals (BackendCart)
 @aka totals
 
 @field subTotal: Number = 100
@@ -182,7 +165,7 @@ Adjustments total.
 @field total: Number = 100
 Total.
 
-@miniclass LineItems (Cart)
+@miniclass LineItems (BackendCart)
 @aka lineitems
 
 @field skus: Array<SkuLineItem>
@@ -191,7 +174,7 @@ SKU's as line items.
 @field giftCard: Array<GiftCard>
 Gift cards as line items.
 
-@miniclass SkuLineItem (Cart)
+@miniclass SkuLineItem (BackendCart)
 @aka skulineitem
 @inherits LineItemState
 
@@ -216,7 +199,7 @@ Quantity.
 @field totalPrice: Number = 33
 Price per item multiplied by quantity.
 
-@miniclass Adjustment (Cart)
+@miniclass Adjustment (BackendCart)
 @aka adjustment
 
 @field id: Number = 1
@@ -234,7 +217,7 @@ Adjustment source type.
 @field reason: String = `Lorem ipsum`
 Adjustment reason.
 
-@miniclass UpdateLineItemsPayload (Cart)
+@miniclass UpdateLineItemsPayload (BackendCart)
 @aka updatelineitemspayload
 
 @field sku: String = `SKU-YAX`
@@ -243,7 +226,7 @@ SKU.
 @field quantity: Number = 5
 Quantity.
 
-@miniclass GiftCardPaymentPayload (Cart)
+@miniclass GiftCardPaymentPayload (BackendCart)
 @aka giftcardpaymentpayload
 
 @field code: String = `ABC-123`

@@ -1,12 +1,13 @@
 
 /*
- @class Cart
- Accessible via [cart](#foxapi-cart) property of [FoxApi](#foxapi) instance.
+ @class BackendCart
+ Store cart at server-side and manage it via REST requests.
+ Accessible via [backendCart](#foxapi-backendcart) property of [FoxApi](#foxapi) instance.
  */
 
 
 import _ from 'lodash';
-import * as endpoints from '../endpoints';
+import * as endpoints from '../../endpoints';
 
 // reduce SKU list
 function collectLineItems(skus) {
@@ -33,7 +34,7 @@ function normalizeResponse(payload) {
   return payload;
 }
 
-export default class Cart {
+export default class BackendCart {
   constructor(api) {
     this.api = api;
   }
@@ -188,7 +189,7 @@ export default class Cart {
   }
 
   /**
-   * @method addGiftCard(amount: Number): Promise<FullOrder>
+   * @method addStoreCredit(amount: Number): Promise<FullOrder>
    * Creates payment method with a given amount using store credit.
    */
   addStoreCredit(amount) {
@@ -196,14 +197,26 @@ export default class Cart {
   }
 
   /**
-   * @method removeGiftCards(): Promise<FullOrder>
+   * @method removeStoreCredits(): Promise<FullOrder>
    * Removes all store credits payment methods of the cart.
    */
-  removeStoreCrdits() {
+  removeStoreCredits() {
     return this.delete(endpoints.cartPaymentStoreCredits).then(normalizeResponse);
   }
-}
 
-// @miniclass ItemQuantities (Cart)
-// @key sku: Number = {'sku-bread': 2}
-// Quantity for sku.
+  /**
+   * @method setCouponCode(code: String): Promise<FullOrder>
+   * Apply a coupon code for the cart.
+   */
+  setCouponCode(code) {
+    return this.post(endpoints.cartPaymentsCouponCode(code)).then(normalizeResponse);
+  }
+
+  /**
+   * @method removeCoupon(): Promise<FullOrder>
+   * Remove a coupon code from the cart.
+   */
+  removeCoupon() {
+    return this.delete(endpoints.cartPaymentsCoupon).then(normalizeResponse);
+  }
+}

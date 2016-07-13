@@ -33,7 +33,8 @@
             <ul>
                 <li><a href="#auth">Auth</a></li>
                 <li><a href="#addresses">Addresses</a></li>
-                <li><a href="#cart">Cart</a></li>
+                <li><a href="#backendcart">Backend Cart</a></li>
+                <li><a href="#localcart">Local Cart</a></li>
                 <li><a href="#creditcards">Credit Cards</a></li>
                 <li><a href="#storecredits">Store Credits</a></li>
             </ul>
@@ -109,6 +110,12 @@ api.products.search({state: &#39;cart&#39;});
 		<td><code><b>addAuth</b>(<nobr>&lt;String&gt;</nobr> <i>jwt</i>)</nobr></code></td>
 		<td><code><a href='#foxapi'>FoxApi</a></code></td>
 		<td>Set jwt authorization header for next requests</td>
+	</tr>
+	<tr id='foxapi-isauthenticated'>
+		<td><code><b>isAuthenticated</b>()</nobr></code></td>
+		<td><code>Boolean</code></td>
+		<td>Check out authenticated user or not by checking existence of JWT cookie.
+This method doesn&#39;t verify jwt header.</td>
 	</tr>
 	<tr id='foxapi-getcustomerid'>
 		<td><code><b>getCustomerId</b>()</nobr></code></td>
@@ -200,12 +207,114 @@ You can define jwt string via <code>addAuth</code> method, if there is no jwt st
 		<td><code><a href='#storecredits'>StoreCredits</a></code></td>
 		<td>StoreCredits instance</td>
 	</tr>
+	<tr id='foxapi-backendcart'>
+		<td><code><b>backendCart</b>
+		<td><code><a href='#backendcart'>BackendCart</a></code></td>
+		<td>BackendCart instance</td>
+	</tr>
+	<tr id='foxapi-localcart'>
+		<td><code><b>localCart</b>
+		<td><code><a href='#localcart'>LocalCart</a></code></td>
+		<td>LocalCart instance</td>
+	</tr>
 	<tr id='foxapi-cart'>
 		<td><code><b>cart</b>
-		<td><code><a href='#cart'>Cart</a></code></td>
-		<td>Cart instance</td>
+		<td><code>&lt;<a href='#localcart'>LocalCart</a>|<a href='#backendcart'>BackendCart</a>&gt;</code></td>
+		<td>In case if authentication cookie is set returns BackendCart instance,
+if not - LocalCart instance.</td>
 	</tr>
 </tbody></table>
+
+</section>
+
+</section>
+<span id='region'></span>
+
+<section>
+<h3 id='region-field'>Region</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='region-id'>
+        <td><code><b>id</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1</td>
+        <td>Unique identifier.</td>
+    </tr>
+    <tr id='region-countryid'>
+        <td><code><b>countryId</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>2794</td>
+        <td>Country unique identifier.</td>
+    </tr>
+    <tr id='region-name'>
+        <td><code><b>name</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>Washington</code></td>
+        <td>Region name.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<span id='shippingstate'></span>
+
+<section>
+<h3 id='shippingstate-field'>ShippingState</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='shippingstate-shippingstate'>
+        <td><code><b>shippingState</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>Cart</td>
+        <td>Shipping state.
+Available values:
+<ul class="collapsible collapsed">
+<li><code>Cart</code></li>
+<li><code>Ordered</code></li>
+<li><code>FraudHold</code></li>
+<li><code>RemorseHold</code></li>
+<li><code>ManualHold</code></li>
+<li><code>Canceled</code></li>
+<li><code>FulfillmentStarted</code></li>
+<li><code>Shipped</code></li>
+</ul></td>
+    </tr>
+</tbody></table>
+
 
 </section>
 
@@ -250,140 +359,6 @@ You can define jwt string via <code>addAuth</code> method, if there is no jwt st
         <td><div data-icon="ei-check"></div></td>
         <td><code>john@smith.com</code></td>
         <td>E-mail.</td>
-    </tr>
-</tbody></table>
-
-
-</section>
-
-</section>
-<span id='pagingmetadata'></span>
-
-<section>
-<h3 id='pagingmetadata-field'>PagingMetadata</h3>
-
-<section >
-
-
-
-<div class='section-comments'></div>
-
-<table><thead>
-<tr>
-    <th>Field</th>
-    <th>Type</th>
-    <th>Required</th>
-    <th>Example</th>
-    <th>Description</th>
-</tr>
-</thead><tbody>
-    <tr id='pagingmetadata-from'>
-        <td><code><b>from</b></code></td>
-        <td><code>Number</code>
-        <td></td>
-        <td>0</td>
-        <td>Start element (counting from 0) or # of elements to skip.</td>
-    </tr>
-    <tr id='pagingmetadata-size'>
-        <td><code><b>size</b></code></td>
-        <td><code>Number</code>
-        <td></td>
-        <td>10</td>
-        <td>Page size.</td>
-    </tr>
-    <tr id='pagingmetadata-pageno'>
-        <td><code><b>pageNo</b></code></td>
-        <td><code>Number</code>
-        <td></td>
-        <td>1</td>
-        <td>Page number (counting from 1).</td>
-    </tr>
-    <tr id='pagingmetadata-total'>
-        <td><code><b>total</b></code></td>
-        <td><code>Number</code>
-        <td></td>
-        <td>35</td>
-        <td>Total number of elements found.</td>
-    </tr>
-</tbody></table>
-
-
-</section>
-
-</section>
-<span id='sortingmetadata'></span>
-
-<section>
-<h3 id='sortingmetadata-field'>SortingMetadata</h3>
-
-<section >
-
-
-
-<div class='section-comments'></div>
-
-<table><thead>
-<tr>
-    <th>Field</th>
-    <th>Type</th>
-    <th>Required</th>
-    <th>Example</th>
-    <th>Description</th>
-</tr>
-</thead><tbody>
-    <tr id='sortingmetadata-sortby'>
-        <td><code><b>sortBy</b></code></td>
-        <td><code>String</code>
-        <td></td>
-        <td><code>lastName</code></td>
-        <td>Field to sort by (<code>-fieldName</code> for descending order).</td>
-    </tr>
-</tbody></table>
-
-
-</section>
-
-</section>
-<span id='resultmetadata'></span>
-
-<section>
-<h3 id='resultmetadata-field'>ResultMetadata</h3>
-
-<section >
-
-
-
-<div class='section-comments'></div>
-
-<table><thead>
-<tr>
-    <th>Field</th>
-    <th>Type</th>
-    <th>Required</th>
-    <th>Example</th>
-    <th>Description</th>
-</tr>
-</thead><tbody>
-    <tr id='resultmetadata-pagination'>
-        <td><code><b>pagination</b></code></td>
-        <td><code><a href='#pagingmetadata'>PagingMetadata</a></code>
-        <td></td>
-        <td></td>
-        <td>Pagination metadata.</td>
-    </tr>
-    <tr id='resultmetadata-sorting'>
-        <td><code><b>sorting</b></code></td>
-        <td><code><a href='#sortingmetadata'>SortingMetadata</a></code>
-        <td></td>
-        <td></td>
-        <td>Sorting metadata.</td>
-    </tr>
-    <tr id='resultmetadata-errors'>
-        <td><code><b>errors</b></code></td>
-        <td><code>Array&lt;String&gt;</code>
-        <td></td>
-        <td><code>List of possible errors and warnings</code></td>
-        <td>List of possible errors.</td>
     </tr>
 </tbody></table>
 
@@ -457,7 +432,7 @@ You can define jwt string via <code>addAuth</code> method, if there is no jwt st
         <td><code><b>createdAt</b></code></td>
         <td><code>String</code>
         <td><div data-icon="ei-check"></div></td>
-        <td><code>2015-09-10T14:55:50Z</code></td>
+        <td><code>2020-01-01T12:00:00Z</code></td>
         <td>Creation date.</td>
     </tr>
     <tr id='customerbase-disabled'>
@@ -610,7 +585,7 @@ You can define jwt string via <code>addAuth</code> method, if there is no jwt st
         <td><code><b>createdAt</b></code></td>
         <td><code>String</code>
         <td><div data-icon="ei-check"></div></td>
-        <td><code>2015-09-10T14:55:50Z</code></td>
+        <td><code>2020-01-01T12:00:00Z</code></td>
         <td>Creation date.</td>
     </tr>
     <tr id='customerresponse-disabled'>
@@ -750,7 +725,7 @@ Available values:
         <td><code><b>createdAt</b></code></td>
         <td><code>String</code>
         <td><div data-icon="ei-check"></div></td>
-        <td><code>2015-09-10T14:55:50Z</code></td>
+        <td><code>2020-01-01T12:00:00Z</code></td>
         <td>Creation date.</td>
     </tr>
     <tr id='giftcardbase-code'>
@@ -933,7 +908,7 @@ Available values:
         <td><code><b>createdAt</b></code></td>
         <td><code>String</code>
         <td><div data-icon="ei-check"></div></td>
-        <td><code>2015-09-10T14:55:50Z</code></td>
+        <td><code>2020-01-01T12:00:00Z</code></td>
         <td>Creation date.</td>
     </tr>
     <tr id='giftcard-code'>
@@ -1140,7 +1115,7 @@ In case if err is Error itself returns array of single element - that error as a
 	</thead><tbody>
 	<tr id='addresses-list'>
 		<td><code><b>list</b>(<nobr>&lt;<a href='#query-options'>Query options</a>&gt;</nobr> <i>options</i>)</nobr></code></td>
-		<td><code>Promise&lt;<a href='#addressesresponse'>AddressesResponse</a>&gt;</code></td>
+		<td><code>Promise&lt;AddressesResponse&gt;</code></td>
 		<td>Choices for <code>options.sortBy</code> parameter:
 <ul class="collapsible collapsed">
   <li><code>id</code></li>
@@ -1276,53 +1251,6 @@ In case if err is Error itself returns array of single element - that error as a
         <td></td>
         <td>false</td>
         <td>Default or not in address book.</td>
-    </tr>
-</tbody></table>
-
-
-</section>
-
-</section>
-<span id='region'></span>
-
-<section>
-<h3 id='region-field'>Region</h3>
-
-<section >
-
-
-
-<div class='section-comments'></div>
-
-<table><thead>
-<tr>
-    <th>Field</th>
-    <th>Type</th>
-    <th>Required</th>
-    <th>Example</th>
-    <th>Description</th>
-</tr>
-</thead><tbody>
-    <tr id='region-id'>
-        <td><code><b>id</b></code></td>
-        <td><code>Number</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td>1</td>
-        <td>Unique identifier.</td>
-    </tr>
-    <tr id='region-countryid'>
-        <td><code><b>countryId</b></code></td>
-        <td><code>Number</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td>2794</td>
-        <td>Country unique identifier.</td>
-    </tr>
-    <tr id='region-name'>
-        <td><code><b>name</b></code></td>
-        <td><code>String</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td><code>Washington</code></td>
-        <td>Region name.</td>
     </tr>
 </tbody></table>
 
@@ -1494,83 +1422,6 @@ In case if err is Error itself returns array of single element - that error as a
 </section>
 
 </section>
-<span id='addressesresponse'></span>
-
-<section>
-<h3 id='addressesresponse-field'>AddressesResponse</h3>
-
-<section >
-
-
-
-<div class='section-comments'></div>
-
-<table><thead>
-<tr>
-    <th>Field</th>
-    <th>Type</th>
-    <th>Required</th>
-    <th>Example</th>
-    <th>Description</th>
-</tr>
-</thead><tbody>
-    <tr id='addressesresponse-result'>
-        <td><code><b>result</b></code></td>
-        <td><code>Array&lt;<a href='#address'>Address</a>&gt;</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td></td>
-        <td>The resulting list of Addresses.</td>
-    </tr>
-</tbody></table>
-
-
-</section>
-
-<div class='accordion'>
-	<label><span class='expander'>▶</span> Fields inherited from <a href='#resultmetadata'>ResultMetadata</a></label>
-	<div class='accordion-content'><section >
-
-
-
-<div class='section-comments'></div>
-
-<table><thead>
-<tr>
-    <th>Field</th>
-    <th>Type</th>
-    <th>Required</th>
-    <th>Example</th>
-    <th>Description</th>
-</tr>
-</thead><tbody>
-    <tr id='addressesresponse-pagination'>
-        <td><code><b>pagination</b></code></td>
-        <td><code><a href='#pagingmetadata'>PagingMetadata</a></code>
-        <td><div data-icon="ei-check"></div></td>
-        <td></td>
-        <td>Pagination metadata.</td>
-    </tr>
-    <tr id='addressesresponse-sorting'>
-        <td><code><b>sorting</b></code></td>
-        <td><code><a href='#sortingmetadata'>SortingMetadata</a></code>
-        <td><div data-icon="ei-check"></div></td>
-        <td></td>
-        <td>Sorting metadata.</td>
-    </tr>
-    <tr id='addressesresponse-errors'>
-        <td><code><b>errors</b></code></td>
-        <td><code>Array&lt;String&gt;</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td><code>List of possible errors and warnings</code></td>
-        <td>List of possible errors.</td>
-    </tr>
-</tbody></table>
-
-
-</section></div>
-</div>
-
-</section>
 <h2 id='auth'>Auth</h2><p>Accessible via <a href="#foxapi-auth">auth</a> property of <a href="#foxapi">FoxApi</a> instance.</p>
 
 <section>
@@ -1695,10 +1546,11 @@ In case if err is Error itself returns array of single element - that error as a
 </section>
 
 </section>
-<h2 id='cart'>Cart</h2><p>Accessible via <a href="#foxapi-cart">cart</a> property of <a href="#foxapi">FoxApi</a> instance.</p>
+<h2 id='backendcart'>BackendCart</h2><p>Store cart at server-side and manage it via REST requests.
+ Accessible via <a href="#foxapi-backendcart">backendCart</a> property of <a href="#foxapi">FoxApi</a> instance.</p>
 
 <section>
-<h3 id='cart-method'>Methods</h3>
+<h3 id='backendcart-method'>Methods</h3>
 
 <section >
 
@@ -1713,92 +1565,110 @@ In case if err is Error itself returns array of single element - that error as a
 		<th>Description</th>
 	</tr>
 	</thead><tbody>
-	<tr id='cart-getshippingmethods'>
+	<tr id='backendcart-getshippingmethods'>
 		<td><code><b>getShippingMethods</b>()</nobr></code></td>
 		<td><code>Promise&lt;<a href='#shippingmethod'>ShippingMethod</a>[]&gt;</code></td>
 		<td>Returns available shipping methods.</td>
 	</tr>
-	<tr id='cart-chooseshippingmethod'>
+	<tr id='backendcart-chooseshippingmethod'>
 		<td><code><b>chooseShippingMethod</b>(<nobr>&lt;Number&gt;</nobr> <i>shippingMethodId</i>)</nobr></code></td>
 		<td><code>Promise&lt;<a href='#fullorder'>FullOrder</a>&gt;</code></td>
 		<td>Chooses shipping method for the cart.</td>
 	</tr>
-	<tr id='cart-removeshippingmethod'>
+	<tr id='backendcart-removeshippingmethod'>
 		<td><code><b>removeShippingMethod</b>()</nobr></code></td>
 		<td><code>Promise</code></td>
 		<td>Removes the shipping method from the cart.</td>
 	</tr>
-	<tr id='cart-setshippingaddress'>
+	<tr id='backendcart-setshippingaddress'>
 		<td><code><b>setShippingAddress</b>(<nobr>&lt;<a href='#createaddresspayload'>CreateAddressPayload</a>&gt;</nobr> <i>shippingAddress</i>)</nobr></code></td>
 		<td><code>Promise&lt;<a href='#fullorder'>FullOrder</a>&gt;</code></td>
 		<td>Creates shipping address for the cart by a given address payload.</td>
 	</tr>
-	<tr id='cart-setshippingaddressbyid'>
+	<tr id='backendcart-setshippingaddressbyid'>
 		<td><code><b>setShippingAddressById</b>(<nobr>&lt;Number&gt;</nobr> <i>shippingAddressId</i>)</nobr></code></td>
 		<td><code>Promise&lt;<a href='#fullorder'>FullOrder</a>&gt;</code></td>
 		<td>Creates shipping address for the cart by a given address id.</td>
 	</tr>
-	<tr id='cart-updateshippingaddress'>
+	<tr id='backendcart-updateshippingaddress'>
 		<td><code><b>updateShippingAddress</b>(<nobr>&lt;<a href='#updateaddresspayload'>UpdateAddressPayload</a>&gt;</nobr> <i>shippingAddress</i>)</nobr></code></td>
 		<td><code>Promise&lt;<a href='#fullorder'>FullOrder</a>&gt;</code></td>
 		<td>Updates shipping address for the cart.</td>
 	</tr>
-	<tr id='cart-removeshippingaddress'>
+	<tr id='backendcart-removeshippingaddress'>
 		<td><code><b>removeShippingAddress</b>()</nobr></code></td>
 		<td><code>Promise&lt;<a href='#fullorder'>FullOrder</a>&gt;</code></td>
 		<td>Removes a shipping address from the cart.</td>
 	</tr>
-	<tr id='cart-get'>
+	<tr id='backendcart-get'>
 		<td><code><b>get</b>()</nobr></code></td>
 		<td><code>Promise&lt;<a href='#fullorder'>FullOrder</a>&gt;</code></td>
 		<td>Returns or creates new cart.</td>
 	</tr>
-	<tr id='cart-checkout'>
+	<tr id='backendcart-checkout'>
 		<td><code><b>checkout</b>()</nobr></code></td>
 		<td><code>Promise&lt;<a href='#fullorder'>FullOrder</a>&gt;</code></td>
 		<td>Place order from cart.</td>
 	</tr>
-	<tr id='cart-updatequantities'>
+	<tr id='backendcart-updatequantities'>
 		<td><code><b>updateQuantities</b>(<nobr>&lt;<a href='#itemquantities'>ItemQuantities</a>&gt;</nobr> <i>itemQuantities</i>)</nobr></code></td>
 		<td><code>Promise&lt;<a href='#fullorder'>FullOrder</a>&gt;</code></td>
 		<td></td>
 	</tr>
-	<tr id='cart-updateqty'>
+	<tr id='backendcart-updateqty'>
 		<td><code><b>updateQty</b>(<nobr>&lt;String&gt;</nobr> <i>sku</i>, <nobr>&lt;Number&gt;</nobr> <i>qty</i>)</nobr></code></td>
 		<td><code>Promise&lt;<a href='#fullorder'>FullOrder</a>&gt;</code></td>
 		<td>Updates quantity for selected item in the cart</td>
 	</tr>
-	<tr id='cart-addsku'>
+	<tr id='backendcart-addsku'>
 		<td><code><b>addSku</b>(<nobr>&lt;String&gt;</nobr> <i>sku</i>, <nobr>&lt;Number&gt;</nobr> <i>quantity</i>)</nobr></code></td>
 		<td><code>Promise&lt;<a href='#fullorder'>FullOrder</a>&gt;</code></td>
 		<td>Adds sku by defined quantity in the cart.</td>
 	</tr>
-	<tr id='cart-removesku'>
+	<tr id='backendcart-removesku'>
 		<td><code><b>removeSku</b>(<nobr>&lt;String&gt;</nobr> <i>sku</i>)</nobr></code></td>
 		<td><code>Promise&lt;<a href='#fullorder'>FullOrder</a>&gt;</code></td>
 		<td>Removes selected sku from the cart.</td>
 	</tr>
-	<tr id='cart-addcreditcard'>
+	<tr id='backendcart-addcreditcard'>
 		<td><code><b>addCreditCard</b>(<nobr>&lt;Number&gt;</nobr> <i>creditCardId</i>)</nobr></code></td>
 		<td><code>Promise&lt;<a href='#fullorder'>FullOrder</a>&gt;</code></td>
 		<td>Adds a credit card as payment method for the cart.</td>
 	</tr>
-	<tr id='cart-removecreditcards'>
+	<tr id='backendcart-removecreditcards'>
 		<td><code><b>removeCreditCards</b>()</nobr></code></td>
 		<td><code>Promise&lt;<a href='#fullorder'>FullOrder</a>&gt;</code></td>
 		<td>Removes all credit cards payment methods of the cart.</td>
 	</tr>
-	<tr id='cart-addgiftcard'>
+	<tr id='backendcart-addgiftcard'>
 		<td><code><b>addGiftCard</b>(<nobr>&lt;<a href='#giftcardpaymentpayload'>GiftCardPaymentPayload</a>&gt;</nobr> <i>giftCardPayload</i>)</nobr></code></td>
 		<td><code>Promise&lt;<a href='#fullorder'>FullOrder</a>&gt;</code></td>
-		<td>Adds a gift card as payment method for the cart.
-<p>Creates payment method with a given amount using store credit.</p></td>
+		<td>Adds a gift card as payment method for the cart.</td>
 	</tr>
-	<tr id='cart-removegiftcards'>
+	<tr id='backendcart-removegiftcards'>
 		<td><code><b>removeGiftCards</b>()</nobr></code></td>
 		<td><code>Promise&lt;<a href='#fullorder'>FullOrder</a>&gt;</code></td>
-		<td>Removes all gift cards payment methods of the cart.
-<p>Removes all store credits payment methods of the cart.</p></td>
+		<td>Removes all gift cards payment methods of the cart.</td>
+	</tr>
+	<tr id='backendcart-addstorecredit'>
+		<td><code><b>addStoreCredit</b>(<nobr>&lt;Number&gt;</nobr> <i>amount</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#fullorder'>FullOrder</a>&gt;</code></td>
+		<td>Creates payment method with a given amount using store credit.</td>
+	</tr>
+	<tr id='backendcart-removestorecredits'>
+		<td><code><b>removeStoreCredits</b>()</nobr></code></td>
+		<td><code>Promise&lt;<a href='#fullorder'>FullOrder</a>&gt;</code></td>
+		<td>Removes all store credits payment methods of the cart.</td>
+	</tr>
+	<tr id='backendcart-setcouponcode'>
+		<td><code><b>setCouponCode</b>(<nobr>&lt;String&gt;</nobr> <i>code</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#fullorder'>FullOrder</a>&gt;</code></td>
+		<td>Apply a coupon code for the cart.</td>
+	</tr>
+	<tr id='backendcart-removecoupon'>
+		<td><code><b>removeCoupon</b>()</nobr></code></td>
+		<td><code>Promise&lt;<a href='#fullorder'>FullOrder</a>&gt;</code></td>
+		<td>Remove a coupon code from the cart.</td>
 	</tr>
 </tbody></table>
 
@@ -1833,7 +1703,7 @@ In case if err is Error itself returns array of single element - that error as a
         <td>Line item state.
 Available values:
 <ul class="collapsible collapsed">
-<li><a href="#cart"><code>Cart</code></a></li>
+<li><code>Cart</code></li>
 <li><code>Pending</code></li>
 <li><code>PreOrdered</code></li>
 <li><code>BackOrdered</code></li>
@@ -1875,7 +1745,7 @@ Available values:
         <td>Order State.
 Available values:
 <ul class="collapsible collapsed">
-<li><a href="#cart"><code>Cart</code></a></li>
+<li><code>Cart</code></li>
 <li><code>Ordered</code></li>
 <li><code>FraudHold</code></li>
 <li><code>RemorseHold</code></li>
@@ -1919,51 +1789,7 @@ Available values:
         <td>Credit Card payment state.
 Available values:
 <ul class="collapsible collapsed">
-<li><a href="#cart"><code>Cart</code></a></li>
-<li><code>Ordered</code></li>
-<li><code>FraudHold</code></li>
-<li><code>RemorseHold</code></li>
-<li><code>ManualHold</code></li>
-<li><code>Canceled</code></li>
-<li><code>FulfillmentStarted</code></li>
-<li><code>Shipped</code></li>
-</ul></td>
-    </tr>
-</tbody></table>
-
-
-</section>
-
-</section>
-<span id='shippingstate'></span>
-
-<section>
-<h3 id='shippingstate-field'>ShippingState</h3>
-
-<section >
-
-
-
-<div class='section-comments'></div>
-
-<table><thead>
-<tr>
-    <th>Field</th>
-    <th>Type</th>
-    <th>Required</th>
-    <th>Example</th>
-    <th>Description</th>
-</tr>
-</thead><tbody>
-    <tr id='shippingstate-shippingstate'>
-        <td><code><b>shippingState</b></code></td>
-        <td><code>String</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td>Cart</td>
-        <td>Shipping state.
-Available values:
-<ul class="collapsible collapsed">
-<li><a href="#cart"><code>Cart</code></a></li>
+<li><code>Cart</code></li>
 <li><code>Ordered</code></li>
 <li><code>FraudHold</code></li>
 <li><code>RemorseHold</code></li>
@@ -2066,7 +1892,7 @@ Available values:
         <td><code><b>remorsePeriodEnd</b></code></td>
         <td><code>String</code>
         <td></td>
-        <td><code>2015-09-10T14:55:50Z</code></td>
+        <td><code>2020-01-01T12:00:00Z</code></td>
         <td>Remorse period end.</td>
     </tr>
     <tr id='fullorder-paymentmethods'>
@@ -2120,7 +1946,7 @@ Available values:
         <td>Order State.
 Available values:
 <ul class="collapsible collapsed">
-<li><a href="#cart"><code>Cart</code></a></li>
+<li><code>Cart</code></li>
 <li><code>Ordered</code></li>
 <li><code>FraudHold</code></li>
 <li><code>RemorseHold</code></li>
@@ -2161,7 +1987,7 @@ Available values:
         <td>Shipping state.
 Available values:
 <ul class="collapsible collapsed">
-<li><a href="#cart"><code>Cart</code></a></li>
+<li><code>Cart</code></li>
 <li><code>Ordered</code></li>
 <li><code>FraudHold</code></li>
 <li><code>RemorseHold</code></li>
@@ -2202,7 +2028,7 @@ Available values:
         <td>Credit Card payment state.
 Available values:
 <ul class="collapsible collapsed">
-<li><a href="#cart"><code>Cart</code></a></li>
+<li><code>Cart</code></li>
 <li><code>Ordered</code></li>
 <li><code>FraudHold</code></li>
 <li><code>RemorseHold</code></li>
@@ -2594,7 +2420,7 @@ Available values:
         <td>Line item state.
 Available values:
 <ul class="collapsible collapsed">
-<li><a href="#cart"><code>Cart</code></a></li>
+<li><code>Cart</code></li>
 <li><code>Pending</code></li>
 <li><code>PreOrdered</code></li>
 <li><code>BackOrdered</code></li>
@@ -2746,6 +2572,120 @@ Available values:
     </tr>
 </tbody></table>
 
+
+</section>
+
+</section>
+<h2 id='localcart'>LocalCart</h2><p>Store and manage cart at local storage. And then checkout new order by sending local cart payload at once.
+ Accessible via <a href="#foxapi-localcart">localCart</a> property of <a href="#foxapi">FoxApi</a> instance.</p>
+
+<section>
+<h3 id='localcart-method'>Methods</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+	<tr>
+		<th>Method</th>
+		<th>Returns</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='localcart-getshippingmethods'>
+		<td><code><b>getShippingMethods</b>()</nobr></code></td>
+		<td><code>Promise&lt;<a href='#shippingmethod'>ShippingMethod</a>[]&gt;</code></td>
+		<td>Returns available shipping methods.</td>
+	</tr>
+	<tr id='localcart-chooseshippingmethod'>
+		<td><code><b>chooseShippingMethod</b>(<nobr>&lt;Number&gt;</nobr> <i>shippingMethodId</i>)</nobr></code></td>
+		<td><code>void</code></td>
+		<td>Chooses shipping method for the cart.</td>
+	</tr>
+	<tr id='localcart-removeshippingmethod'>
+		<td><code><b>removeShippingMethod</b>()</nobr></code></td>
+		<td><code>void</code></td>
+		<td>Removes the shipping method from the cart.</td>
+	</tr>
+	<tr id='localcart-setshippingaddress'>
+		<td><code><b>setShippingAddress</b>(<nobr>&lt;<a href='#createaddresspayload'>CreateAddressPayload</a>&gt;</nobr> <i>shippingAddress</i>)</nobr></code></td>
+		<td><code>void</code></td>
+		<td>Creates shipping address for the cart by a given address payload.</td>
+	</tr>
+	<tr id='localcart-setshippingaddressbyid'>
+		<td><code><b>setShippingAddressById</b>(<nobr>&lt;Number&gt;</nobr> <i>shippingAddressId</i>)</nobr></code></td>
+		<td><code>void</code></td>
+		<td>Creates shipping address for the cart by a given address id.</td>
+	</tr>
+	<tr id='localcart-updateshippingaddress'>
+		<td><code><b>updateShippingAddress</b>(<nobr>&lt;<a href='#updateaddresspayload'>UpdateAddressPayload</a>&gt;</nobr> <i>shippingAddress</i>)</nobr></code></td>
+		<td><code>void</code></td>
+		<td>Updates shipping address for the cart.</td>
+	</tr>
+	<tr id='localcart-removeshippingaddress'>
+		<td><code><b>removeShippingAddress</b>()</nobr></code></td>
+		<td><code>void</code></td>
+		<td>Removes a shipping address from the cart.</td>
+	</tr>
+	<tr id='localcart-checkout'>
+		<td><code><b>checkout</b>()</nobr></code></td>
+		<td><code>void</code></td>
+		<td>Place order from cart.</td>
+	</tr>
+	<tr id='localcart-updatequantities'>
+		<td><code><b>updateQuantities</b>(<nobr>&lt;<a href='#itemquantities'>ItemQuantities</a>&gt;</nobr> <i>itemQuantities</i>)</nobr></code></td>
+		<td><code>void</code></td>
+		<td></td>
+	</tr>
+	<tr id='localcart-updateqty'>
+		<td><code><b>updateQty</b>(<nobr>&lt;String&gt;</nobr> <i>sku</i>, <nobr>&lt;Number&gt;</nobr> <i>qty</i>)</nobr></code></td>
+		<td><code>void</code></td>
+		<td>Updates quantity for selected item in the cart</td>
+	</tr>
+	<tr id='localcart-addsku'>
+		<td><code><b>addSku</b>(<nobr>&lt;String&gt;</nobr> <i>sku</i>, <nobr>&lt;Number&gt;</nobr> <i>quantity</i>)</nobr></code></td>
+		<td><code>void</code></td>
+		<td>Adds sku by defined quantity in the cart.</td>
+	</tr>
+	<tr id='localcart-removesku'>
+		<td><code><b>removeSku</b>(<nobr>&lt;String&gt;</nobr> <i>sku</i>)</nobr></code></td>
+		<td><code>void</code></td>
+		<td>Removes selected sku from the cart.</td>
+	</tr>
+	<tr id='localcart-addcreditcard'>
+		<td><code><b>addCreditCard</b>(<nobr>&lt;<a href='#creditcardcreatepayload'>CreditCardCreatePayload</a>&gt;</nobr> <i>creditCard</i>)</nobr></code></td>
+		<td><code>void</code></td>
+		<td>Adds a credit card as payment method for the cart.</td>
+	</tr>
+	<tr id='localcart-removecreditcards'>
+		<td><code><b>removeCreditCards</b>()</nobr></code></td>
+		<td><code>void</code></td>
+		<td>Removes credit card from payment methods of the cart.</td>
+	</tr>
+	<tr id='localcart-addgiftcard'>
+		<td><code><b>addGiftCard</b>(<nobr>&lt;<a href='#giftcardpaymentpayload'>GiftCardPaymentPayload</a>&gt;</nobr> <i>giftCardPayload</i>)</nobr></code></td>
+		<td><code>void</code></td>
+		<td>Adds a gift card as payment method for the cart.</td>
+	</tr>
+	<tr id='localcart-removegiftcards'>
+		<td><code><b>removeGiftCards</b>()</nobr></code></td>
+		<td><code>void</code></td>
+		<td>Removes gift card from payment methods of the cart.</td>
+	</tr>
+	<tr id='localcart-setcouponcode'>
+		<td><code><b>setCouponCode</b>(<nobr>&lt;String&gt;</nobr> <i>code</i>)</nobr></code></td>
+		<td><code>void</code></td>
+		<td>Apply a coupon code for the cart.</td>
+	</tr>
+	<tr id='localcart-removecoupon'>
+		<td><code><b>removeCoupon</b>()</nobr></code></td>
+		<td><code>void</code></td>
+		<td>Remove a coupon code from the cart.</td>
+	</tr>
+</tbody></table>
 
 </section>
 
@@ -3075,56 +3015,6 @@ Available values:
 </section>
 <span id='creditcardsresponse'></span>
 
-<section>
-<h3 id=''>CreditCardsResponse</h3>
-
-
-
-<div class='accordion'>
-	<label><span class='expander'>▶</span> Fields inherited from <a href='#resultmetadata'>ResultMetadata</a></label>
-	<div class='accordion-content'><section >
-
-
-
-<div class='section-comments'></div>
-
-<table><thead>
-<tr>
-    <th>Field</th>
-    <th>Type</th>
-    <th>Required</th>
-    <th>Example</th>
-    <th>Description</th>
-</tr>
-</thead><tbody>
-    <tr id='creditcardsresponse-pagination'>
-        <td><code><b>pagination</b></code></td>
-        <td><code><a href='#pagingmetadata'>PagingMetadata</a></code>
-        <td><div data-icon="ei-check"></div></td>
-        <td></td>
-        <td>Pagination metadata.</td>
-    </tr>
-    <tr id='creditcardsresponse-sorting'>
-        <td><code><b>sorting</b></code></td>
-        <td><code><a href='#sortingmetadata'>SortingMetadata</a></code>
-        <td><div data-icon="ei-check"></div></td>
-        <td></td>
-        <td>Sorting metadata.</td>
-    </tr>
-    <tr id='creditcardsresponse-errors'>
-        <td><code><b>errors</b></code></td>
-        <td><code>Array&lt;String&gt;</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td><code>List of possible errors and warnings</code></td>
-        <td>List of possible errors.</td>
-    </tr>
-</tbody></table>
-
-
-</section></div>
-</div>
-
-</section>
 <h2 id='storecredits'>StoreCredits</h2><p>Accessible via <a href="#foxapi-storecredits">storeCredits</a> property of <a href="#foxapi">FoxApi</a> instance.</p>
 
 <section>
@@ -3272,7 +3162,7 @@ Available values:
         <td><code><b>createdAt</b></code></td>
         <td><code>String</code>
         <td><div data-icon="ei-check"></div></td>
-        <td><code>2015-09-10T14:55:50Z</code></td>
+        <td><code>2020-01-01T12:00:00Z</code></td>
         <td>Creation date.</td>
     </tr>
     <tr id='storecredit-currency'>
@@ -3388,157 +3278,6 @@ Available values:
 </div>
 
 </section>
-<span id='storecreditadjustment'></span>
-
-<section>
-<h3 id='storecreditadjustment-field'>StoreCreditAdjustment</h3>
-
-<section >
-
-
-
-<div class='section-comments'></div>
-
-<table><thead>
-<tr>
-    <th>Field</th>
-    <th>Type</th>
-    <th>Required</th>
-    <th>Example</th>
-    <th>Description</th>
-</tr>
-</thead><tbody>
-    <tr id='storecreditadjustment-id'>
-        <td><code><b>id</b></code></td>
-        <td><code>Number</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td>1</td>
-        <td>Unique identifier.</td>
-    </tr>
-    <tr id='storecreditadjustment-debit'>
-        <td><code><b>debit</b></code></td>
-        <td><code>Number</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td>50</td>
-        <td>Debit of adjustment.</td>
-    </tr>
-    <tr id='storecreditadjustment-availablebalance'>
-        <td><code><b>availableBalance</b></code></td>
-        <td><code>Number</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td>10</td>
-        <td>Current availableBalance for this SC.</td>
-    </tr>
-    <tr id='storecreditadjustment-state'>
-        <td><code><b>state</b></code></td>
-        <td><code>String</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td>Auth</td>
-        <td>Gift Card state.</td>
-    </tr>
-    <tr id='storecreditadjustment-orderref'>
-        <td><code><b>orderRef</b></code></td>
-        <td><code>String</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td><code>ABC-123</code></td>
-        <td>Order reference number.</td>
-    </tr>
-    <tr id='storecreditadjustment-createdat'>
-        <td><code><b>createdAt</b></code></td>
-        <td><code>String</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td><code>2015-09-10T14:55:50Z</code></td>
-        <td>Creation date.
-Available values:
-<ul class="collapsible collapsed">
-<li><a href="#auth"><code>auth</code></a></li>
-<li><code>capture</code></li>
-<li><code>canceled</code></li>
-</ul></td>
-    </tr>
-</tbody></table>
-
-
-</section>
-
-</section>
-<span id='storecreditadjustments'></span>
-
-<section>
-<h3 id='storecreditadjustments-field'>StoreCreditAdjustments</h3>
-
-<section >
-
-
-
-<div class='section-comments'></div>
-
-<table><thead>
-<tr>
-    <th>Field</th>
-    <th>Type</th>
-    <th>Required</th>
-    <th>Example</th>
-    <th>Description</th>
-</tr>
-</thead><tbody>
-    <tr id='storecreditadjustments-result'>
-        <td><code><b>result</b></code></td>
-        <td><code>Array&lt;<a href='#storecreditadjustment'>StoreCreditAdjustment</a>&gt;</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td></td>
-        <td>The resulting list of StoreCreditAdjustment-s.</td>
-    </tr>
-</tbody></table>
-
-
-</section>
-
-<div class='accordion'>
-	<label><span class='expander'>▶</span> Fields inherited from <a href='#resultmetadata'>ResultMetadata</a></label>
-	<div class='accordion-content'><section >
-
-
-
-<div class='section-comments'></div>
-
-<table><thead>
-<tr>
-    <th>Field</th>
-    <th>Type</th>
-    <th>Required</th>
-    <th>Example</th>
-    <th>Description</th>
-</tr>
-</thead><tbody>
-    <tr id='storecreditadjustments-pagination'>
-        <td><code><b>pagination</b></code></td>
-        <td><code><a href='#pagingmetadata'>PagingMetadata</a></code>
-        <td><div data-icon="ei-check"></div></td>
-        <td></td>
-        <td>Pagination metadata.</td>
-    </tr>
-    <tr id='storecreditadjustments-sorting'>
-        <td><code><b>sorting</b></code></td>
-        <td><code><a href='#sortingmetadata'>SortingMetadata</a></code>
-        <td><div data-icon="ei-check"></div></td>
-        <td></td>
-        <td>Sorting metadata.</td>
-    </tr>
-    <tr id='storecreditadjustments-errors'>
-        <td><code><b>errors</b></code></td>
-        <td><code>Array&lt;String&gt;</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td><code>List of possible errors and warnings</code></td>
-        <td>List of possible errors.</td>
-    </tr>
-</tbody></table>
-
-
-</section></div>
-</div>
-
-</section>
 <span id='storecredittotals'></span>
 
 <section>
@@ -3610,50 +3349,6 @@ Available values:
 
 
 </section>
-
-<div class='accordion'>
-	<label><span class='expander'>▶</span> Fields inherited from <a href='#resultmetadata'>ResultMetadata</a></label>
-	<div class='accordion-content'><section >
-
-
-
-<div class='section-comments'></div>
-
-<table><thead>
-<tr>
-    <th>Field</th>
-    <th>Type</th>
-    <th>Required</th>
-    <th>Example</th>
-    <th>Description</th>
-</tr>
-</thead><tbody>
-    <tr id='storecreditsresponse-pagination'>
-        <td><code><b>pagination</b></code></td>
-        <td><code><a href='#pagingmetadata'>PagingMetadata</a></code>
-        <td><div data-icon="ei-check"></div></td>
-        <td></td>
-        <td>Pagination metadata.</td>
-    </tr>
-    <tr id='storecreditsresponse-sorting'>
-        <td><code><b>sorting</b></code></td>
-        <td><code><a href='#sortingmetadata'>SortingMetadata</a></code>
-        <td><div data-icon="ei-check"></div></td>
-        <td></td>
-        <td>Sorting metadata.</td>
-    </tr>
-    <tr id='storecreditsresponse-errors'>
-        <td><code><b>errors</b></code></td>
-        <td><code>Array&lt;String&gt;</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td><code>List of possible errors and warnings</code></td>
-        <td>List of possible errors.</td>
-    </tr>
-</tbody></table>
-
-
-</section></div>
-</div>
 
 </section>
 

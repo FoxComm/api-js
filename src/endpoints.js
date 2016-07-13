@@ -21,6 +21,8 @@ export const cartLineItems = '/v1/my/cart/line-items';
 export const cartPaymentCreditCarts = '/v1/my/cart/payment-methods/credit-cards';
 export const cartPaymentGiftCards = '/v1/my/cart/payment-methods/gift-cards';
 export const cartPaymentStoreCredits = '/v1/my/cart/payment-methods/store-credits';
+export const cartPaymentsCouponCode = code => `/v1/my/cart/coupon/${code.trim()}`;
+export const cartPaymentsCoupon = '/v1/my/cart/coupon';
 
 export const addToCart = '/v1/my/cart/add';
 

@@ -34,6 +34,5 @@ export default class StoreCredits {
 }
 
 // @miniclass StoreCreditsResponse (StoreCredits)
-// @inherits ResultMetadata
 // @field result: Array<StoreCredit>
 

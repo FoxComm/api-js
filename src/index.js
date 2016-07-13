@@ -16,8 +16,10 @@ import Addresses from './api/adresses';
 import Auth from './api/auth';
 import CreditCards from './api/credit-cards';
 import StoreCredits from './api/store-credits';
-import Cart from './api/cart';
+import LocalCart from './api/cart/local-cart';
+import BackendCart from './api/cart/backend-cart';
 import jwtDecode from 'jwt-decode';
+import * as cookie from 'cookie';
 
 export default class Api {
   constructor(args) {
@@ -41,9 +43,20 @@ export default class Api {
     // StoreCredits instance
     this.storeCredits = new StoreCredits(this);
 
-    // @property cart: Cart
-    // Cart instance
-    this.cart = new Cart(this);
+    // @property backendCart: BackendCart
+    // BackendCart instance
+    this.backendCart = new BackendCart(this);
+
+    // @property localCart: LocalCart
+    // LocalCart instance
+    this.localCart = new LocalCart(this);
+  }
+
+  // @property cart: <LocalCart|BackendCart>
+  // In case if authentication cookie is set returns BackendCart instance,
+  // if not - LocalCart instance.
+  get cart() {
+    return this.isAuthenticated() ? this.backendCart : this.localCart;
   }
 
   // @method addAuth(jwt: String): FoxApi
@@ -57,6 +70,14 @@ export default class Api {
       };
     }
     return this;
+  }
+
+  // @method isAuthenticated(): Boolean
+  // Check out authenticated user or not by checking existence of JWT cookie.
+  // This method doesn't verify jwt header.
+  isAuthenticated() {
+    const cookies = cookie.parse(document.cookie);
+    return !!cookies.JWT;
   }
 
   // @method getCustomerId(): Number|null

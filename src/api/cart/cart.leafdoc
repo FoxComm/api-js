@@ -1,0 +1,4 @@
+
+@miniclass ItemQuantities (LocalCart)
+@key sku: Number = {'sku-bread': 2}
+Quantity for sku.
