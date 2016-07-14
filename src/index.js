@@ -21,6 +21,8 @@ import BackendCart from './api/cart/backend-cart';
 import jwtDecode from 'jwt-decode';
 import * as cookie from 'cookie';
 
+const isServer = typeof window === 'undefined';
+
 export default class Api {
   constructor(args) {
     // @option api_url: String
@@ -53,10 +55,17 @@ export default class Api {
   }
 
   // @property cart: <LocalCart|BackendCart>
-  // In case if authentication cookie is set returns BackendCart instance,
+  // In case if code runs on client side and authentication cookie is set returns BackendCart instance,
   // if not - LocalCart instance.
+  // Feel free to use `localCart` or `backendCart` properties directly.
   get cart() {
-    return this.isAuthenticated() ? this.backendCart : this.localCart;
+    if (!isServer) {
+      const cookies = cookie.parse(document.cookie);
+      if (!cookies.JWT) {
+        return this.localCart;
+      }
+    }
+    return this.backendCart;
   }
 
   // @method addAuth(jwt: String): FoxApi
@@ -70,14 +79,6 @@ export default class Api {
       };
     }
     return this;
-  }
-
-  // @method isAuthenticated(): Boolean
-  // Check out authenticated user or not by checking existence of JWT cookie.
-  // This method doesn't verify jwt header.
-  isAuthenticated() {
-    const cookies = cookie.parse(document.cookie);
-    return !!cookies.JWT;
   }
 
   // @method getCustomerId(): Number|null
