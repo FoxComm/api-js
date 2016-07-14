@@ -5,7 +5,6 @@
  Accessible via [localCart](#foxapi-localcart) property of [FoxApi](#foxapi) instance.
  */
 
-
 import _ from 'lodash';
 import * as endpoints from '../../endpoints';
 import { normalizeResponse } from './common';
@@ -13,12 +12,27 @@ import { normalizeResponse } from './common';
 export default class LocalCart {
   constructor(api) {
     this.api = api;
+  }
 
-    this.payload = {
+  get payload() {
+    const cartJson = localStorage.getItem('cart');
+    if (cartJson) {
+      return JSON.parse(cartJson);
+    }
+    return {
       lineItems: [],
       payments: {},
       addresses: {},
     };
+  }
+
+  savePayload() {
+    localStorage.setItem('cart', JSON.stringify(this.payload));
+  }
+
+  set(path, value) {
+    _.set(this.payload, path, value);
+    this.savePayload();
   }
 
   /**
@@ -34,9 +48,9 @@ export default class LocalCart {
    * Chooses shipping method for the cart.
    */
   chooseShippingMethod(shippingMethodId) {
-    this.payload.addresses.shippingMethod = {
+    this.set('addresses.shippingMethod', {
       shippingMethodId,
-    };
+    })
   }
 
   /**
@@ -45,6 +59,7 @@ export default class LocalCart {
    */
   removeShippingMethod() {
     delete this.payload.addresses.shippingMethod;
+    this.savePayload();
   }
 
   /**
@@ -52,7 +67,7 @@ export default class LocalCart {
    * Creates shipping address for the cart by a given address payload.
    */
   setShippingAddress(shippingAddress) {
-    this.payload.addresses.shippingAddress = shippingAddress;
+    this.set('addresses.shippingAddress', shippingAddress);
   }
 
   /**
@@ -63,7 +78,8 @@ export default class LocalCart {
     if (!this.payload.addresses.shippingAddress) {
       this.payload.addresses.shippingAddress = {};
     }
-    Object.assign(this.payload.addresses.shippingAddress, shippingAddress)
+    Object.assign(this.payload.addresses.shippingAddress, shippingAddress);
+    this.savePayload();
   }
 
   /**
@@ -72,6 +88,7 @@ export default class LocalCart {
    */
   removeShippingAddress() {
     delete this.payload.addresses.shippingAddress;
+    this.savePayload();
   }
 
   /**
@@ -103,6 +120,7 @@ export default class LocalCart {
       ...this.payload.lineItems,
       ...newItems
     ];
+    this.savePayload();
   }
 
   /**
@@ -138,7 +156,7 @@ export default class LocalCart {
    * Adds a credit card as payment method for the cart.
    */
   addCreditCard(creditCard) {
-    this.payload.payments.creditCard = creditCard;
+    this.set('payments.creditCard', creditCard);
   }
 
   /**
@@ -147,6 +165,7 @@ export default class LocalCart {
    */
   removeCreditCards() {
     delete this.payload.payments.creditCard;
+    this.savePayload();
   }
 
   /**
@@ -154,7 +173,7 @@ export default class LocalCart {
    * Adds a gift card as payment method for the cart.
    */
   addGiftCard(giftCardPayload) {
-    this.payload.payments.giftCard = giftCardPayload;
+    this.set('payments.giftCard', giftCardPayload);
   }
 
   /**
@@ -163,6 +182,7 @@ export default class LocalCart {
    */
   removeGiftCards() {
     delete this.payload.payments.giftCard;
+    this.savePayload();
   }
 
   /**
@@ -170,7 +190,7 @@ export default class LocalCart {
    * Apply a coupon code for the cart.
    */
   setCouponCode(code) {
-    this.payload.coupon = code;
+    this.set('coupon', code);
   }
 
   /**
@@ -179,5 +199,6 @@ export default class LocalCart {
    */
   removeCoupon() {
     delete this.payload.coupon;
+    this.savePayload();
   }
 }
