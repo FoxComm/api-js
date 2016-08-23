@@ -3,6 +3,12 @@
 // Accessible via [creditCards](#foxapi-creditcards) property of [FoxApi](#foxapi) instance.
 
 import * as endpoints from '../endpoints';
+import Stripe from '../vendor/stripe';
+
+const pKey = "pk_test_r6t0niqmG9OOZhhaSkacUUU1";
+
+Stripe.setPublishableKey(pKey);
+
 
 export default class CreditCards {
   constructor(api) {
@@ -14,7 +20,7 @@ export default class CreditCards {
   list() {
     return this.api.get(endpoints.creditCards);
   }
-  
+
   // @method one(creditCardId: Number): Promise<CreditCard>
   // Returns credit card by id.
   one(creditCardId) {
@@ -24,7 +30,20 @@ export default class CreditCards {
   // @method add(creditCard: CreditCardCreatePayload): Promise<CreditCard>
   // Adds new credit card.
   add(creditCard) {
-    return this.api.post(endpoints.creditCards, creditCard);
+    return new Promise((resolve, reject) => {
+      Stripe.card.createToken({
+        number: creditCard.number,
+        cvc: creditCard.cvv,
+        exp_month: creditCard.expMonth,
+        exp_year: creditCard.expYear,
+      }, (response) => {
+          if (response.error) {
+              reject(response.error);
+          } else {
+            resolve(this.api.post(endpoints.creditCard(response.id)));
+          }
+      });
+    });
   }
 
   // @method update(creditCardId: Number, creditCard: CreditCardUpdatePayload): Promise<CreditCard>
