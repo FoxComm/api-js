@@ -1,18 +1,19 @@
-
 // @class CreditCards
 // Accessible via [creditCards](#foxapi-creditcards) property of [FoxApi](#foxapi) instance.
 
 import * as endpoints from '../endpoints';
-import Stripe from '../vendor/stripe';
-
-const pKey = "pk_test_r6t0niqmG9OOZhhaSkacUUU1";
-
-Stripe.setPublishableKey(pKey);
-
+import { isBrowser, loadScript } from '../utils/browser';
 
 export default class CreditCards {
   constructor(api) {
     this.api = api;
+
+    if (isBrowser()) {
+      // load Stripe.js
+      loadScript('https://js.stripe.com/v2/').then(() => {
+        Stripe.setPublishableKey(this.api.stripe_key);
+      });
+    }
   }
 
   // @method list(): Promise<CreditCardsResponse>
@@ -29,19 +30,31 @@ export default class CreditCards {
 
   // @method add(creditCard: CreditCardCreatePayload): Promise<CreditCard>
   // Adds new credit card.
-  add(creditCard) {
+  create(creditCard, billingAddress) {
     return new Promise((resolve, reject) => {
       Stripe.card.createToken({
+        name: creditCard.name,
         number: creditCard.number,
-        cvc: creditCard.cvv,
+        cvc: creditCard.cvc,
         exp_month: creditCard.expMonth,
-        exp_year: creditCard.expYear,
-      }, (response) => {
-          if (response.error) {
-              reject(response.error);
-          } else {
-            resolve(this.api.post(endpoints.creditCard(response.id)));
-          }
+        exp_year: creditCard.expYear
+      }, (status, response) => {
+        if (response.error) {
+          reject(response.error);
+        } else {
+          var payload = {
+            token: response.id,
+            lastFour: response.card.last4,
+            expMonth: response.card.exp_month,
+            expYear: response.card.exp_year,
+            brand: response.card.brand,
+            billingAddress: billingAddress,
+          };
+
+          return this.api.post(endpoints.creditCards, payload)
+            .then(response => resolve(response))
+            .catch(err => !!err.responseJson.errors ? reject(err.responseJson.errors) : reject([err.message]));
+        }
       });
     });
   }
@@ -62,5 +75,21 @@ export default class CreditCards {
   // Deletes selected credit card.
   delete(creditCardId) {
     return this.api.delete(endpoints.creditCard(creditCardId));
+  }
+
+  cardType(number = '') {
+    return Stripe.card.cardType(number);
+  }
+
+  validateCardNumber(number = '') {
+    return Stripe.card.validateCardNumber(number);
+  }
+
+  validateCVC(cvc = '') {
+    return Stripe.card.validateCVC(cvc);
+  }
+
+  validateExpiry(month = '', year = '') {
+    return Stripe.card.validateExpiry(month, year);
   }
 }
