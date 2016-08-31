@@ -28,7 +28,7 @@ export default class CreditCards {
     return this.api.get(endpoints.creditCard(creditCardId));
   }
 
-  // @method add(creditCard: CreditCardCreatePayload): Promise<CreditCard>
+  // @method add(creditCard: CreditCardCreatePayload, billingAddress: BillingAddressCreatePayload): Promise<CreditCard>
   // Adds new credit card.
   create(creditCard, billingAddress) {
     return new Promise((resolve, reject) => {
@@ -64,18 +64,26 @@ export default class CreditCards {
     return this.api.delete(endpoints.creditCard(creditCardId));
   }
 
+  // @method cardType(number: String): String
+  // Detects credit card type
   cardType(number = '') {
     return Stripe.card.cardType(number);
   }
 
+  // @method validateCardNumber(number: String): Boolean
+  // Check if credit card'c number is valid
   validateCardNumber(number = '') {
     return Stripe.card.validateCardNumber(number);
   }
 
+  // @method validateCVC(cvc: String|Number): Boolean
+  // Check if credit card's cvc is valid
   validateCVC(cvc = '') {
     return Stripe.card.validateCVC(cvc);
   }
 
+  // @method validateExpiry(month: String|Number, year: String|Number): Boolean
+  // Check if credit card's valid thru date is valid
   validateExpiry(month = '', year = '') {
     return Stripe.card.validateExpiry(month, year);
   }

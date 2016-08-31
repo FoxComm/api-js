@@ -25,7 +25,7 @@ export default class Api {
     // Required option. Should point to phoenix backend.
     if (!args.api_url) throw new Error('You must specify an API URL');
     // @option stripe_key: String
-    // Required option. Should contain Stripe.js publishable key.
+    // Required option. Should contain Stripe.js publishable key. https://stripe.com/docs/stripe.js#setting-publishable-key
     if (!args.stripe_key) throw new Error('You must specify stripe publishable key. See https://stripe.com/docs/stripe.js#setting-publishable-key');
 
     this.api_url = args.api_url.replace(/\/?$/, ''); // ensure no trailing slash

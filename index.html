@@ -52,7 +52,7 @@
 <div class='section-comments'></div>
 
 
-<pre><code class="lang-js">const api = new FoxApi({api_url: &#39;http://api.foxcommerce&#39;});
+<pre><code class="lang-js">const api = new FoxApi({api_url: &#39;http://api.foxcommerce&#39;, stripe_key: &#39;abcdef1234567890&#39;});
 api.products.search({state: &#39;cart&#39;});
 </code></pre>
 
@@ -83,6 +83,12 @@ api.products.search({state: &#39;cart&#39;});
 		<td><code>String</code>
 		<td><code></code></td>
 		<td>Required option. Should point to phoenix backend.</td>
+	</tr>
+	<tr id='foxapi-stripe_key'>
+		<td><code><b>stripe_key</b></code></td>
+		<td><code>String</code>
+		<td><code></code></td>
+		<td>Required option. Should contain Stripe.js publishable key. <a href="https://stripe.com/docs/stripe.js#setting-publishable-key">https://stripe.com/docs/stripe.js#setting-publishable-key</a></td>
 	</tr>
 </tbody></table>
 
@@ -2815,7 +2821,7 @@ Available values:
 		<td>Returns credit card by id.</td>
 	</tr>
 	<tr id='creditcards-add'>
-		<td><code><b>add</b>(<nobr>&lt;<a href='#creditcardcreatepayload'>CreditCardCreatePayload</a>&gt;</nobr> <i>creditCard</i>)</nobr></code></td>
+		<td><code><b>add</b>(<nobr>&lt;<a href='#creditcardcreatepayload'>CreditCardCreatePayload</a>&gt;</nobr> <i>creditCard</i>, <nobr>&lt;<a href='#billingaddresscreatepayload'>BillingAddressCreatePayload</a>&gt;</nobr> <i>billingAddress</i>)</nobr></code></td>
 		<td><code>Promise&lt;<a href='#creditcard'>CreditCard</a>&gt;</code></td>
 		<td>Adds new credit card.</td>
 	</tr>
@@ -2833,6 +2839,26 @@ Available values:
 		<td><code><b>delete</b>(<nobr>&lt;Number&gt;</nobr> <i>creditCardId</i>)</nobr></code></td>
 		<td><code>Promise</code></td>
 		<td>Deletes selected credit card.</td>
+	</tr>
+	<tr id='creditcards-cardtype'>
+		<td><code><b>cardType</b>(<nobr>&lt;String&gt;</nobr> <i>number</i>)</nobr></code></td>
+		<td><code>String</code></td>
+		<td>Detects credit card type</td>
+	</tr>
+	<tr id='creditcards-validatecardnumber'>
+		<td><code><b>validateCardNumber</b>(<nobr>&lt;String&gt;</nobr> <i>number</i>)</nobr></code></td>
+		<td><code>Boolean</code></td>
+		<td>Check if credit card&#39;c number is valid</td>
+	</tr>
+	<tr id='creditcards-validatecvc'>
+		<td><code><b>validateCVC</b>(<nobr>&lt;String|Number&gt;</nobr> <i>cvc</i>)</nobr></code></td>
+		<td><code>Boolean</code></td>
+		<td>Check if credit card&#39;s cvc is valid</td>
+	</tr>
+	<tr id='creditcards-validateexpiry'>
+		<td><code><b>validateExpiry</b>(<nobr>&lt;String|Number&gt;</nobr> <i>month</i>, <nobr>&lt;String|Number&gt;</nobr> <i>year</i>)</nobr></code></td>
+		<td><code>Boolean</code></td>
+		<td>Check if credit card&#39;s valid thru date is valid</td>
 	</tr>
 </tbody></table>
 
@@ -2969,47 +2995,94 @@ Available values:
         <td><code>5555 5555 5555 5555</code></td>
         <td>Credit card number.</td>
     </tr>
-    <tr id='creditcardcreatepayload-cvv'>
-        <td><code><b>cvv</b></code></td>
-        <td><code>String</code>
+    <tr id='creditcardcreatepayload-cvc'>
+        <td><code><b>cvc</b></code></td>
+        <td><code>String|Number</code>
         <td><div data-icon="ei-check"></div></td>
         <td><code>555</code></td>
-        <td>CVV.</td>
+        <td>CVC.</td>
     </tr>
     <tr id='creditcardcreatepayload-expmonth'>
         <td><code><b>expMonth</b></code></td>
-        <td><code>Number</code>
+        <td><code>String|Number</code>
         <td><div data-icon="ei-check"></div></td>
         <td>4</td>
         <td>Expiration month.</td>
     </tr>
     <tr id='creditcardcreatepayload-expyear'>
         <td><code><b>expYear</b></code></td>
-        <td><code>Number</code>
+        <td><code>String|Number</code>
         <td><div data-icon="ei-check"></div></td>
         <td>2020</td>
         <td>Expiration year.</td>
     </tr>
-    <tr id='creditcardcreatepayload-address'>
-        <td><code><b>address</b></code></td>
-        <td><code><a href='#createaddresspayload'>CreateAddressPayload</a></code>
-        <td></td>
-        <td></td>
-        <td>Billing address.</td>
+</tbody></table>
+
+
+</section>
+
+</section>
+<span id='billingaddresscreatepayload'></span>
+
+<section>
+<h3 id='billingaddresscreatepayload-field'>BillingAddressCreatePayload</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='billingaddresscreatepayload-address1'>
+        <td><code><b>address1</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>100 Naamans Rd</code></td>
+        <td>Address string 1.</td>
     </tr>
-    <tr id='creditcardcreatepayload-addressid'>
-        <td><code><b>addressId</b></code></td>
-        <td><code>Number</code>
-        <td></td>
-        <td></td>
-        <td>Billing address ID.</td>
+    <tr id='billingaddresscreatepayload-address2'>
+        <td><code><b>address2</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>4B, Ste 212111</code></td>
+        <td>Address string 2.</td>
     </tr>
-    <tr id='creditcardcreatepayload-isdefault'>
-        <td><code><b>isDefault</b></code></td>
-        <td><code>Boolean</code>
-        <td></td>
-        <td>false</td>
-        <td>Defines whether credit card is default.</td>
+    <tr id='billingaddresscreatepayload-zip'>
+        <td><code><b>zip</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>19703</code></td>
+        <td>ZIP Code.</td>
+    </tr>
+    <tr id='billingaddresscreatepayload-city'>
+        <td><code><b>city</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>Claymont</code></td>
+        <td>City.</td>
+    </tr>
+    <tr id='billingaddresscreatepayload-state'>
+        <td><code><b>state</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>Delaware</code></td>
+        <td>State.</td>
+    </tr>
+    <tr id='billingaddresscreatepayload-country'>
+        <td><code><b>country</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>United States</code></td>
+        <td>Country.</td>
     </tr>
 </tbody></table>
 
