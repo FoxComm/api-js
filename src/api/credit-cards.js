@@ -32,24 +32,11 @@ export default class CreditCards {
   // Adds new credit card.
   create(creditCard, billingAddress) {
     return new Promise((resolve, reject) => {
-      Stripe.card.createToken({
-        name: creditCard.name,
-        number: creditCard.number,
-        cvc: creditCard.cvc,
-        exp_month: creditCard.expMonth,
-        exp_year: creditCard.expYear
-      }, (status, response) => {
+      Stripe.card.createToken(creditCardForStripePayload(creditCard, billingAddress), (status, response) => {
         if (response.error) {
-          reject(response.error);
+          reject([response.error.message]);
         } else {
-          var payload = {
-            token: response.id,
-            lastFour: response.card.last4,
-            expMonth: response.card.exp_month,
-            expYear: response.card.exp_year,
-            brand: response.card.brand,
-            billingAddress: billingAddress,
-          };
+          var payload = creditCardFromStripePayload(response, billingAddress);
 
           return this.api.post(endpoints.creditCards, payload)
             .then(response => resolve(response))
@@ -91,5 +78,32 @@ export default class CreditCards {
 
   validateExpiry(month = '', year = '') {
     return Stripe.card.validateExpiry(month, year);
+  }
+}
+
+function creditCardForStripePayload(creditCard, billingAddress) {
+  return {
+    name: creditCard.holderName,
+    number: creditCard.number,
+    cvc: creditCard.cvc,
+    exp_month: creditCard.expMonth,
+    exp_year: creditCard.expYear,
+    address_line1: billingAddress.address1,
+    address_line2: billingAddress.address2,
+    address_zip: billingAddress.zip,
+    address_city: billingAddress.city,
+    address_state: billingAddress.state,
+    address_country: billingAddress.country,
+  }
+}
+
+function creditCardFromStripePayload(stripeResponse, billingAddress) {
+  return {
+    token: stripeResponse.id,
+    lastFour: stripeResponse.card.last4,
+    expMonth: stripeResponse.card.exp_month,
+    expYear: stripeResponse.card.exp_year,
+    brand: stripeResponse.card.brand,
+    billingAddress,
   }
 }
