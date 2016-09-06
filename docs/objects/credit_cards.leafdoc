@@ -41,35 +41,23 @@ Cardholder name.
 @field number: String = `5555 5555 5555 5555`
 Credit card number.
 
-@field cvc: String|Number = `555`
-CVC.
+@field cvv: String = `555`
+CVV.
 
-@field expMonth: String|Number = 4
+@field expMonth: Number = 4
 Expiration month.
 
-@field expYear: String|Number = 2020
+@field expYear: Number = 2020
 Expiration year.
 
-@miniclass BillingAddressCreatePayload (CreditCards)
-@aka billingaddresscreatepayload
+@field address?: CreateAddressPayload
+Billing address.
 
-@field address1: String = `100 Naamans Rd`
-Address string 1.
+@field addressId?: Number
+Billing address ID.
 
-@field address2: String = `4B, Ste 212111`
-Address string 2.
-
-@field zip: String = `19703`
-ZIP Code.
-
-@field city: String = `Claymont`
-City.
-
-@field state: String = `Delaware`
-State.
-
-@field country: String = `United States`
-Country.
+@field isDefault?: Boolean = false
+Defines whether credit card is default.
 
 @miniclass CreditCardUpdatePayload (CreditCards)
 @aka creditcardupdatepayload
@@ -91,4 +79,3 @@ Billing address ID.
 
 @miniclass CreditCardsResponse (CreditCards)
 @aka creditcardsresponse
-@inherits ResultMetadata
