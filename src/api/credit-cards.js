@@ -30,13 +30,13 @@ export default class CreditCards {
 
   // @method add(creditCard: CreditCardCreatePayload, billingAddress: BillingAddressCreatePayload): Promise<CreditCard>
   // Adds new credit card.
-  create(creditCard, billingAddress) {
+  create(creditCard, billingAddress, addressIsNew) {
     return new Promise((resolve, reject) => {
       Stripe.card.createToken(creditCardForStripePayload(creditCard, billingAddress), (status, response) => {
         if (response.error) {
           reject([response.error.message]);
         } else {
-          var payload = creditCardFromStripePayload(response, billingAddress);
+          var payload = creditCardFromStripePayload(response, billingAddress, addressIsNew);
 
           return this.api.post(endpoints.creditCards, payload)
             .then(response => resolve(response))
@@ -105,13 +105,15 @@ function creditCardForStripePayload(creditCard, billingAddress) {
   }
 }
 
-function creditCardFromStripePayload(stripeResponse, billingAddress) {
+function creditCardFromStripePayload(stripeResponse, billingAddress, addressIsNew) {
   return {
     token: stripeResponse.id,
+    holderName: stripeResponse.card.name,
     lastFour: stripeResponse.card.last4,
     expMonth: stripeResponse.card.exp_month,
     expYear: stripeResponse.card.exp_year,
     brand: stripeResponse.card.brand,
+    addressIsNew: addressIsNew,
     billingAddress,
   }
 }
