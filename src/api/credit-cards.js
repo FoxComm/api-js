@@ -28,7 +28,7 @@ export default class CreditCards {
     return this.api.get(endpoints.creditCard(creditCardId));
   }
 
-  // @method add(creditCard: CreditCardCreatePayload, billingAddress: BillingAddressCreatePayload, addressIsNew: Boolean): Promise<CreditCard>
+  // @method create(creditCard: CreditCardCreatePayload, billingAddress: BillingAddressCreatePayload, addressIsNew: Boolean): Promise<CreditCard>
   // Adds new credit card.
   create(creditCard, billingAddress, addressIsNew) {
     return new Promise((resolve, reject) => {
