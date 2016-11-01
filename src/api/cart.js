@@ -124,37 +124,35 @@ export default class Cart {
    * @method updateQuantities(itemQuantities: ItemQuantities): Promise<FullOrder>
    */
   updateQuantities(itemQuantities) {
-    const updateSkusPayload = _.map(itemQuantities, (quantity, sku) => {
+    const updateSkusPayload = _.map(itemQuantities, (quantity, sku, attributes) => {
       return {
         sku,
-        quantity
+        quantity,
+        attributes
       };
     });
 
-    return this.api.post(endpoints.cartLineItems, updateSkusPayload).then(normalizeResponse);
+    return this.api.patch(endpoints.cartLineItems, updateSkusPayload).then(normalizeResponse);
   }
 
   /**
-   * @method updateQty(sku: String, qty: Number): Promise<FullOrder>
+   * @method updateQty(sku: String, qty: Number, attributes: attributes): Promise<FullOrder>
    * Updates quantity for selected item in the cart
    */
   updateQty(sku, qty , attributes) {
-    return this.updateQuantities({
-      [sku]: qty,
-      attributes: attributes
-    });
+    return this.updateQuantities({[sku]: qty, attributes });
   }
 
   /**
    * @method addSku(sku: String, quantity: Number): Promise<FullOrder>
    * Adds sku by defined quantity in the cart.
    */
-  addSku(sku, quantity) {
+  addSku(sku, quantity, attributes) {
     return this.get().then(cart => {
       const skuData = _.find(_.get(cart, 'lineItems.skus', []), { sku });
       const existsQuantity = skuData ? skuData.quantity : 0;
 
-      return this.updateQty(sku, existsQuantity + quantity);
+      return this.updateQty(sku, existsQuantity + quantity, attributes);
     });
   }
 
@@ -163,7 +161,7 @@ export default class Cart {
    * Removes selected sku from the cart.
    */
   removeSku(sku) {
-    return this.updateQty(sku, 0);
+    return this.updateQty(sku, 0, attributes);
   }
 
   /**
