@@ -4,6 +4,27 @@
  */
 
 
+/**
+ * @miniclass GiftCard 
+ * @field senderName: String
+ * name of the person that is sending the giftcard
+ *
+ * @field recipientName: String
+ * name of the person that is receiving the giftcard
+ *
+ * @field recipientEmail: String
+ * recipient email address
+ * 
+ * @field message :String
+ * optional message to deliver to the recipient 
+ */
+
+/**
+ * @miniclass Attributes
+ * @field giftcard: GiftCard
+ * giftcard to send attached to a lineItem
+ */
+
 import _ from 'lodash';
 import * as endpoints from '../endpoints';
 
@@ -117,9 +138,10 @@ export default class Cart {
    * @method updateQty(sku: String, qty: Number): Promise<FullOrder>
    * Updates quantity for selected item in the cart
    */
-  updateQty(sku, qty) {
+  updateQty(sku, qty , attributes) {
     return this.updateQuantities({
-      [sku]: qty
+      [sku]: qty,
+      attributes: attributes
     });
   }
 
