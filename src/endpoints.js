@@ -16,11 +16,13 @@ export const cartCheckout = '/v1/my/cart/checkout';
 export const shippingMethods = '/v1/my/cart/shipping-methods';
 export const shippingMethod = '/v1/my/cart/shipping-method';
 export const shippingAddress = '/v1/my/cart/shipping-address';
-export const shippingAddressId = id => `${shippingAddress}/id`;
+export const shippingAddressId = id => `${shippingAddress}/${id}`;
 export const cartLineItems = '/v1/my/cart/line-items';
 export const cartPaymentCreditCarts = '/v1/my/cart/payment-methods/credit-cards';
 export const cartPaymentGiftCards = '/v1/my/cart/payment-methods/gift-cards';
 export const cartPaymentStoreCredits = '/v1/my/cart/payment-methods/store-credits';
+export const cartPaymentCouponCode = '/v1/my/cart/coupon';
+export const cartPaymentCouponCodeWithCode = code => `/v1/my/cart/coupon/${code}`;
 
 export const addToCart = '/v1/my/cart/add';
 
@@ -41,3 +43,6 @@ export const creditCardDefault = creditCardId => `${creditCard(creditCardId)}/de
 export const storeCredit = storeCreditId => `/v1/my/payment-methods/store-credits/${storeCreditId}`;
 export const storeCreditTotals = `/v1/my/payment-methods/store-credits/totals`;
 export const storeCredits = `/search/store_credits_search_view/_search`;
+
+// account endpoints
+export const account = '/v1/my/account';

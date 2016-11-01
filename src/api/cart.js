@@ -40,7 +40,7 @@ export default class Cart {
    * Chooses shipping method for the cart.
    */
   chooseShippingMethod(shippingMethodId) {
-    return this.api.patch(endpoints.shippingMethods, { shippingMethodId }).then(normalizeResponse);
+    return this.api.patch(endpoints.shippingMethod, { shippingMethodId }).then(normalizeResponse);
   }
 
   /**
@@ -190,6 +190,23 @@ export default class Cart {
    */
   removeStoreCrdits() {
     return this.api.delete(endpoints.cartPaymentStoreCredits).then(normalizeResponse);
+  }
+
+
+  /**
+   * @method addCoupon(code: Number): Promise<FullOrder>
+   * Adds coupon code to the cart.
+   */
+  addCoupon(code) {
+    return this.api.post(endpoints.cartPaymentCouponCodeWithCode(code.trim()), {}).then(normalizeResponse);
+  }
+
+  /**
+   * @method removeCoupon(): Promise<FullOrder>
+   * Removes coupon code of the cart.
+   */
+  removeCoupon() {
+    return this.api.delete(endpoints.cartPaymentCouponCode).then(normalizeResponse);
   }
 }
 
