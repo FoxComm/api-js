@@ -4,6 +4,27 @@
  */
 
 
+/**
+ * @miniclass GiftCard 
+ * @field senderName: String
+ * name of the person that is sending the giftcard
+ *
+ * @field recipientName: String
+ * name of the person that is receiving the giftcard
+ *
+ * @field recipientEmail: String
+ * recipient email address
+ * 
+ * @field message :String
+ * optional message to deliver to the recipient 
+ */
+
+/**
+ * @miniclass Attributes
+ * @field giftcard: GiftCard
+ * giftcard to send attached to a lineItem
+ */
+
 import _ from 'lodash';
 import * as endpoints from '../endpoints';
 
@@ -103,10 +124,11 @@ export default class Cart {
    * @method updateQuantities(itemQuantities: ItemQuantities): Promise<FullOrder>
    */
   updateQuantities(itemQuantities) {
-    const updateSkusPayload = _.map(itemQuantities, (quantity, sku) => {
+    const updateSkusPayload = _.map(itemQuantities, (quantity, sku, attributes) => {
       return {
         sku,
-        quantity
+        quantity,
+        attributes
       };
     });
 
@@ -114,34 +136,32 @@ export default class Cart {
   }
 
   /**
-   * @method updateQty(sku: String, qty: Number): Promise<FullOrder>
+   * @method updateQty(sku: String, qty: Number, attributes: attributes): Promise<FullOrder>
    * Updates quantity for selected item in the cart
    */
-  updateQty(sku, qty) {
-    return this.updateQuantities({
-      [sku]: qty
-    });
+  updateQty(sku, qty , attributes) {
+    return this.updateQuantities({[sku]: qty, attributes= {} });
   }
 
   /**
    * @method addSku(sku: String, quantity: Number): Promise<FullOrder>
    * Adds sku by defined quantity in the cart.
    */
-  addSku(sku, quantity) {
+  addSku(sku, quantity, attributes= {}) {
     return this.get().then(cart => {
       const skuData = _.find(_.get(cart, 'lineItems.skus', []), { sku });
       const existsQuantity = skuData ? skuData.quantity : 0;
 
-      return this.updateQty(sku, existsQuantity + quantity);
+      return this.updateQty(sku, existsQuantity + quantity, attributes);
     });
   }
 
   /**
-   * @method removeSku(sku: String): Promise<FullOrder>
+   * @method removeSku(sku: String, attributes:attributes): Promise<FullOrder>
    * Removes selected sku from the cart.
    */
-  removeSku(sku) {
-    return this.updateQty(sku, 0);
+  removeSku(sku,attributes= {}) {
+    return this.updateQty(sku, 0, attributes);
   }
 
   /**
