@@ -27,10 +27,33 @@ export default class Auth {
     this.api = api;
   }
 
+  _processJWT(promise, jwt) {
+    return promise.then(response => {
+      jwt = response.headers.get('jwt');
+      if (response.status == 200 && jwt) {
+        return response.json();
+      }
+      throw new Error('Server error, try again later. Sorry for inconvenience :(');
+    })
+    .then(user => {
+      if (user.email) {
+        return {
+          user,
+          jwt,
+        };
+      }
+      throw new Error('Server error, try again later. Sorry for inconvenience :(');
+    });
+  }
+
   // @method signup(email: String, name: String, password: String): Promise
   // Register new user
   signup(email, name, password) {
-    return this.api.post(endpoints.signup, {email, name, password});
+    let jwt = null;
+
+    const signupRequest = this.api.post(endpoints.signup, {email, name, password});
+
+    return this._processJWT(signupRequest, jwt);
   }
 
   // @method login(email: String, password: String, org: String): Promise<LoginResponse>
@@ -39,30 +62,16 @@ export default class Auth {
   login(email, password, org) {
     let jwt = null;
 
-    return this.api.post(
+    const loginRequest = this.api.post(
       endpoints.login,
       {email, password, org},
       {
         credentials: 'same-origin',
         handleResponse: false
       }
-    )
-      .then(response => {
-        jwt = response.headers.get('jwt');
-        if (response.status == 200 && jwt) {
-          return response.json();
-        }
-        throw new Error('Server error, try again later. Sorry for inconvenience :(');
-      })
-      .then(user => {
-        if (user.email) {
-          return {
-            user,
-            jwt,
-          };
-        }
-        throw new Error('Server error, try again later. Sorry for inconvenience :(');
-      });
+    );
+
+    return this._processJWT(loginRequest, jwt);
   }
 
   // @method googleSignin(): Promise<GoogleSigninResponse>
