@@ -51,9 +51,16 @@ export default class Auth {
   signup(email, name, password) {
     let jwt = null;
 
-    const signupRequest = this.api.post(endpoints.signup, {email, name, password});
+    const signupPromise = this.api.post(
+      endpoints.signup,
+      {email, name, password},
+      {
+        credentials: 'same-origin',
+        handleResponse: false
+      }
+    );
 
-    return this._processJWT(signupRequest, jwt);
+    return this._processJWT(signupPromise, jwt);
   }
 
   // @method login(email: String, password: String, org: String): Promise<LoginResponse>
@@ -62,7 +69,7 @@ export default class Auth {
   login(email, password, org) {
     let jwt = null;
 
-    const loginRequest = this.api.post(
+    const loginPromise = this.api.post(
       endpoints.login,
       {email, password, org},
       {
@@ -71,7 +78,7 @@ export default class Auth {
       }
     );
 
-    return this._processJWT(loginRequest, jwt);
+    return this._processJWT(loginPromise, jwt);
   }
 
   // @method googleSignin(): Promise<GoogleSigninResponse>
