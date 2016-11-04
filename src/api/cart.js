@@ -15,7 +15,7 @@
  * @field recipientEmail: String
  * recipient email address
  * 
- * @field message :String
+ * @field message?: String
  * optional message to deliver to the recipient 
  */
 
@@ -121,14 +121,13 @@ export default class Cart {
   }
 
   /**
-   * @method updateQuantities(itemQuantities: ItemQuantities): Promise<FullOrder>
+   * @method updateItems(itemsUpdatePayload: ItemsUpdatePayload): Promise<FullOrder>
    */
-  updateQuantities(itemQuantities) {
-    const updateSkusPayload = _.map(itemQuantities, (quantity, sku, attributes) => {
+  updateItems(itemsUpdatePayload) {
+    const updateSkusPayload = _.map(itemsUpdatePayload, (updatePayload, sku) => {
       return {
         sku,
-        quantity,
-        attributes
+        ...updatePayload,
       };
     });
 
@@ -136,18 +135,23 @@ export default class Cart {
   }
 
   /**
-   * @method updateQty(sku: String, qty: Number, attributes: attributes): Promise<FullOrder>
-   * Updates quantity for selected item in the cart
+   * @method updateQty(sku: String, quantity: Number, attributes?: Attributes): Promise<FullOrder>
+   * Updates quantity and optionally attributes for selected item in the cart
    */
-  updateQty(sku, qty , attributes) {
-    return this.updateQuantities({[sku]: qty, attributes= {} });
+  updateQty(sku, quantity , attributes = {}) {
+    return this.updateItems({
+      [sku]: {
+        attributes,
+        quantity,
+      }
+    });
   }
 
   /**
-   * @method addSku(sku: String, quantity: Number): Promise<FullOrder>
+   * @method addSku(sku: String, quantity: Number, attributes?: Attributes): Promise<FullOrder>
    * Adds sku by defined quantity in the cart.
    */
-  addSku(sku, quantity, attributes= {}) {
+  addSku(sku, quantity, attributes = {}) {
     return this.get().then(cart => {
       const skuData = _.find(_.get(cart, 'lineItems.skus', []), { sku });
       const existsQuantity = skuData ? skuData.quantity : 0;
@@ -157,11 +161,11 @@ export default class Cart {
   }
 
   /**
-   * @method removeSku(sku: String, attributes:attributes): Promise<FullOrder>
+   * @method removeSku(sku: String): Promise<FullOrder>
    * Removes selected sku from the cart.
    */
-  removeSku(sku,attributes= {}) {
-    return this.updateQty(sku, 0, attributes);
+  removeSku(sku) {
+    return this.updateQty(sku, 0);
   }
 
   /**
@@ -230,6 +234,13 @@ export default class Cart {
   }
 }
 
-// @miniclass ItemQuantities (Cart)
-// @key sku: Number = {'sku-bread': 2}
-// Quantity for sku.
+// @miniclass ItemUpdatePayload (Cart)
+// @field quantity: Number
+// New quantity for sku
+//
+// @field attributes: Attributes
+// New attributes for sku
+
+// @miniclass ItemsUpdatePayload (Cart)
+// @key sku: ItemUpdatePayload = {'sku-bread': {quantity: 2}}
+// Update payload for sku
