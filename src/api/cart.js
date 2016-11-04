@@ -3,28 +3,6 @@
  Accessible via [cart](#foxapi-cart) property of [FoxApi](#foxapi) instance.
  */
 
-
-/**
- * @miniclass GiftCard 
- * @field senderName: String
- * name of the person that is sending the giftcard
- *
- * @field recipientName: String
- * name of the person that is receiving the giftcard
- *
- * @field recipientEmail: String
- * recipient email address
- * 
- * @field message?: String
- * optional message to deliver to the recipient 
- */
-
-/**
- * @miniclass Attributes
- * @field giftcard: GiftCard
- * giftcard to send attached to a lineItem
- */
-
 import _ from 'lodash';
 import * as endpoints from '../endpoints';
 
@@ -135,7 +113,7 @@ export default class Cart {
   }
 
   /**
-   * @method updateQty(sku: String, quantity: Number, attributes?: Attributes): Promise<FullOrder>
+   * @method updateQty(sku: String, quantity: Number, attributes?: ItemAttributes): Promise<FullOrder>
    * Updates quantity and optionally attributes for selected item in the cart
    */
   updateQty(sku, quantity , attributes = {}) {
@@ -148,7 +126,7 @@ export default class Cart {
   }
 
   /**
-   * @method addSku(sku: String, quantity: Number, attributes?: Attributes): Promise<FullOrder>
+   * @method addSku(sku: String, quantity: Number, attributes?: ItemAttributes): Promise<FullOrder>
    * Adds sku by defined quantity in the cart.
    */
   addSku(sku, quantity, attributes = {}) {
@@ -234,11 +212,32 @@ export default class Cart {
   }
 }
 
+/*
+ * @miniclass ItemGiftCard (Cart)
+ * @field senderName: String
+ * name of the person that is sending the giftcard
+ *
+ * @field recipientName: String
+ * name of the person that is receiving the giftcard
+ *
+ * @field recipientEmail: String
+ * recipient email address
+ *
+ * @field message?: String
+ * optional message to deliver to the recipient
+ */
+
+/*
+ * @miniclass ItemAttributes (Cart)
+ * @field giftcard?: ItemGiftCard
+ * giftcard to send attached to a lineItem
+ */
+
 // @miniclass ItemUpdatePayload (Cart)
 // @field quantity: Number
 // New quantity for sku
 //
-// @field attributes: Attributes
+// @field attributes?: ItemAttributes
 // New attributes for sku
 
 // @miniclass ItemsUpdatePayload (Cart)

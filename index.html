@@ -1639,18 +1639,18 @@ In case if err is Error itself returns array of single element - that error as a
 		<td><code>Promise&lt;<a href='#fullorder'>FullOrder</a>&gt;</code></td>
 		<td>Place order from cart.</td>
 	</tr>
-	<tr id='cart-updatequantities'>
-		<td><code><b>updateQuantities</b>(<nobr>&lt;<a href='#itemquantities'>ItemQuantities</a>&gt;</nobr> <i>itemQuantities</i>)</nobr></code></td>
+	<tr id='cart-updateitems'>
+		<td><code><b>updateItems</b>(<nobr>&lt;<a href='#itemsupdatepayload'>ItemsUpdatePayload</a>&gt;</nobr> <i>itemsUpdatePayload</i>)</nobr></code></td>
 		<td><code>Promise&lt;<a href='#fullorder'>FullOrder</a>&gt;</code></td>
 		<td></td>
 	</tr>
 	<tr id='cart-updateqty'>
-		<td><code><b>updateQty</b>(<nobr>&lt;String&gt;</nobr> <i>sku</i>, <nobr>&lt;Number&gt;</nobr> <i>qty</i>)</nobr></code></td>
+		<td><code><b>updateQty</b>(<nobr>&lt;String&gt;</nobr> <i>sku</i>, <nobr>&lt;Number&gt;</nobr> <i>quantity</i>, <nobr>&lt;<a href='#itemattributes'>ItemAttributes</a>&gt;</nobr> <i>attributes?</i>)</nobr></code></td>
 		<td><code>Promise&lt;<a href='#fullorder'>FullOrder</a>&gt;</code></td>
-		<td>Updates quantity for selected item in the cart</td>
+		<td>Updates quantity and optionally attributes for selected item in the cart</td>
 	</tr>
 	<tr id='cart-addsku'>
-		<td><code><b>addSku</b>(<nobr>&lt;String&gt;</nobr> <i>sku</i>, <nobr>&lt;Number&gt;</nobr> <i>quantity</i>)</nobr></code></td>
+		<td><code><b>addSku</b>(<nobr>&lt;String&gt;</nobr> <i>sku</i>, <nobr>&lt;Number&gt;</nobr> <i>quantity</i>, <nobr>&lt;<a href='#itemattributes'>ItemAttributes</a>&gt;</nobr> <i>attributes?</i>)</nobr></code></td>
 		<td><code>Promise&lt;<a href='#fullorder'>FullOrder</a>&gt;</code></td>
 		<td>Adds sku by defined quantity in the cart.</td>
 	</tr>
@@ -2597,10 +2597,137 @@ Available values:
 </section>
 
 </section>
-<span id='itemquantities'></span>
+<span id='itemgiftcard'></span>
 
 <section>
-<h3 id='itemquantities-key'>ItemQuantities</h3>
+<h3 id='itemgiftcard-field'>ItemGiftCard</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='itemgiftcard-sendername'>
+        <td><code><b>senderName</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>name of the person that is sending the giftcard</td>
+    </tr>
+    <tr id='itemgiftcard-recipientname'>
+        <td><code><b>recipientName</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>name of the person that is receiving the giftcard</td>
+    </tr>
+    <tr id='itemgiftcard-recipientemail'>
+        <td><code><b>recipientEmail</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>recipient email address</td>
+    </tr>
+    <tr id='itemgiftcard-message'>
+        <td><code><b>message</b></code></td>
+        <td><code>String</code>
+        <td></td>
+        <td></td>
+        <td>optional message to deliver to the recipient</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<span id='itemattributes'></span>
+
+<section>
+<h3 id='itemattributes-field'>ItemAttributes</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='itemattributes-giftcard'>
+        <td><code><b>giftcard</b></code></td>
+        <td><code><a href='#itemgiftcard'>ItemGiftCard</a></code>
+        <td></td>
+        <td></td>
+        <td>giftcard to send attached to a lineItem</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<span id='itemupdatepayload'></span>
+
+<section>
+<h3 id='itemupdatepayload-field'>ItemUpdatePayload</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='itemupdatepayload-quantity'>
+        <td><code><b>quantity</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>New quantity for sku</td>
+    </tr>
+    <tr id='itemupdatepayload-attributes'>
+        <td><code><b>attributes</b></code></td>
+        <td><code><a href='#itemattributes'>ItemAttributes</a></code>
+        <td></td>
+        <td></td>
+        <td>New attributes for sku</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<span id='itemsupdatepayload'></span>
+
+<section>
+<h3 id='itemsupdatepayload-key'>ItemsUpdatePayload</h3>
 
 <section >
 
@@ -2616,11 +2743,11 @@ Available values:
     <th>Description</th>
 </tr>
 </thead><tbody>
-    <tr id='itemquantities-sku'>
+    <tr id='itemsupdatepayload-sku'>
         <td><code><b>[sku]</b></code></td>
-        <td><code>Number</code>
-        <td>{&#39;sku-bread&#39;: 2}</td>
-        <td>Quantity for sku.</td>
+        <td><code><a href='#itemupdatepayload'>ItemUpdatePayload</a></code>
+        <td>{&#39;sku-bread&#39;: {quantity: 2}}</td>
+        <td>Update payload for sku</td>
     </tr>
 </tbody></table>
 
