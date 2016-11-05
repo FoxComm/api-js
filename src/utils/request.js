@@ -1,7 +1,4 @@
 
-// WIP. We kinda have to decide if we really want to stick to
-// ES6 not ES7 because spread operator is pretty useful here...
-
 import fetch from 'isomorphic-fetch';
 import makeDebug from 'debug';
 
@@ -38,8 +35,13 @@ export default function request(method, uri, data, options) {
   };
 
   options = {
-    ...options || {},
+    unauthorizedHandler() {
+      if (typeof window != 'undefined') {
+        window.location.href = '/login';
+      }
+    },
     credentials: 'same-origin',
+    ...options || {},
     method: method.toUpperCase(),
     headers: {
       ...defaultHeaders,
@@ -70,6 +72,9 @@ export default function request(method, uri, data, options) {
     return promise
       .then(response => {
         debug(`${response.status} ${method.toUpperCase()} ${uri}`);
+        if (response.status == 401) {
+          options.unauthorizedHandler(response);
+        }
         if (response.status < 200 || response.status >= 300) {
           const message = `${method.toUpperCase()} ${uri} responded with ${response.statusText}`;
           error = new Error(message);
