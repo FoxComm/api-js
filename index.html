@@ -32,8 +32,10 @@
             <h4>FoxApi namespaces</h4>
             <ul>
                 <li><a href="#auth">Auth</a></li>
+                <li><a href="#account">Account</a></li>
                 <li><a href="#addresses">Addresses</a></li>
                 <li><a href="#cart">Cart</a></li>
+                <li><a href="#orders">Orders</a></li>
                 <li><a href="#creditcards">Credit Cards</a></li>
                 <li><a href="#storecredits">Store Credits</a></li>
             </ul>
@@ -220,6 +222,11 @@ You can define jwt string via <code>addAuth</code> method, if there is no jwt st
 		<td><code><b>account</b>
 		<td><code><a href='#account'>Account</a></code></td>
 		<td>Account instance</td>
+	</tr>
+	<tr id='foxapi-orders'>
+		<td><code><b>orders</b>
+		<td><code><a href='#orders'>Orders</a></code></td>
+		<td>Orders instance</td>
 	</tr>
 </tbody></table>
 
@@ -1119,6 +1126,11 @@ In case if err is Error itself returns array of single element - that error as a
 		<td><code><b>update</b>(<nobr>&lt;UpdateCustomerPayload&gt;</nobr> <i>payload</i>)</nobr></code></td>
 		<td><code>Promise&lt;<a href='#loginresponse'>LoginResponse</a>&gt;</code></td>
 		<td>Updates account.</td>
+	</tr>
+	<tr id='account-changepassword'>
+		<td><code><b>changePassword</b>(<nobr>&lt;string&gt;</nobr> <i>oldPassword</i>, <nobr>&lt;string&gt;</nobr> <i>newPassword</i>)</nobr></code></td>
+		<td><code>Promise</code></td>
+		<td>Changes password for account.</td>
 	</tr>
 </tbody></table>
 
@@ -3069,6 +3081,38 @@ Available values:
 </section>
 <span id='creditcardsresponse'></span>
 
+<h2 id='orders'>Orders</h2>
+<section>
+<h3 id='orders-method'>Methods</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+	<tr>
+		<th>Method</th>
+		<th>Returns</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='orders-list'>
+		<td><code><b>list</b>()</nobr></code></td>
+		<td><code>Promise</code></td>
+		<td></td>
+	</tr>
+	<tr id='orders-get'>
+		<td><code><b>get</b>(<nobr>&lt;string&gt;</nobr> <i>referenceNumber</i>)</nobr></code></td>
+		<td><code>Promise</code></td>
+		<td></td>
+	</tr>
+</tbody></table>
+
+</section>
+
+</section>
 <h2 id='storecredits'>StoreCredits</h2><p>Accessible via <a href="#foxapi-storecredits">storeCredits</a> property of <a href="#foxapi">FoxApi</a> instance.</p>
 
 <section>

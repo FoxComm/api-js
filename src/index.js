@@ -18,6 +18,7 @@ import CreditCards from './api/credit-cards';
 import StoreCredits from './api/store-credits';
 import Cart from './api/cart';
 import Account from './api/account';
+import Orders from './api/orders';
 import jwtDecode from 'jwt-decode';
 
 export default class Api {
@@ -54,6 +55,10 @@ export default class Api {
     // @property account: Account
     // Account instance
     this.account = new Account(this);
+
+    // @property orders: Orders
+    // Orders instance
+    this.orders = new Orders(this);
   }
 
   // @method addAuth(jwt: String): FoxApi

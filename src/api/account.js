@@ -18,4 +18,13 @@ export default class Account {
   update(payload) {
     return this.api.patch(endpoints.account, payload);
   }
+
+  // @method changePassword(oldPassword: string, newPassword: string): Promise
+  // Changes password for account.
+  changePassword(oldPassword, newPassword) {
+    return this.api.post(endpoints.changePassword, {
+      oldPassword,
+      newPassword,
+    });
+  }
 }

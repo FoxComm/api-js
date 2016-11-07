@@ -46,3 +46,8 @@ export const storeCredits = `/search/store_credits_search_view/_search`;
 
 // account endpoints
 export const account = '/v1/my/account';
+export const changePassword = '/v1/my/account/change-password';
+
+// orders endpoints
+export const orders = '/search/admin/orders_search_view/_search';
+export const order = referenceNumber => `/v1/my/orders/${referenceNumber}`;
