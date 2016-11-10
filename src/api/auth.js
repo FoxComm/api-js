@@ -46,6 +46,27 @@ export default class Auth {
     });
   }
 
+  _processJWTinSignup(promise, jwt) {
+    return promise.then(response => {
+      jwt = response.headers.get('jwt');
+      return response.json();
+    })
+    .then(data => {
+      if (data.email) {
+        return {
+          user,
+          jwt,
+        };
+      }
+
+      if (data.errors) {
+        throw data.errors;
+      }
+
+      throw new Error('Server error, try again later. Sorry for inconvenience :(');
+    });
+  }
+
   // @method signup(email: String, name: String, password: String): Promise
   // Register new user
   signup(email, name, password) {
@@ -60,7 +81,7 @@ export default class Auth {
       }
     );
 
-    return this._processJWT(signupPromise, jwt);
+    return this._processJWTinSignup(signupPromise, jwt);
   }
 
   // @method login(email: String, password: String, org: String): Promise<LoginResponse>
