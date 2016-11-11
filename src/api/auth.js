@@ -30,28 +30,6 @@ export default class Auth {
   _processJWT(promise, jwt) {
     return promise.then(response => {
       jwt = response.headers.get('jwt');
-
-      if (response.status == 200 && jwt) {
-        return response.json();
-      }
-
-      throw new Error('Server error, try again later. Sorry for inconvenience :(');
-    })
-    .then(user => {
-      if (user.email) {
-        return {
-          user,
-          jwt,
-        };
-      }
-
-      throw new Error('Server error, try again later. Sorry for inconvenience :(');
-    });
-  }
-
-  _processJWTinSignup(promise, jwt) {
-    return promise.then(response => {
-      jwt = response.headers.get('jwt');
       return response.json();
     })
     .then(data => {
@@ -86,7 +64,7 @@ export default class Auth {
       }
     );
 
-    return this._processJWTinSignup(signupPromise, jwt);
+    return this._processJWT(signupPromise, jwt);
   }
 
   // @method login(email: String, password: String, org: String): Promise<LoginResponse>
