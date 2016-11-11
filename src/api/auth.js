@@ -30,9 +30,11 @@ export default class Auth {
   _processJWT(promise, jwt) {
     return promise.then(response => {
       jwt = response.headers.get('jwt');
+
       if (response.status == 200 && jwt) {
         return response.json();
       }
+
       throw new Error('Server error, try again later. Sorry for inconvenience :(');
     })
     .then(user => {
@@ -42,6 +44,7 @@ export default class Auth {
           jwt,
         };
       }
+
       throw new Error('Server error, try again later. Sorry for inconvenience :(');
     });
   }
@@ -54,13 +57,15 @@ export default class Auth {
     .then(data => {
       if (data.email) {
         return {
-          user,
+          user: data,
           jwt,
         };
       }
 
       if (data.errors) {
-        throw data.errors;
+        const error = new Error(data.errors[0]);
+        error.responseJson = data;
+        throw error;
       }
 
       throw new Error('Server error, try again later. Sorry for inconvenience :(');
