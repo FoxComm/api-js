@@ -54,7 +54,7 @@ export default class CreditCards {
 
   // @method setAsDefault(creditCardId: Number): Promise<CreditCard>
   // Sets selected credit card as default.
-  setAsDefault(creditCardId, isDefault = false) {
+  setAsDefault(creditCardId, isDefault = true) {
     return this.api.post(endpoints.creditCardDefault(creditCardId), { isDefault: isDefault });
   }
 
