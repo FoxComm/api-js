@@ -95,4 +95,16 @@ export default class Auth {
   logout() {
     return this.api.post(endpoints.logout);
   }
+
+  // @method restorePassword(email: String): Promise
+  // requests email instructions to reset password
+  restorePassword(email) {
+    return this.api.post(endpoints.sendRestPassword, { email });
+  }
+
+  // @method restorePassword(code: String, newPassword: String): Promise
+  // creates new password
+  resetPassword(code, newPassword) {
+    return this.api.post(endpoints.resetPassword, { code, newPassword });
+  }
 }

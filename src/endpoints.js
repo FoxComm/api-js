@@ -6,6 +6,8 @@ export const login = '/v1/public/login';
 export const signup ='/v1/public/registrations/new';
 export const googleSignin = '/v1/public/signin/google/customer';
 export const logout = '/v1/public/logout';
+export const sendRestPassword = '/v1/public/send-password-reset';
+export const resetPassword = '/v1/public/reset-password';
 
 // product endpoints
 export const search = `/search/products_catalog_view/_search?size=${MAX_RESULTS}`;
