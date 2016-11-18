@@ -171,11 +171,11 @@ export default class Cart {
   }
 
   /**
-   * @method removeGiftCards(): Promise<FullOrder>
-   * Removes all gift cards payment methods of the cart.
+   * @method removeGiftCard(giftCardCode: string): Promise<FullOrder>
+   * Removes gift card with provided code payment method from the cart.
    */
-  removeGiftCards() {
-    return this.api.delete(endpoints.cartPaymentGiftCards).then(normalizeResponse);
+  removeGiftCard(giftCardCode) {
+    return this.api.delete(endpoints.cartPaymentGiftCardsWithCode(giftCardCode)).then(normalizeResponse);
   }
 
   /**
