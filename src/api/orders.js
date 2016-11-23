@@ -32,7 +32,7 @@ export default class Orders {
       const query = buildQuery(customerId);
       return this.api.post(endpoints.orders, query);
     } else {
-      return Promise.reject({errors: ['Please sign in first']});
+      return Promise.reject(new Error('api.orders.list: can\'t do request, please sign in first'));
     }
   }
 
