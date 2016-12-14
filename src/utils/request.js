@@ -82,6 +82,10 @@ export default function request(method, uri, data, options, agent = superagent) 
           return response.body;
         },
         err => {
+          if (err.statusCode === 401) {
+            options.unauthorizedHandler();
+          }
+
           error = new Error(_.get(err, 'message', String(err)));
           error.response = err.response;
           error.responseJson = err.response;
