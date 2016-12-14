@@ -141,7 +141,10 @@ export default class Api {
         ...(options.headers || {}),
       };
     }
-    return request(method, finalUrl, data, options, this.agent);
+
+    options.agent = this.agent;
+
+    return request(method, finalUrl, data, options);
   }
 
   // @method get(uri: String, data?: Object, options?: Object): Promise

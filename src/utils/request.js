@@ -28,7 +28,7 @@ function serialize(data) {
 }
 
 
-export default function request(method, uri, data, options, agent = superagent) {
+export default function request(method, uri, data, options) {
   const defaultHeaders = {
     'Content-Type': 'application/json;charset=UTF-8',
   };
@@ -48,6 +48,7 @@ export default function request(method, uri, data, options, agent = superagent) 
     },
   };
 
+  const agent = options.agent || superagent;
   const requestPromise =
     agent[method.toLowerCase()](uri)
     .set(options.headers)
