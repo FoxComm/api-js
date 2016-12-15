@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import superagent from 'superagent';
 import makeDebug from 'debug';
 
@@ -88,7 +87,7 @@ export default function request(method, uri, data, options) {
             options.unauthorizedHandler();
           }
 
-          error = new Error(_.get(err, 'message', String(err)));
+          error = new Error(err.message || String(err));
           error.response = err.response;
           error.responseJson = err.response;
 
