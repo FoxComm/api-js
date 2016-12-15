@@ -1,5 +1,4 @@
-
-import fetch from 'isomorphic-fetch';
+import superagent from 'superagent';
 import makeDebug from 'debug';
 
 const debug = makeDebug('foxapi');
@@ -49,61 +48,58 @@ export default function request(method, uri, data, options) {
     },
   };
 
+  const agent = options.agent || superagent;
+  const requestPromise =
+    agent[method.toLowerCase()](uri)
+    .set(options.headers)
+    .withCredentials();
+
   if (data) {
     if (method.toUpperCase() === 'GET') {
       const queryString = serialize(data);
+
       if (queryString) {
-        uri = appendQueryString(uri, queryString);
+        requestPromise.query(queryString);
       }
     } else {
-      options.body = JSON.stringify(data);
+      requestPromise.send(data);
     }
   }
 
   let error = null;
 
   debug(`${method.toUpperCase()} ${uri}`);
+
   if (debug.enabled && data) {
     debug(JSON.stringify(data));
   }
-  const promise = fetch(uri, options);
 
   if (options.handleResponse !== false) {
-    return promise
-      .then(response => {
-        debug(`${response.status} ${method.toUpperCase()} ${uri}`);
-        if (response.status == 401) {
-          options.unauthorizedHandler(response);
-        }
-        if (response.status < 200 || response.status >= 300) {
-          const message = `${method.toUpperCase()} ${uri} responded with ${response.statusText}`;
-          error = new Error(message);
-          error.response = response;
-        }
+    return requestPromise
+      .then(
+        response => {
+          debug(`${response.status} ${method.toUpperCase()} ${uri}`);
 
-        return response;
-      })
-      .then(response => response.text())
-      .then(responseText => {
-        let json = null;
-        if (responseText) {
-          try {
-            json = JSON.parse(responseText);
-          } catch (ex) {
-            // invalid json
+          return response.body;
+        },
+        err => {
+          if (err.statusCode === 401) {
+            options.unauthorizedHandler();
           }
-        }
 
-        if (error) {
-          error.responseJson = json;
+          error = new Error(err.message || String(err));
+          error.response = err.response;
+          error.responseJson = err.response;
+
+          const message = `${method.toUpperCase()} ${uri} responded with ${err.statusCode}`;
+          debug(message);
+
           throw error;
         }
-
-        return json;
-      });
+      );
   }
 
-  return promise;
+  return requestPromise;
 }
 
 
