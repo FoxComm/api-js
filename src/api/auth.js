@@ -29,8 +29,9 @@ export default class Auth {
 
   _processJWT(promise, jwt) {
     return promise.then(response => {
-      jwt = response.headers.get('jwt');
-      return response.json();
+      jwt = response.header.jwt;
+
+      return response.body;
     })
     .then(data => {
       if (data.email) {

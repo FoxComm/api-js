@@ -33,6 +33,9 @@ export default class Api {
     this.api_url = args.api_url.replace(/\/?$/, ''); // ensure no trailing slash
     this.stripe_key = args.stripe_key;
 
+    // could be passed superagent or supertest instance
+    this.agent = args.agent || require('superagent');
+
     // @property addresses: Addresses
     // Addresses instance
     this.addresses = new Addresses(this);
@@ -138,6 +141,9 @@ export default class Api {
         ...(options.headers || {}),
       };
     }
+
+    options.agent = this.agent;
+
     return request(method, finalUrl, data, options);
   }
 

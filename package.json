@@ -28,7 +28,8 @@
   "homepage": "https://github.com/FoxComm/api-js#readme",
   "dependencies": {
     "debug": "^2.2.0",
-    "isomorphic-fetch": "^2.2.1",
+    "postinstall-build": "^0.2.1",
+    "superagent": "^3.2.1",
     "jwt-decode": "^2.0.1"
   },
   "devDependencies": {
@@ -37,7 +38,6 @@
     "babel-preset-stage-1": "^6.5.0",
     "escape-html": "^1.0.3",
     "leafdoc": "github:anru/Leafdoc#v1.1",
-    "lodash": "^4.13.1",
     "mkdirp": "^0.5.1",
     "mocha": "^2.5.2",
     "nock": "^8.0.0"
