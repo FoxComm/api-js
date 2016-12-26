@@ -88,8 +88,8 @@ export default function request(method, uri, data, options) {
           }
 
           error = new Error(err.message || String(err));
-          error.response = err.response;
-          error.responseJson = err.response;
+          error.response = err.response.body;
+          error.responseJson = err.response.body;
 
           const message = `${method.toUpperCase()} ${uri} responded with ${err.statusCode}`;
           debug(message);
