@@ -20,6 +20,7 @@ import Cart from './api/cart';
 import Account from './api/account';
 import Orders from './api/orders';
 import jwtDecode from 'jwt-decode';
+import Analytics from './api/analytics';
 
 export default class Api {
   constructor(args) {
@@ -62,6 +63,10 @@ export default class Api {
     // @property orders: Orders
     // Orders instance
     this.orders = new Orders(this);
+
+    // @property analytics: Analytics
+    // Analytics instance
+    this.analytics = new Analytics(this);
   }
 
   // @method addAuth(jwt: String): FoxApi
