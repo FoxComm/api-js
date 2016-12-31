@@ -56,4 +56,4 @@ export const orders = '/search/admin/orders_search_view/_search';
 export const order = referenceNumber => `/v1/my/orders/${referenceNumber}`;
 
 // analytics endpoints
-export const hal = '/api/v1/hal';
+export const hal = '/v1/hal';
