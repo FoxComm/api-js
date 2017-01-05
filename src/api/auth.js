@@ -21,6 +21,7 @@
 // Accessible via [auth](#foxapi-auth) property of [FoxApi](#foxapi) instance.
 
 import * as endpoints from '../endpoints';
+import createError from '../utils/create-error';
 
 export default class Auth {
   constructor(api) {
@@ -28,11 +29,18 @@ export default class Auth {
   }
 
   _processJWT(promise, jwt) {
-    return promise.then(response => {
-      jwt = response.header.jwt;
+    return promise.then(
+      response => {
+        jwt = response.header.jwt;
 
-      return response.body;
-    })
+        return response.body;
+      },
+      err => {
+        const error = createError(err);
+
+        throw error;
+      }
+    )
     .then(data => {
       if (data.email) {
         return {
