@@ -8,15 +8,20 @@ function randomSalt(maxRand = 100000) {
   return Math.floor(Math.random() * maxRand);
 }
 
+// Add a count argument
 function sphexTrackerUrl(tracker, saltFunction = randomSalt) {
-  const { channel, subject, verb, obj, objId } = tracker;
+  const { channel, subject, verb, obj, objId, count } = tracker;
+
+  const realCount = (typeof count !== 'undefined') ? count : 1;
+
   const queryParams = {
     ch: channel,
     sub: subject,
     v: verb,
     ob: obj,
     id: objId,
-    salt: saltFunction(),
+    c: realCount,
+    slt: saltFunction(),
   };
   const query = querystring.stringify(queryParams);
 
@@ -53,3 +58,6 @@ export default class Analytics {
 //
 // @field objId: Number
 // Unique number that can trace the object being tracked
+//
+// @field count: Number
+// Quantity
