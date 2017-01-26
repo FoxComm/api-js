@@ -2,6 +2,7 @@
 // Accessible via [analytics](#foxapi-analytics) property of [FoxApi](#foxapi) instance.
 
 import * as endpoints from '../endpoints';
+import _ from 'lodash';
 import querystring from 'querystring';
 
 function randomSalt(maxRand = 100000) {
@@ -12,7 +13,7 @@ function randomSalt(maxRand = 100000) {
 function sphexTrackerUrl(tracker, saltFunction = randomSalt) {
   const { channel, subject, verb, obj, objId, count } = tracker;
 
-  const realCount = (typeof count !== 'undefined') ? count : 1;
+  const realCount = _.isNil(count) ? 1 : count;
 
   const queryParams = {
     ch: channel,

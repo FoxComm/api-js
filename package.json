@@ -28,9 +28,10 @@
   "homepage": "https://github.com/FoxComm/api-js#readme",
   "dependencies": {
     "debug": "^2.2.0",
+    "jwt-decode": "^2.0.1",
+    "lodash": "^4.17.4",
     "postinstall-build": "^0.2.1",
-    "superagent": "^3.2.1",
-    "jwt-decode": "^2.0.1"
+    "superagent": "^3.2.1"
   },
   "devDependencies": {
     "babel-cli": "^6.9.0",
