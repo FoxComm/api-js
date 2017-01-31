@@ -36,13 +36,21 @@ export default class CreditCards {
         if (response.error) {
           reject([response.error.message]);
         } else {
-          var payload = creditCardFromStripePayload(response, billingAddress, addressIsNew);
+          return createCardFromStripeToken(response, billingAddress, addressIsNew)
+          .then(response => resolve(response))
+          .catch(err => reject(err));
+        }
+      });
+    });
+  }
+
+  createCardFromStripeToken(token, billingAddress, addressIsNew) {
+    return new Promise((resolve, reject) => {
+          var payload = creditCardFromStripePayload(token, billingAddress, addressIsNew);
 
           return this.api.post(endpoints.creditCards, payload)
             .then(response => resolve(response))
             .catch(err => !!err.responseJson.errors ? reject(err.responseJson.errors) : reject([err.message]));
-        }
-      });
     });
   }
 
