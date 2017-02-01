@@ -3,23 +3,6 @@
 
 import * as endpoints from '../endpoints';
 
-function buildQuery(customerId) {
-  return {
-    'query': {
-      'nested': {
-        'path': 'customer',
-        'query': {
-          'term': {
-            'customer.id': {
-              'value': customerId
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
 export default class Orders {
   constructor(api) {
     this.api = api;
@@ -27,13 +10,7 @@ export default class Orders {
 
   // @method list(): Promise
   list() {
-    const customerId = this.api.getCustomerId();
-    if (customerId != null) {
-      const query = buildQuery(customerId);
-      return this.api.post(endpoints.orders, query);
-    } else {
-      return Promise.reject(new Error('api.orders.list: can\'t do request, please sign in first'));
-    }
+    return this.api.get(endpoints.orders);
   }
 
   // @method get(referenceNumber: string): Promise
