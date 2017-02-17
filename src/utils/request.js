@@ -1,5 +1,6 @@
 import superagent from 'superagent';
 import makeDebug from 'debug';
+import createError from './create-error';
 
 const debug = makeDebug('foxapi');
 
@@ -66,8 +67,6 @@ export default function request(method, uri, data, options) {
     }
   }
 
-  let error = null;
-
   debug(`${method.toUpperCase()} ${uri}`);
 
   if (debug.enabled && data) {
@@ -87,11 +86,9 @@ export default function request(method, uri, data, options) {
             options.unauthorizedHandler();
           }
 
-          error = new Error(err.message || String(err));
-          error.response = err.response;
-          error.responseJson = err.response.body;
-
+          const error = createError(err);
           const message = `${method.toUpperCase()} ${uri} responded with ${err.statusCode}`;
+
           debug(message);
 
           throw error;

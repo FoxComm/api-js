@@ -52,7 +52,7 @@ export const account = '/v1/my/account';
 export const changePassword = '/v1/my/account/change-password';
 
 // orders endpoints
-export const orders = '/search/admin/orders_search_view/_search';
+export const orders = '/v1/my/orders';
 export const order = referenceNumber => `/v1/my/orders/${referenceNumber}`;
 
 // analytics endpoints
