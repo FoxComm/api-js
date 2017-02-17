@@ -228,6 +228,11 @@ You can define jwt string via <code>addAuth</code> method, if there is no jwt st
 		<td><code><a href='#orders'>Orders</a></code></td>
 		<td>Orders instance</td>
 	</tr>
+	<tr id='foxapi-analytics'>
+		<td><code><b>analytics</b>
+		<td><code><a href='#analytics'>Analytics</a></code></td>
+		<td>Analytics instance</td>
+	</tr>
 </tbody></table>
 
 </section>
@@ -1464,6 +1469,103 @@ In case if err is Error itself returns array of single element - that error as a
 </section>
 
 </section>
+<h2 id='analytics'>Analytics</h2><p>Accessible via <a href="#foxapi-analytics">analytics</a> property of <a href="#foxapi">FoxApi</a> instance.</p>
+
+<section>
+<h3 id='analytics-method'>Methods</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+	<tr>
+		<th>Method</th>
+		<th>Returns</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='analytics-trackevent'>
+		<td><code><b>trackEvent</b>(<nobr>&lt;Object&lt;<a href='#sphextracker'>SphexTracker</a>&gt;&gt;</nobr> <i>tracker</i>, <nobr>&lt;Function&gt;</nobr> <i>saltFunction?</i>)</nobr></code></td>
+		<td><code>Promise</code></td>
+		<td>Enables the tracking of UI specific events. The optional salt function must
+be a random number generator.</td>
+	</tr>
+</tbody></table>
+
+</section>
+
+</section>
+<span id='sphextracker'></span>
+
+<section>
+<h3 id='sphextracker-field'>SphexTracker</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='sphextracker-channel'>
+        <td><code><b>channel</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>Unique Channel ID number</td>
+    </tr>
+    <tr id='sphextracker-subject'>
+        <td><code><b>subject</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>Unique Subject ID number</td>
+    </tr>
+    <tr id='sphextracker-obj'>
+        <td><code><b>obj</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>Name of the object type you are tracking the event for</td>
+    </tr>
+    <tr id='sphextracker-verb'>
+        <td><code><b>verb</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>A single word that describes the event</td>
+    </tr>
+    <tr id='sphextracker-objid'>
+        <td><code><b>objId</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>Unique number that can trace the object being tracked</td>
+    </tr>
+    <tr id='sphextracker-count'>
+        <td><code><b>count</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td></td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
 <h2 id='auth'>Auth</h2><p>Accessible via <a href="#foxapi-auth">auth</a> property of <a href="#foxapi">FoxApi</a> instance.</p>
 
 <section>
@@ -1502,6 +1604,12 @@ In case if err is Error itself returns array of single element - that error as a
 		<td><code><b>logout</b>()</nobr></code></td>
 		<td><code>Promse</code></td>
 		<td>Removes JWT cookie.</td>
+	</tr>
+	<tr id='auth-restorepassword'>
+		<td><code><b>restorePassword</b>(<nobr>&lt;String&gt;</nobr> <i>email</i>)</nobr></code></td>
+		<td><code>Promise</code></td>
+		<td>requests email instructions to reset password
+creates new password</td>
 	</tr>
 </tbody></table>
 
@@ -1687,11 +1795,15 @@ In case if err is Error itself returns array of single element - that error as a
 		<td>Adds a gift card as payment method for the cart.
 <p>Creates payment method with a given amount using store credit.</p></td>
 	</tr>
-	<tr id='cart-removegiftcards'>
-		<td><code><b>removeGiftCards</b>()</nobr></code></td>
+	<tr id='cart-removegiftcard'>
+		<td><code><b>removeGiftCard</b>(<nobr>&lt;string&gt;</nobr> <i>giftCardCode</i>)</nobr></code></td>
 		<td><code>Promise&lt;<a href='#fullorder'>FullOrder</a>&gt;</code></td>
-		<td>Removes all gift cards payment methods of the cart.
-<p>Removes all store credits payment methods of the cart.</p></td>
+		<td>Removes gift card with provided code payment method from the cart.</td>
+	</tr>
+	<tr id='cart-removestorecredits'>
+		<td><code><b>removeStoreCredits</b>()</nobr></code></td>
+		<td><code>Promise&lt;<a href='#fullorder'>FullOrder</a>&gt;</code></td>
+		<td>Removes all store credits payment methods of the cart.</td>
 	</tr>
 	<tr id='cart-addcoupon'>
 		<td><code><b>addCoupon</b>(<nobr>&lt;Number&gt;</nobr> <i>code</i>)</nobr></code></td>

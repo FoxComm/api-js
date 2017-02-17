@@ -54,3 +54,6 @@ export const changePassword = '/v1/my/account/change-password';
 // orders endpoints
 export const orders = '/v1/my/orders';
 export const order = referenceNumber => `/v1/my/orders/${referenceNumber}`;
+
+// analytics endpoints
+export const hal = '/v1/hal';

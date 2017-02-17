@@ -187,10 +187,10 @@ export default class Cart {
   }
 
   /**
-   * @method removeGiftCards(): Promise<FullOrder>
+   * @method removeStoreCredits(): Promise<FullOrder>
    * Removes all store credits payment methods of the cart.
    */
-  removeStoreCrdits() {
+  removeStoreCredits() {
     return this.api.delete(endpoints.cartPaymentStoreCredits).then(normalizeResponse);
   }
 
