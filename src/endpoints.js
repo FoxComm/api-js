@@ -57,3 +57,7 @@ export const order = referenceNumber => `/v1/my/orders/${referenceNumber}`;
 
 // analytics endpoints
 export const hal = '/v1/hal';
+
+// cross-sell endpoints
+export const crossSellTrain = '/v1/public/recommend/prod-prod/train';
+export const crossSellRelated = '/v1/public/recommend/prod-prod/';
