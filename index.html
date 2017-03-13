@@ -39,6 +39,7 @@
                 <li><a href="#creditcards">Credit Cards</a></li>
                 <li><a href="#storecredits">Store Credits</a></li>
                 <li><a href="#customers">Customers</a></li>
+                <li><a href="#customeraddresses">Customer Addresses</a></li>
             </ul>
         </div>
     </div>
@@ -238,6 +239,11 @@ You can define jwt string via <code>addAuth</code> method, if there is no jwt st
 		<td><code><b>customers</b>
 		<td><code><a href='#customers'>Customers</a></code></td>
 		<td>Customers instance</td>
+	</tr>
+	<tr id='foxapi-customeraddresses'>
+		<td><code><b>customerAddresses</b>
+		<td><code><a href='#customeraddresses'>CustomerAddresses</a></code></td>
+		<td>CustomerAddresses instance</td>
 	</tr>
 </tbody></table>
 
@@ -2982,6 +2988,54 @@ Available values:
 </section>
 <span id='creditcardsresponse'></span>
 
+<h2 id='customeraddresses'>CustomerAddresses</h2><p>Accessible via <a href="#foxapi-customeraddresses">customerAddresses</a> property of <a href="#foxapi">FoxApi</a> instance.</p>
+
+<section>
+<h3 id='customeraddresses-method'>Methods</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+	<tr>
+		<th>Method</th>
+		<th>Returns</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='customeraddresses-list'>
+		<td><code><b>list</b>(<nobr>&lt;Number&gt;</nobr> <i>customerId</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#address'>Address</a>[]&gt;</code></td>
+		<td>List addresses.</td>
+	</tr>
+	<tr id='customeraddresses-one'>
+		<td><code><b>one</b>(<nobr>&lt;Number&gt;</nobr> <i>customerId</i>, <nobr>&lt;Number&gt;</nobr> <i>addressId</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#address'>Address</a>&gt;</code></td>
+		<td>Find address by id.</td>
+	</tr>
+	<tr id='customeraddresses-add'>
+		<td><code><b>add</b>(<nobr>&lt;Number&gt;</nobr> <i>customerId</i>, <nobr>&lt;<a href='#createaddresspayload'>CreateAddressPayload</a>&gt;</nobr> <i>address</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#address'>Address</a>&gt;</code></td>
+		<td>Add address.</td>
+	</tr>
+	<tr id='customeraddresses-update'>
+		<td><code><b>update</b>(<nobr>&lt;Number&gt;</nobr> <i>customerId</i>, <nobr>&lt;Number&gt;</nobr> <i>addressId</i>, <nobr>&lt;<a href='#updateaddresspayload'>UpdateAddressPayload</a>&gt;</nobr> <i>address</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#address'>Address</a>&gt;</code></td>
+		<td>Update address details.</td>
+	</tr>
+	<tr id='customeraddresses-delete'>
+		<td><code><b>delete</b>(<nobr>&lt;Number&gt;</nobr> <i>customerId</i>, <nobr>&lt;Number&gt;</nobr> <i>addressId</i>)</nobr></code></td>
+		<td><code>Promise</code></td>
+		<td>Delete address.</td>
+	</tr>
+</tbody></table>
+
+</section>
+
+</section>
 <h2 id='customers'>Customers</h2><p>Accessible via <a href="#foxapi-customers">customers</a> property of <a href="#foxapi">FoxApi</a> instance.</p>
 
 <section>

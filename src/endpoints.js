@@ -61,4 +61,8 @@ export default Object.freeze({
   // customers
   customers: '/v1/customers',
   customer: customerId => `/v1/customers/${customerId}`,
+
+  // customer addresses
+  customerAddresses: customerId => `/v1/customers/${customerId}/addresses`,
+  customerAddress: (customerId, addressId) => `/v1/customers/${customerId}/addresses/${addressId}`,
 });
