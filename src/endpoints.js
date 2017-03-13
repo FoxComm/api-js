@@ -57,4 +57,8 @@ export default Object.freeze({
 
   // analytics
   hal: '/v1/hal',
+
+  // customers
+  customers: '/v1/customers',
+  customer: customerId => `/v1/customers/${customerId}`,
 });

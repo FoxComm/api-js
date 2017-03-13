@@ -1,5 +1,5 @@
 
-@miniclass CustomerBase (FoxApi)
+@miniclass CustomerBase (Customers)
 @aka customerbase
 
 @field id: Number = 1
@@ -32,7 +32,7 @@ Defines whether account is guest.
 @field isBlacklisted: Boolean = false
 Defines whether account is added to blacklisted.
 
-@miniclass CustomerResponse (FoxApi)
+@miniclass CustomerResponse (Customers)
 @aka customerresponse
 @inherits CustomerBase
 
@@ -50,3 +50,30 @@ Total number of orders.
 
 @field totalSales?: Number = 100
 Customers sales stats.
+
+@miniclass CustomerCreatePayload (Customers)
+@aka customercreatepayload
+
+@field email: String = `user@example.org`
+Customer email.
+
+@field name?: String = `John Smith`
+Customer full name.
+
+@field password?: String = `password`
+Customer password.
+
+@field isGuest?: Boolean = false
+create customer as guest if true.
+
+@miniclass CustomerUpdatePayload (Customers)
+@aka customerupdatepayload
+
+@field email?: String = `new@example.org`
+Customer email.
+
+@field name?: String = `Jane Smith`
+Customer full name.
+
+@field phoneNumber?: String = `555 55 55`
+Phone number.

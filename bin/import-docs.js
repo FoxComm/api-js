@@ -249,6 +249,11 @@ const importData = {
   ],
   'FoxApi': [
     'ShippingMethod'
+  ],
+  'Customers': [
+    'CustomerCreatePayload',
+    'CustomerUpdatePayload',
+    'CustomerResponse'
   ]
 };
 
