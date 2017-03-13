@@ -1,59 +1,60 @@
 
 const MAX_RESULTS = 1000;
 
-// auth endpoints
-export const login = '/v1/public/login';
-export const signup ='/v1/public/registrations/new';
-export const googleSignin = '/v1/public/signin/google/customer';
-export const logout = '/v1/public/logout';
-export const sendRestPassword = '/v1/public/send-password-reset';
-export const resetPassword = '/v1/public/reset-password';
+export default Object.freeze({
+  // auth
+  login: '/v1/public/login',
+  signup: '/v1/public/registrations/new',
+  googleSignin: '/v1/public/signin/google/customer',
+  logout: '/v1/public/logout',
+  sendRestPassword: '/v1/public/send-password-reset',
+  resetPassword: '/v1/public/reset-password',
 
-// product endpoints
-export const search = `/search/products_catalog_view/_search?size=${MAX_RESULTS}`;
+  // product
+  search: `/search/products_catalog_view/_search?size=${MAX_RESULTS}`,
 
-// cart endpoints
-export const cart = '/v1/my/cart';
-export const cartCheckout = '/v1/my/cart/checkout';
-export const shippingMethods = '/v1/my/cart/shipping-methods';
-export const shippingMethod = '/v1/my/cart/shipping-method';
-export const shippingAddress = '/v1/my/cart/shipping-address';
-export const shippingAddressId = id => `${shippingAddress}/${id}`;
-export const cartLineItems = '/v1/my/cart/line-items';
-export const cartPaymentCreditCarts = '/v1/my/cart/payment-methods/credit-cards';
-export const cartPaymentGiftCards = '/v1/my/cart/payment-methods/gift-cards';
-export const cartPaymentGiftCardsWithCode = giftCardCode => `/v1/my/cart/payment-methods/gift-cards/${giftCardCode}`;
-export const cartPaymentStoreCredits = '/v1/my/cart/payment-methods/store-credits';
-export const cartPaymentCouponCode = '/v1/my/cart/coupon';
-export const cartPaymentCouponCodeWithCode = code => `/v1/my/cart/coupon/${code}`;
+  // cart
+  cart: '/v1/my/cart',
+  cartCheckout: '/v1/my/cart/checkout',
+  shippingMethods: '/v1/my/cart/shipping-methods',
+  shippingMethod: '/v1/my/cart/shipping-method',
+  shippingAddress: '/v1/my/cart/shipping-address',
+  shippingAddressId: id => `${shippingAddress}/${id}`,
+  cartLineItems: '/v1/my/cart/line-items',
+  cartPaymentCreditCarts: '/v1/my/cart/payment-methods/credit-cards',
+  cartPaymentGiftCards: '/v1/my/cart/payment-methods/gift-cards',
+  cartPaymentGiftCardsWithCode: giftCardCode => `/v1/my/cart/payment-methods/gift-cards/${giftCardCode}`,
+  cartPaymentStoreCredits: '/v1/my/cart/payment-methods/store-credits',
+  cartPaymentCouponCode: '/v1/my/cart/coupon',
+  cartPaymentCouponCodeWithCode: code => `/v1/my/cart/coupon/${code}`,
 
-export const addToCart = '/v1/my/cart/add';
+  addToCart: '/v1/my/cart/add',
+  removeFromCart: '/v1/my/cart/line-items/:id/edit',
 
-export const removeFromCart = '/v1/my/cart/line-items/:id/edit';
+  // address
+  addresses: '/v1/my/addresses',
+  address: addressId => `/v1/my/addresses/${addressId}`,
+  addressDefault: addressId => `${address(addressId)}/default`,
+  addressesDefault: '/v1/my/address/default',
 
-// address endpoints
-export const addresses = '/v1/my/addresses';
-export const address = addressId => `/v1/my/addresses/${addressId}`;
-export const addressDefault = addressId => `${address(addressId)}/default`;
-export const addressesDefault = '/v1/my/address/default';
+  // payment methods, credit cards
+  creditCards: '/v1/my/payment-methods/credit-cards',
+  creditCard: creditCardId => `${creditCards}/${creditCardId}`,
+  creditCardDefault: creditCardId => `${creditCard(creditCardId)}/default`,
 
-// payment methods, credit cards
-export const creditCards = '/v1/my/payment-methods/credit-cards';
-export const creditCard = creditCardId => `${creditCards}/${creditCardId}`;
-export const creditCardDefault = creditCardId => `${creditCard(creditCardId)}/default`;
+  // payment methods, store credits
+  storeCredit: storeCreditId => `/v1/my/payment-methods/store-credits/${storeCreditId}`,
+  storeCreditTotals: `/v1/my/payment-methods/store-credits/totals`,
+  storeCredits: `/search/store_credits_search_view/_search`,
 
-// payment methods, store credits
-export const storeCredit = storeCreditId => `/v1/my/payment-methods/store-credits/${storeCreditId}`;
-export const storeCreditTotals = `/v1/my/payment-methods/store-credits/totals`;
-export const storeCredits = `/search/store_credits_search_view/_search`;
+  // account
+  account: '/v1/my/account',
+  changePassword: '/v1/my/account/change-password',
 
-// account endpoints
-export const account = '/v1/my/account';
-export const changePassword = '/v1/my/account/change-password';
+  // orders
+  orders: '/v1/my/orders',
+  order: referenceNumber => `/v1/my/orders/${referenceNumber}`,
 
-// orders endpoints
-export const orders = '/v1/my/orders';
-export const order = referenceNumber => `/v1/my/orders/${referenceNumber}`;
-
-// analytics endpoints
-export const hal = '/v1/hal';
+  // analytics
+  hal: '/v1/hal',
+});

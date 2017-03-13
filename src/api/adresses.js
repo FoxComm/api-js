@@ -2,7 +2,7 @@
 // @class Addresses
 // Accessible via [addresses](#foxapi-addresses) property of [FoxApi](#foxapi) instance.
 
-import * as endpoints from '../endpoints';
+import endpoints from '../endpoints';
 
 export default class Addresses {
   constructor(api) {

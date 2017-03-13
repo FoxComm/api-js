@@ -1,7 +1,7 @@
 // @class Analytics
 // Accessible via [analytics](#foxapi-analytics) property of [FoxApi](#foxapi) instance.
 
-import * as endpoints from '../endpoints';
+import endpoints from '../endpoints';
 import querystring from 'querystring';
 
 function randomSalt(maxRand = 100000) {

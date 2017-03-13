@@ -1,7 +1,7 @@
 // @class CreditCards
 // Accessible via [creditCards](#foxapi-creditcards) property of [FoxApi](#foxapi) instance.
 
-import * as endpoints from '../endpoints';
+import endpoints from '../endpoints';
 import { isBrowser, loadScript } from '../utils/browser';
 
 export default class CreditCards {

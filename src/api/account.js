@@ -1,7 +1,7 @@
 
 // @class Account
 
-import * as endpoints from '../endpoints';
+import endpoints from '../endpoints';
 
 export default class Account {
   constructor(api) {

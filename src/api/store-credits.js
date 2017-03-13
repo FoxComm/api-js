@@ -2,7 +2,7 @@
 // @class StoreCredits
 // Accessible via [storeCredits](#foxapi-storecredits) property of [FoxApi](#foxapi) instance.
 
-import * as endpoints from '../endpoints';
+import endpoints from '../endpoints';
 
 export default class StoreCredits {
   constructor(api) {

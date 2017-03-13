@@ -4,7 +4,7 @@
  */
 
 import _ from 'lodash';
-import * as endpoints from '../endpoints';
+import endpoints from '../endpoints';
 
 // reduce SKU list
 function collectLineItems(skus) {

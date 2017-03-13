@@ -20,7 +20,7 @@
 // @class Auth
 // Accessible via [auth](#foxapi-auth) property of [FoxApi](#foxapi) instance.
 
-import * as endpoints from '../endpoints';
+import endpoints from '../endpoints';
 import createError from '../utils/create-error';
 
 export default class Auth {

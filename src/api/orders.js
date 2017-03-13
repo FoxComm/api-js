@@ -1,7 +1,7 @@
 
 // @class Orders
 
-import * as endpoints from '../endpoints';
+import endpoints from '../endpoints';
 
 export default class Orders {
   constructor(api) {
