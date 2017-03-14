@@ -40,6 +40,7 @@
                 <li><a href="#storecredits">Store Credits</a></li>
                 <li><a href="#customers">Customers</a></li>
                 <li><a href="#customeraddresses">Customer Addresses</a></li>
+                <li><a href="#customercreditcards">Customer Credit Cards</a></li>
             </ul>
         </div>
     </div>
@@ -244,6 +245,11 @@ You can define jwt string via <code>addAuth</code> method, if there is no jwt st
 		<td><code><b>customerAddresses</b>
 		<td><code><a href='#customeraddresses'>CustomerAddresses</a></code></td>
 		<td>CustomerAddresses instance</td>
+	</tr>
+	<tr id='foxapi-customercreditcards'>
+		<td><code><b>customerCreditCards</b>
+		<td><code><a href='#customercreditcards'>CustomerCreditCards</a></code></td>
+		<td>CustomerCreditCards instance</td>
 	</tr>
 </tbody></table>
 
@@ -3036,6 +3042,39 @@ Available values:
 </section>
 
 </section>
+<h2 id='customercreditcards'>CustomerCreditCards</h2><p>Accessible via <a href="#foxapi-customercreditcards">customerCreditCards</a> property of <a href="#foxapi">FoxApi</a> instance.</p>
+
+<section>
+<h3 id='customercreditcards-method'>Methods</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+	<tr>
+		<th>Method</th>
+		<th>Returns</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='customercreditcards-list'>
+		<td><code><b>list</b>(<nobr>&lt;Number&gt;</nobr> <i>customerId</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#creditcard'>CreditCard</a>[]&gt;</code></td>
+		<td>List credit cards.</td>
+	</tr>
+	<tr id='customercreditcards-add'>
+		<td><code><b>add</b>(<nobr>&lt;Number&gt;</nobr> <i>customerId</i>, <nobr>&lt;<a href='#creditcardcreatepayload'>CreditCardCreatePayload</a>&gt;</nobr> <i>card</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#creditcard'>CreditCard</a>&gt;</code></td>
+		<td>Add credit card.</td>
+	</tr>
+</tbody></table>
+
+</section>
+
+</section>
 <h2 id='customers'>Customers</h2><p>Accessible via <a href="#foxapi-customers">customers</a> property of <a href="#foxapi">FoxApi</a> instance.</p>
 
 <section>
@@ -3846,6 +3885,10 @@ Available values:
 
     </script>
 <style>
+    .api-page .toc-col {
+        width: initial !important;
+    }
+
 	div.accordion {
 		width: 100%;
 		overflow: hidden;

@@ -72,7 +72,7 @@ Fraud score.
 @field customer?: CustomerResponse
 Associated customer.
 
-@field totals: Totals
+@field totals: OrderTotals
 Order totals.
 
 @field shippingMethod?: ShippingMethod
@@ -147,8 +147,8 @@ Available values:
 <li>`StoreCredit`</li>
 </ul>
 
-@miniclass Totals (Cart)
-@aka totals
+@miniclass OrderTotals (Cart)
+@aka ordertotals
 
 @field subTotal: Number = 100
 Subtotal.

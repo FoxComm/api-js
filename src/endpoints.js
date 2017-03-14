@@ -58,11 +58,9 @@ export default Object.freeze({
   // analytics
   hal: '/v1/hal',
 
-  // customers
   customers: '/v1/customers',
   customer: customerId => `/v1/customers/${customerId}`,
-
-  // customer addresses
   customerAddresses: customerId => `/v1/customers/${customerId}/addresses`,
   customerAddress: (customerId, addressId) => `/v1/customers/${customerId}/addresses/${addressId}`,
+  customerCreditCards: customerId => `/v1/customers/${customerId}/payment-methods/credit-cards`,
 });
