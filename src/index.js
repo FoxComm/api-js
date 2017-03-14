@@ -25,6 +25,7 @@ import Customers from './api/customers';
 import CustomerAddresses from './api/customer-addresses';
 import CustomerCreditCards from './api/customer-credit-cards';
 import CustomerGroups from './api/customer-groups';
+import Skus from './api/skus';
 
 export default class Api {
   constructor(args) {
@@ -87,6 +88,10 @@ export default class Api {
     // @property customerGroups: CustomerGroups
     // CustomerGroups instance
     this.customerGroups = new CustomerGroups(this);
+
+    // @property skus: Skus
+    // Skus instance
+    this.skus = new Skus(this);
   }
 
   // @method addAuth(jwt: String): FoxApi

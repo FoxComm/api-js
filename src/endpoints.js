@@ -66,4 +66,8 @@ export default Object.freeze({
   customerStoreCredit: customerId => `/v1/customers/${customerId}/payment-methods/store-credit`,
   customerGroups: '/v1/groups',
   customerGroup: groupId => `/v1/groups/${groupId}`,
+
+  skus: context => `/v1/skus/${context}`,
+  sku: (context, skuCode) => `/v1/skus/${context}/${skuCode}`,
+  skuInventory: skuCode => `/v1/inventory/summary/${skuCode}`,
 });

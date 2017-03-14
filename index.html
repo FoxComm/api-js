@@ -42,6 +42,7 @@
                 <li><a href="#customeraddresses">Customer Addresses</a></li>
                 <li><a href="#customercreditcards">Customer Credit Cards</a></li>
                 <li><a href="#customergroups">Customer Groups</a></li>
+                <li><a href="#skus">SKUs</a></li>
             </ul>
         </div>
     </div>
@@ -257,7 +258,153 @@ You can define jwt string via <code>addAuth</code> method, if there is no jwt st
 		<td><code><a href='#customergroups'>CustomerGroups</a></code></td>
 		<td>CustomerGroups instance</td>
 	</tr>
+	<tr id='foxapi-skus'>
+		<td><code><b>skus</b>
+		<td><code><a href='#skus'>Skus</a></code></td>
+		<td>Skus instance</td>
+	</tr>
 </tbody></table>
+
+</section>
+
+</section>
+<span id='image'></span>
+
+<section>
+<h3 id='image-field'>Image</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='image-src'>
+        <td><code><b>src</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>http://lorempixel.com/test.png</code></td>
+        <td>URL pointing to the image.</td>
+    </tr>
+    <tr id='image-title'>
+        <td><code><b>title</b></code></td>
+        <td><code>String</code>
+        <td></td>
+        <td><code>test image</code></td>
+        <td>Title that identifies the image.</td>
+    </tr>
+    <tr id='image-alt'>
+        <td><code><b>alt</b></code></td>
+        <td><code>String</code>
+        <td></td>
+        <td><code>some image text</code></td>
+        <td>Alt text for the image.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<span id='album'></span>
+
+<section>
+<h3 id='album-field'>Album</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='album-id'>
+        <td><code><b>id</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1</td>
+        <td>Unique identifier.</td>
+    </tr>
+    <tr id='album-name'>
+        <td><code><b>name</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>Desktop images</code></td>
+        <td>Name of the album.</td>
+    </tr>
+    <tr id='album-images'>
+        <td><code><b>images</b></code></td>
+        <td><code>Array&lt;<a href='#image'>Image</a>&gt;</code>
+        <td></td>
+        <td></td>
+        <td>Images that are part of the album.</td>
+    </tr>
+    <tr id='album-archivedat'>
+        <td><code><b>archivedAt</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>2020-01-01T12:00:00Z</code></td>
+        <td>Archiving date.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<span id='objectcontext'></span>
+
+<section>
+<h3 id='objectcontext-field'>ObjectContext</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='objectcontext-name'>
+        <td><code><b>name</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>default</code></td>
+        <td>Object context name.</td>
+    </tr>
+    <tr id='objectcontext-attributes'>
+        <td><code><b>attributes</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>&lt;json&gt;</code></td>
+        <td>Context attributes.</td>
+    </tr>
+</tbody></table>
+
 
 </section>
 
@@ -800,6 +947,420 @@ Available values:
 <li><code>onHold</code></li>
 <li><code>active</code></li>
 <li><code>canceled</code></li>
+</ul></td>
+    </tr>
+</tbody></table>
+
+
+</section></div>
+</div>
+
+</section>
+<span id='stockitempayload'></span>
+
+<section>
+<h3 id='stockitempayload-field'>StockItemPayload</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='stockitempayload-sku'>
+        <td><code><b>sku</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>TEST-SKU</code></td>
+        <td>Code representing the SKU with which to associate the Stock Item.</td>
+    </tr>
+    <tr id='stockitempayload-stocklocationid'>
+        <td><code><b>stockLocationId</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1</td>
+        <td>ID of the Stock Location the Stock Item should be a part of.</td>
+    </tr>
+    <tr id='stockitempayload-defaultunitcost'>
+        <td><code><b>defaultUnitCost</b></code></td>
+        <td><code>Number</code>
+        <td></td>
+        <td>0</td>
+        <td>A default unit cost to give all new units of a Stock Item.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<span id='stockitemresponse'></span>
+
+<section>
+<h3 id='stockitemresponse-field'>StockItemResponse</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='stockitemresponse-id'>
+        <td><code><b>id</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1</td>
+        <td>Unique ID.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+<div class='accordion'>
+	<label><span class='expander'>▶</span> Fields inherited from <a href='#stockitempayload'>StockItemPayload</a></label>
+	<div class='accordion-content'><section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='stockitemresponse-sku'>
+        <td><code><b>sku</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>TEST-SKU</code></td>
+        <td>Code representing the SKU with which to associate the Stock Item.</td>
+    </tr>
+    <tr id='stockitemresponse-stocklocationid'>
+        <td><code><b>stockLocationId</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1</td>
+        <td>ID of the Stock Location the Stock Item should be a part of.</td>
+    </tr>
+    <tr id='stockitemresponse-defaultunitcost'>
+        <td><code><b>defaultUnitCost</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>0</td>
+        <td>A default unit cost to give all new units of a Stock Item.</td>
+    </tr>
+</tbody></table>
+
+
+</section></div>
+</div>
+
+</section>
+<span id='addresspayload'></span>
+
+<section>
+<h3 id='addresspayload-field'>AddressPayload</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='addresspayload-id'>
+        <td><code><b>id</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1</td>
+        <td>Unique ID.</td>
+    </tr>
+    <tr id='addresspayload-region'>
+        <td><code><b>region</b></code></td>
+        <td><code><a href='#region'>Region</a></code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>Associated region.</td>
+    </tr>
+    <tr id='addresspayload-name'>
+        <td><code><b>name</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>Home</code></td>
+        <td>Address record name.</td>
+    </tr>
+    <tr id='addresspayload-address1'>
+        <td><code><b>address1</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>38 Baker Street</code></td>
+        <td>Actual address.</td>
+    </tr>
+    <tr id='addresspayload-address2'>
+        <td><code><b>address2</b></code></td>
+        <td><code>String</code>
+        <td></td>
+        <td><code>39 Baker Street</code></td>
+        <td>Additional address line.</td>
+    </tr>
+    <tr id='addresspayload-city'>
+        <td><code><b>city</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>Donkeyville</code></td>
+        <td>City.</td>
+    </tr>
+    <tr id='addresspayload-zip'>
+        <td><code><b>zip</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>55555</code></td>
+        <td>Zip code.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<span id='stocklocationtype'></span>
+
+<section>
+<h3 id='stocklocationtype-field'>StockLocationType</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='stocklocationtype-type'>
+        <td><code><b>type</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>Warehouse</td>
+        <td>Stock location type.
+Available values:
+<ul class="collapsible collapsed">
+<li><code>Warehouse</code></li>
+</ul></td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<span id='stocklocationpayload'></span>
+
+<section>
+<h3 id='stocklocationpayload-field'>StockLocationPayload</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='stocklocationpayload-name'>
+        <td><code><b>name</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>Memphis Warehouse</code></td>
+        <td>Name of the stock location.</td>
+    </tr>
+    <tr id='stocklocationpayload-address'>
+        <td><code><b>address</b></code></td>
+        <td><code><a href='#addresspayload'>AddressPayload</a></code>
+        <td></td>
+        <td></td>
+        <td>Address of the stock location.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+<div class='accordion'>
+	<label><span class='expander'>▶</span> Fields inherited from <a href='#stocklocationtype'>StockLocationType</a></label>
+	<div class='accordion-content'><section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='stocklocationpayload-type'>
+        <td><code><b>type</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>Warehouse</td>
+        <td>Stock location type.
+Available values:
+<ul class="collapsible collapsed">
+<li><code>Warehouse</code></li>
+</ul></td>
+    </tr>
+</tbody></table>
+
+
+</section></div>
+</div>
+
+</section>
+<span id='stocklocationresponse'></span>
+
+<section>
+<h3 id='stocklocationresponse-field'>StockLocationResponse</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='stocklocationresponse-id'>
+        <td><code><b>id</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1</td>
+        <td>Unique ID.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+<div class='accordion'>
+	<label><span class='expander'>▶</span> Fields inherited from <a href='#stocklocationpayload'>StockLocationPayload</a></label>
+	<div class='accordion-content'><section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='stocklocationresponse-name'>
+        <td><code><b>name</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>Memphis Warehouse</code></td>
+        <td>Name of the stock location.</td>
+    </tr>
+    <tr id='stocklocationresponse-address'>
+        <td><code><b>address</b></code></td>
+        <td><code><a href='#addresspayload'>AddressPayload</a></code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>Address of the stock location.</td>
+    </tr>
+</tbody></table>
+
+
+</section></div>
+</div>
+
+<div class='accordion'>
+	<label><span class='expander'>▶</span> Fields inherited from <a href='#stocklocationtype'>StockLocationType</a></label>
+	<div class='accordion-content'><section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='stocklocationresponse-type'>
+        <td><code><b>type</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>Warehouse</td>
+        <td>Stock location type.
+Available values:
+<ul class="collapsible collapsed">
+<li><code>Warehouse</code></li>
 </ul></td>
     </tr>
 </tbody></table>
@@ -3721,6 +4282,354 @@ Available values:
 		<td></td>
 	</tr>
 </tbody></table>
+
+</section>
+
+</section>
+<h2 id='skus'>Skus</h2><p>Accessible via <a href="#foxapi-skus">skus</a> property of <a href="#foxapi">FoxApi</a> instance.</p>
+
+<section>
+<h3 id='skus-method'>Methods</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+	<tr>
+		<th>Method</th>
+		<th>Returns</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='skus-create'>
+		<td><code><b>create</b>(<nobr>&lt;String&gt;</nobr> <i>context</i>, <nobr>&lt;<a href='#skupayload'>SkuPayload</a>&gt;</nobr> <i>sku</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#skuresponse'>SkuResponse</a>&gt;</code></td>
+		<td>Create new SKU.</td>
+	</tr>
+	<tr id='skus-one'>
+		<td><code><b>one</b>(<nobr>&lt;String&gt;</nobr> <i>context</i>, <nobr>&lt;String&gt;</nobr> <i>skuCode</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#skuresponse'>SkuResponse</a>&gt;</code></td>
+		<td>Find SKU by code.</td>
+	</tr>
+	<tr id='skus-update'>
+		<td><code><b>update</b>(<nobr>&lt;String&gt;</nobr> <i>context</i>, <nobr>&lt;String&gt;</nobr> <i>skuCode</i>, <nobr>&lt;<a href='#skupayload'>SkuPayload</a>&gt;</nobr> <i>sku</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#skuresponse'>SkuResponse</a>&gt;</code></td>
+		<td>Update SKU details.</td>
+	</tr>
+	<tr id='skus-archive'>
+		<td><code><b>archive</b>(<nobr>&lt;String&gt;</nobr> <i>context</i>, <nobr>&lt;String&gt;</nobr> <i>skuCode</i>)</nobr></code></td>
+		<td><code>Promise</code></td>
+		<td>Archive SKU.</td>
+	</tr>
+	<tr id='skus-inventory'>
+		<td><code><b>inventory</b>(<nobr>&lt;String&gt;</nobr> <i>skuCode</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#inventoryresponse'>InventoryResponse</a>&gt;</code></td>
+		<td>Lookup SKU inventory.</td>
+	</tr>
+</tbody></table>
+
+</section>
+
+</section>
+<span id='inventoryitemtype'></span>
+
+<section>
+<h3 id='inventoryitemtype-field'>InventoryItemType</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='inventoryitemtype-type'>
+        <td><code><b>type</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>Sellable</code></td>
+        <td>Inventory item type.
+Available values:
+<ul class="collapsible collapsed">
+<li><code>Sellable</code></li>
+<li><code>Non-sellable</code></li>
+<li><code>Preorder</code></li>
+<li><code>Backorder</code></li>
+</ul></td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<span id='inventoryitem'></span>
+
+<section>
+<h3 id='inventoryitem-field'>InventoryItem</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='inventoryitem-sku'>
+        <td><code><b>sku</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>TEST-SKU</code></td>
+        <td>Associated SKU code.</td>
+    </tr>
+    <tr id='inventoryitem-stockitem'>
+        <td><code><b>stockItem</b></code></td>
+        <td><code><a href='#stockitemresponse'>StockItemResponse</a></code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>Associated stock item.</td>
+    </tr>
+    <tr id='inventoryitem-stocklocation'>
+        <td><code><b>stockLocation</b></code></td>
+        <td><code><a href='#stocklocationresponse'>StockLocationResponse</a></code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>Associated stock location.</td>
+    </tr>
+    <tr id='inventoryitem-onhand'>
+        <td><code><b>onHand</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1</td>
+        <td>Number of items on hand.</td>
+    </tr>
+    <tr id='inventoryitem-onhold'>
+        <td><code><b>onHold</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1</td>
+        <td>Number of items on hold.</td>
+    </tr>
+    <tr id='inventoryitem-reserved'>
+        <td><code><b>reserved</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1</td>
+        <td>Number of reserved items.</td>
+    </tr>
+    <tr id='inventoryitem-shipped'>
+        <td><code><b>shipped</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1</td>
+        <td>Number of shipped items.</td>
+    </tr>
+    <tr id='inventoryitem-afs'>
+        <td><code><b>afs</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1</td>
+        <td>Number of items available for sale.</td>
+    </tr>
+    <tr id='inventoryitem-afscost'>
+        <td><code><b>afsCost</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1000</td>
+        <td>Total cost of all the items available for sale.</td>
+    </tr>
+    <tr id='inventoryitem-createdat'>
+        <td><code><b>createdAt</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>2020-01-01T12:00:00Z</code></td>
+        <td>Creation date.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+<div class='accordion'>
+	<label><span class='expander'>▶</span> Fields inherited from <a href='#inventoryitemtype'>InventoryItemType</a></label>
+	<div class='accordion-content'><section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='inventoryitem-type'>
+        <td><code><b>type</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>Sellable</code></td>
+        <td>Inventory item type.
+Available values:
+<ul class="collapsible collapsed">
+<li><code>Sellable</code></li>
+<li><code>Non-sellable</code></li>
+<li><code>Preorder</code></li>
+<li><code>Backorder</code></li>
+</ul></td>
+    </tr>
+</tbody></table>
+
+
+</section></div>
+</div>
+
+</section>
+<span id='inventoryresponse'></span>
+
+<section>
+<h3 id='inventoryresponse-field'>InventoryResponse</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='inventoryresponse-summary'>
+        <td><code><b>summary</b></code></td>
+        <td><code>Array&lt;<a href='#inventoryitem'>InventoryItem</a>&gt;</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>Inventory items.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<span id='skupayload'></span>
+
+<section>
+<h3 id='skupayload-field'>SkuPayload</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='skupayload-attributes'>
+        <td><code><b>attributes</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>&lt;json&gt;</code></td>
+        <td>SKU attributes.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<span id='skuresponse'></span>
+
+<section>
+<h3 id='skuresponse-field'>SkuResponse</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='skuresponse-id'>
+        <td><code><b>id</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1</td>
+        <td>SKU ID.</td>
+    </tr>
+    <tr id='skuresponse-attributes'>
+        <td><code><b>attributes</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>&lt;json&gt;</code></td>
+        <td>SKU attributes.</td>
+    </tr>
+    <tr id='skuresponse-context'>
+        <td><code><b>context</b></code></td>
+        <td><code><a href='#objectcontext'>ObjectContext</a></code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>Related context.</td>
+    </tr>
+    <tr id='skuresponse-albums'>
+        <td><code><b>albums</b></code></td>
+        <td><code>Array&lt;<a href='#album'>Album</a>&gt;</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>SKU albums.</td>
+    </tr>
+    <tr id='skuresponse-archivedat'>
+        <td><code><b>archivedAt</b></code></td>
+        <td><code>String</code>
+        <td></td>
+        <td><code>2020-01-01T12:00:00Z</code></td>
+        <td>Archiving date.</td>
+    </tr>
+</tbody></table>
+
 
 </section>
 

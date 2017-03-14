@@ -1,4 +1,13 @@
 
+@miniclass ObjectContext (FoxApi)
+@aka objectcontext
+
+@field name: String = `default`
+Object context name.
+
+@field attributes: String = `<json>`
+Context attributes.
+
 @miniclass Region (FoxApi)
 @aka region
 

@@ -1,0 +1,27 @@
+
+@miniclass Image (FoxApi)
+@aka image
+
+@field src: String = `http://lorempixel.com/test.png`
+URL pointing to the image.
+
+@field title?: String = `test image`
+Title that identifies the image.
+
+@field alt?: String = `some image text`
+Alt text for the image.
+
+@miniclass Album (FoxApi)
+@aka album
+
+@field id: Number = 1
+Unique identifier.
+
+@field name: String = `Desktop images`
+Name of the album.
+
+@field images?: Array<Image>
+Images that are part of the album.
+
+@field archivedAt: String = `2020-01-01T12:00:00Z`
+Archiving date.
