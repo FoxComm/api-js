@@ -64,4 +64,6 @@ export default Object.freeze({
   customerAddress: (customerId, addressId) => `/v1/customers/${customerId}/addresses/${addressId}`,
   customerCreditCards: customerId => `/v1/customers/${customerId}/payment-methods/credit-cards`,
   customerStoreCredit: customerId => `/v1/customers/${customerId}/payment-methods/store-credit`,
+  customerGroups: '/v1/groups',
+  customerGroup: groupId => `/v1/groups/${groupId}`,
 });

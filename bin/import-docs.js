@@ -228,34 +228,38 @@ const importData = {
     'CreateAddressPayload',
     'UpdateAddressPayload',
     'Address',
-    'Addresses:AddressesResponse'
+    'Addresses:AddressesResponse',
   ],
   'CreditCards': [
     'CreditCard',
     'CreditCards:CreditCardsResponse',
     'CreditCardCreatePayload',
     'BillingAddressCreatePayload',
-    'CreditCardUpdatePayload'
+    'CreditCardUpdatePayload',
   ],
   'StoreCredits': [
     'StoreCredit',
     'StoreCreditAdjustments',
     'StoreCreditTotals',
-    'StoreCreditCreateSinglePayload'
+    'StoreCreditCreateSinglePayload',
   ],
   'Cart': [
     'FullOrder',
     'UpdateLineItemsPayload',
-    'GiftCardPaymentPayload'
+    'GiftCardPaymentPayload',
   ],
   'FoxApi': [
-    'ShippingMethod'
+    'ShippingMethod',
   ],
   'Customers': [
     'CustomerCreatePayload',
     'CustomerUpdatePayload',
-    'CustomerResponse'
-  ]
+    'CustomerResponse',
+  ],
+  'CustomerGroups': [
+    'GroupPayload',
+    'GroupResponse',
+  ],
 };
 
 function convertDocs() {

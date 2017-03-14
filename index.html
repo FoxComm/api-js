@@ -41,6 +41,7 @@
                 <li><a href="#customers">Customers</a></li>
                 <li><a href="#customeraddresses">Customer Addresses</a></li>
                 <li><a href="#customercreditcards">Customer Credit Cards</a></li>
+                <li><a href="#customergroups">Customer Groups</a></li>
             </ul>
         </div>
     </div>
@@ -250,6 +251,11 @@ You can define jwt string via <code>addAuth</code> method, if there is no jwt st
 		<td><code><b>customerCreditCards</b>
 		<td><code><a href='#customercreditcards'>CustomerCreditCards</a></code></td>
 		<td>CustomerCreditCards instance</td>
+	</tr>
+	<tr id='foxapi-customergroups'>
+		<td><code><b>customerGroups</b>
+		<td><code><a href='#customergroups'>CustomerGroups</a></code></td>
+		<td>CustomerGroups instance</td>
 	</tr>
 </tbody></table>
 
@@ -3071,6 +3077,224 @@ Available values:
 		<td>Add credit card.</td>
 	</tr>
 </tbody></table>
+
+</section>
+
+</section>
+<h2 id='customergroups'>CustomerGroups</h2><p>Accessible via <a href="#foxapi-customergroups">customerGroups</a> property of <a href="#foxapi">FoxApi</a> instance.</p>
+
+<section>
+<h3 id='customergroups-method'>Methods</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+	<tr>
+		<th>Method</th>
+		<th>Returns</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='customergroups-list'>
+		<td><code><b>list</b>()</nobr></code></td>
+		<td><code>Promise&lt;<a href='#groupresponse'>GroupResponse</a>[]&gt;</code></td>
+		<td>List customer groups.</td>
+	</tr>
+	<tr id='customergroups-create'>
+		<td><code><b>create</b>(<nobr>&lt;<a href='#grouppayload'>GroupPayload</a>&gt;</nobr> <i>group</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#groupresponse'>GroupResponse</a>&gt;</code></td>
+		<td>Create customer group.</td>
+	</tr>
+	<tr id='customergroups-one'>
+		<td><code><b>one</b>(<nobr>&lt;Number&gt;</nobr> <i>groupId</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#groupresponse'>GroupResponse</a>&gt;</code></td>
+		<td>Find customer group by id.</td>
+	</tr>
+	<tr id='customergroups-update'>
+		<td><code><b>update</b>(<nobr>&lt;Number&gt;</nobr> <i>customerId</i>, <nobr>&lt;<a href='#grouppayload'>GroupPayload</a>&gt;</nobr> <i>group</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#groupresponse'>GroupResponse</a>&gt;</code></td>
+		<td>Update customer group details.</td>
+	</tr>
+</tbody></table>
+
+</section>
+
+</section>
+<span id='groupresponse'></span>
+
+<section>
+<h3 id='groupresponse-field'>GroupResponse</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='groupresponse-id'>
+        <td><code><b>id</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1</td>
+        <td>Unique identifier.</td>
+    </tr>
+    <tr id='groupresponse-name'>
+        <td><code><b>name</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>Super Awesome Group</code></td>
+        <td>Name of group.</td>
+    </tr>
+    <tr id='groupresponse-email'>
+        <td><code><b>email</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>john@smith.com</code></td>
+        <td>E-mail.</td>
+    </tr>
+    <tr id='groupresponse-clientstate'>
+        <td><code><b>clientState</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>&lt;json&gt;</code></td>
+        <td>client json state,.</td>
+    </tr>
+    <tr id='groupresponse-elasticrequest'>
+        <td><code><b>elasticRequest</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>`<json></td>
+        <td>client json state.</td>
+    </tr>
+    <tr id='groupresponse-customerscount'>
+        <td><code><b>customersCount</b></code></td>
+        <td><code>Number</code>
+        <td></td>
+        <td>15</td>
+        <td>Customers count in group.</td>
+    </tr>
+    <tr id='groupresponse-updatedat'>
+        <td><code><b>updatedAt</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>2020-01-01T12:00:00Z</code></td>
+        <td>Last update time.</td>
+    </tr>
+    <tr id='groupresponse-createdat'>
+        <td><code><b>createdAt</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>2020-01-01T12:00:00Z</code></td>
+        <td>Creation time.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+<div class='accordion'>
+	<label><span class='expander'>▶</span> Fields inherited from <a href='#lineitemstate'>LineItemState</a></label>
+	<div class='accordion-content'><section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='groupresponse-state'>
+        <td><code><b>state</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>Cart</td>
+        <td>Line item state.
+Available values:
+<ul class="collapsible collapsed">
+<li><a href="#cart"><code>Cart</code></a></li>
+<li><code>Pending</code></li>
+<li><code>PreOrdered</code></li>
+<li><code>BackOrdered</code></li>
+<li><code>Canceled</code></li>
+<li><code>Shipped</code></li>
+</ul></td>
+    </tr>
+</tbody></table>
+
+
+</section></div>
+</div>
+
+</section>
+<span id='grouppayload'></span>
+
+<section>
+<h3 id='grouppayload-field'>GroupPayload</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='grouppayload-name'>
+        <td><code><b>name</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>New group name</code></td>
+        <td>New name of group.</td>
+    </tr>
+    <tr id='grouppayload-clientstate'>
+        <td><code><b>clientState</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>&lt;json&gt;</code></td>
+        <td>client json state,.</td>
+    </tr>
+    <tr id='grouppayload-elasticrequest'>
+        <td><code><b>elasticRequest</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>`<json></td>
+        <td>client json state.</td>
+    </tr>
+    <tr id='grouppayload-customerscount'>
+        <td><code><b>customersCount</b></code></td>
+        <td><code>Number</code>
+        <td></td>
+        <td>15</td>
+        <td>Customers count in group.</td>
+    </tr>
+</tbody></table>
+
 
 </section>
 
