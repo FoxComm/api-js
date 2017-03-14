@@ -3096,17 +3096,22 @@ Available values:
 	<tr id='customers-one'>
 		<td><code><b>one</b>(<nobr>&lt;Number&gt;</nobr> <i>customerId</i>)</nobr></code></td>
 		<td><code>Promise&lt;<a href='#customerresponse'>CustomerResponse</a>&gt;</code></td>
-		<td>Finds customer by id.</td>
+		<td>Find customer by id.</td>
 	</tr>
 	<tr id='customers-create'>
 		<td><code><b>create</b>(<nobr>&lt;<a href='#customercreatepayload'>CustomerCreatePayload</a>&gt;</nobr> <i>customer</i>)</nobr></code></td>
 		<td><code>Promise&lt;<a href='#customerresponse'>CustomerResponse</a>&gt;</code></td>
-		<td>Creates new customer.</td>
+		<td>Create new customer.</td>
 	</tr>
 	<tr id='customers-update'>
 		<td><code><b>update</b>(<nobr>&lt;Number&gt;</nobr> <i>customerId</i>, <nobr>&lt;<a href='#customerupdatepayload'>CustomerUpdatePayload</a>&gt;</nobr> <i>customer</i>)</nobr></code></td>
 		<td><code>Promise&lt;<a href='#customerresponse'>CustomerResponse</a>&gt;</code></td>
-		<td>Updates customer details.</td>
+		<td>Update customer details.</td>
+	</tr>
+	<tr id='customers-issuestorecredit'>
+		<td><code><b>issueStoreCredit</b>(<nobr>&lt;Number&gt;</nobr> <i>customerId</i>, <nobr>&lt;<a href='#storecreditcreatesinglepayload'>StoreCreditCreateSinglePayload</a>&gt;</nobr> <i>credit</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#storecredit'>StoreCredit</a>&gt;</code></td>
+		<td>Issue store credit for a customer.</td>
 	</tr>
 </tbody></table>
 
@@ -3757,6 +3762,60 @@ Available values:
 
 </section></div>
 </div>
+
+</section>
+<span id='storecreditcreatesinglepayload'></span>
+
+<section>
+<h3 id='storecreditcreatesinglepayload-field'>StoreCreditCreateSinglePayload</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='storecreditcreatesinglepayload-amount'>
+        <td><code><b>amount</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>10</td>
+        <td>Store credit amount.</td>
+    </tr>
+    <tr id='storecreditcreatesinglepayload-reasonid'>
+        <td><code><b>reasonId</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1</td>
+        <td>Reason of creation.</td>
+    </tr>
+    <tr id='storecreditcreatesinglepayload-subreasonid'>
+        <td><code><b>subReasonId</b></code></td>
+        <td><code>Number</code>
+        <td></td>
+        <td>1</td>
+        <td>Subreason.</td>
+    </tr>
+    <tr id='storecreditcreatesinglepayload-currency'>
+        <td><code><b>currency</b></code></td>
+        <td><code>String</code>
+        <td></td>
+        <td>USD</td>
+        <td>Store credit currency.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
 
 </section>
 <span id='storecredittotals'></span>

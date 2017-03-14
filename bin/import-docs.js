@@ -240,7 +240,8 @@ const importData = {
   'StoreCredits': [
     'StoreCredit',
     'StoreCreditAdjustments',
-    'StoreCreditTotals'
+    'StoreCreditTotals',
+    'StoreCreditCreateSinglePayload'
   ],
   'Cart': [
     'FullOrder',

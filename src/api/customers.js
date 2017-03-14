@@ -11,7 +11,7 @@ export default class Customers {
 
   /**
    * @method one(customerId: Number): Promise<CustomerResponse>
-   * Finds customer by id.
+   * Find customer by id.
    */
   one(customerId) {
     return this.api.get(endpoints.customer(customerId));
@@ -19,7 +19,7 @@ export default class Customers {
 
   /**
    * @method create(customer: CustomerCreatePayload): Promise<CustomerResponse>
-   * Creates new customer.
+   * Create new customer.
    */
   create(customer) {
     return this.api.post(endpoints.customers, customer);
@@ -27,9 +27,17 @@ export default class Customers {
 
   /**
    * @method update(customerId: Number, customer: CustomerUpdatePayload): Promise<CustomerResponse>
-   * Updates customer details.
+   * Update customer details.
    */
   update(customerId, customer) {
     return this.api.patch(endpoints.customer(customerId), customer);
+  }
+
+  /**
+   * @method issueStoreCredit(customerId: Number, credit: StoreCreditCreateSinglePayload): Promise<StoreCredit>
+   * Issue store credit for a customer.
+   */
+  issueStoreCredit(customerId, credit) {
+    return this.api.post(endpoints.customerStoreCredit(customerId), credit);
   }
 }
