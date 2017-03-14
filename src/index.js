@@ -21,6 +21,7 @@ import Account from './api/account';
 import Orders from './api/orders';
 import jwtDecode from 'jwt-decode';
 import Analytics from './api/analytics';
+import CrossSell from './api/cross-sell';
 
 export default class Api {
   constructor(args) {
@@ -67,6 +68,10 @@ export default class Api {
     // @property analytics: Analytics
     // Analytics instance
     this.analytics = new Analytics(this);
+
+    // @property crossSell: CrossSell
+    // CrossSell instance
+    this.crossSell = new CrossSell(this);
   }
 
   // @method addAuth(jwt: String): FoxApi
