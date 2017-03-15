@@ -26,6 +26,7 @@ import CustomerAddresses from './api/customer-addresses';
 import CustomerCreditCards from './api/customer-credit-cards';
 import CustomerGroups from './api/customer-groups';
 import Skus from './api/skus';
+import Products from './api/products';
 
 export default class Api {
   constructor(args) {
@@ -92,6 +93,10 @@ export default class Api {
     // @property skus: Skus
     // Skus instance
     this.skus = new Skus(this);
+
+    // @property products: Products
+    // Products instance
+    this.products = new Products(this);
   }
 
   // @method addAuth(jwt: String): FoxApi
@@ -122,7 +127,7 @@ export default class Api {
     if (this._jwt) {
       try {
         return jwtDecode(this._jwt).id;
-      } catch (ex) {}
+      } catch (ex) { }
     }
     return null;
   }
@@ -153,7 +158,7 @@ export default class Api {
 
   queryStringToObject(q) {
     // convoluted 1-liner instead of forloop [probably less performant too, but for loops kill me]
-    return q.split('&').reduce(function(acc, n) {
+    return q.split('&').reduce(function (acc, n) {
       return n = n.split('='), acc[n[0]] = n[1], acc;
     }, {});
   }

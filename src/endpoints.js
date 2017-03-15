@@ -70,4 +70,7 @@ export default Object.freeze({
   skus: context => `/v1/skus/${context}`,
   sku: (context, skuCode) => `/v1/skus/${context}/${skuCode}`,
   skuInventory: skuCode => `/v1/inventory/summary/${skuCode}`,
+
+  products: context => `/v1/products/${context}`,
+  product: (context, productId) => `/v1/products/${context}/${productId}`,
 });

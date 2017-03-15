@@ -43,6 +43,7 @@
                 <li><a href="#customercreditcards">Customer Credit Cards</a></li>
                 <li><a href="#customergroups">Customer Groups</a></li>
                 <li><a href="#skus">SKUs</a></li>
+                <li><a href="#products">Products</a></li>
             </ul>
         </div>
     </div>
@@ -262,6 +263,11 @@ You can define jwt string via <code>addAuth</code> method, if there is no jwt st
 		<td><code><b>skus</b>
 		<td><code><a href='#skus'>Skus</a></code></td>
 		<td>Skus instance</td>
+	</tr>
+	<tr id='foxapi-products'>
+		<td><code><b>products</b>
+		<td><code><a href='#products'>Products</a></code></td>
+		<td>Products instance</td>
 	</tr>
 </tbody></table>
 
@@ -4282,6 +4288,225 @@ Available values:
 		<td></td>
 	</tr>
 </tbody></table>
+
+</section>
+
+</section>
+<h2 id='products'>Products</h2><p>Accessible via <a href="#foxapi-products">products</a> property of <a href="#foxapi">FoxApi</a> instance.</p>
+
+<section>
+<h3 id='products-method'>Methods</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+	<tr>
+		<th>Method</th>
+		<th>Returns</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='products-create'>
+		<td><code><b>create</b>(<nobr>&lt;String&gt;</nobr> <i>context</i>, <nobr>&lt;<a href='#productpayload'>ProductPayload</a>&gt;</nobr> <i>product</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#productresponse'>ProductResponse</a>&gt;</code></td>
+		<td>Create new product.</td>
+	</tr>
+	<tr id='products-one'>
+		<td><code><b>one</b>(<nobr>&lt;String&gt;</nobr> <i>context</i>, <nobr>&lt;Number&gt;</nobr> <i>productId</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#productresponse'>ProductResponse</a>&gt;</code></td>
+		<td>Find product by id.</td>
+	</tr>
+	<tr id='products-update'>
+		<td><code><b>update</b>(<nobr>&lt;String&gt;</nobr> <i>context</i>, <nobr>&lt;Number&gt;</nobr> <i>productId</i>, <nobr>&lt;<a href='#productpayload'>ProductPayload</a>&gt;</nobr> <i>product</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#productresponse'>ProductResponse</a>&gt;</code></td>
+		<td>Update product details.</td>
+	</tr>
+	<tr id='products-archive'>
+		<td><code><b>archive</b>(<nobr>&lt;String&gt;</nobr> <i>context</i>, <nobr>&lt;Number&gt;</nobr> <i>productId</i>)</nobr></code></td>
+		<td><code>Promise</code></td>
+		<td>Archive product.</td>
+	</tr>
+</tbody></table>
+
+</section>
+
+</section>
+<span id='productpayload'></span>
+
+<section>
+<h3 id='productpayload-field'>ProductPayload</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='productpayload-attributes'>
+        <td><code><b>attributes</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>&lt;json&gt;</code></td>
+        <td>Product attributes.</td>
+    </tr>
+    <tr id='productpayload-skus'>
+        <td><code><b>skus</b></code></td>
+        <td><code>Array&lt;<a href='#skupayload'>SkuPayload</a>&gt;</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>Associated SKUs.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<span id='productresponse'></span>
+
+<section>
+<h3 id='productresponse-field'>ProductResponse</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='productresponse-id'>
+        <td><code><b>id</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1</td>
+        <td>Product ID.</td>
+    </tr>
+    <tr id='productresponse-slug'>
+        <td><code><b>slug</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>Product slug.</td>
+    </tr>
+    <tr id='productresponse-attributes'>
+        <td><code><b>attributes</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>&lt;json&gt;</code></td>
+        <td>Product attributes.</td>
+    </tr>
+    <tr id='productresponse-context'>
+        <td><code><b>context</b></code></td>
+        <td><code><a href='#objectcontext'>ObjectContext</a></code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>Related context.</td>
+    </tr>
+    <tr id='productresponse-albums'>
+        <td><code><b>albums</b></code></td>
+        <td><code>Array&lt;<a href='#album'>Album</a>&gt;</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>Product albums.</td>
+    </tr>
+    <tr id='productresponse-archivedat'>
+        <td><code><b>archivedAt</b></code></td>
+        <td><code>String</code>
+        <td></td>
+        <td><code>2020-01-01T12:00:00Z</code></td>
+        <td>Archiving date.</td>
+    </tr>
+    <tr id='productresponse-skus'>
+        <td><code><b>skus</b></code></td>
+        <td><code>Array&lt;<a href='#skuresponse'>SkuResponse</a>&gt;</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>Associated SKUs.</td>
+    </tr>
+    <tr id='productresponse-variants'>
+        <td><code><b>variants</b></code></td>
+        <td><code>Array&lt;String&gt;</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>Associated variants.</td>
+    </tr>
+    <tr id='productresponse-taxons'>
+        <td><code><b>taxons</b></code></td>
+        <td><code>Array&lt;<a href='#taxonresponse'>TaxonResponse</a>&gt;</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>Associated taxons.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<span id='taxonresponse'></span>
+
+<section>
+<h3 id='taxonresponse-field'>TaxonResponse</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='taxonresponse-id'>
+        <td><code><b>id</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>Taxon id.</td>
+    </tr>
+    <tr id='taxonresponse-attributes'>
+        <td><code><b>attributes</b></code></td>
+        <td><code>Object</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>Custom attributes.</td>
+    </tr>
+    <tr id='taxonresponse-children'>
+        <td><code><b>children</b></code></td>
+        <td><code>Array&lt;<a href='#taxonresponse'>TaxonResponse</a>&gt;</code>
+        <td></td>
+        <td></td>
+        <td>Children taxons of the taxonomy (for hierarchical taxons only).</td>
+    </tr>
+</tbody></table>
+
 
 </section>
 

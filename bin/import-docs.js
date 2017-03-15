@@ -260,6 +260,10 @@ const importData = {
     'SkuResponse',
     'InventoryResponse',
   ],
+  'Products': [
+    'ProductPayload',
+    'ProductResponse',
+  ],
 };
 
 function convertDocs() {
