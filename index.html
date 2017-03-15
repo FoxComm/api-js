@@ -3201,6 +3201,51 @@ Available values:
 <h2 id='crosssell'>CrossSell</h2><p>Accessible via <a href="#foxapi-analytics">analytics</a> property of <a href="#foxapi">FoxApi</a> instance.</p>
 
 <section>
+<h3 id='crosssell-example'>Usage example</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+
+<pre><code>{
+   &quot;points&quot;: [
+     {
+       &quot;custID&quot;: 1,
+       &quot;prodID&quot;: 4,
+       &quot;chanID&quot;: 2,
+     } 
+   ]
+}
+</code></pre>
+<p>`/v1/public/recommend/prod-prod/3?channel=2</p>
+
+<p>```
+{
+   &quot;products&quot;: [
+     {
+       &quot;id&quot;: 2,
+       &quot;score&quot;: 0
+     },
+     {
+       &quot;id&quot;: 1,
+       &quot;score&quot;: 1
+     },
+     {
+       &quot;id&quot;: 0,
+       &quot;score&quot;: 0
+     }
+   ]
+}</p>
+
+
+
+</section>
+
+</section>
+<section>
 <h3 id='crosssell-method'>Methods</h3>
 
 <section >
@@ -3221,18 +3266,8 @@ Available values:
 		<td><code>Promise</code></td>
 		<td>Sends a collection of &quot;points&quot; to populate a sparse matrix for cross-sell
 analytics and related product tracking. The POST body is an object with a &quot;points&quot; key
-and value filled with an array of &quot;Point&quot; objects
-Example pointsObj
-<pre><code>{
-   &quot;points&quot;: [
-     {
-       &quot;custID&quot;: 1,
-       &quot;prodID&quot;: 4,
-       &quot;chanID&quot;: 2,
-     }
-   ]
-}
-</code></pre></td>
+and value filled with an array of &quot;Point&quot; objects.
+This method is intended for Admin use only.</td>
 	</tr>
 	<tr id='crosssell-crosssellrelated'>
 		<td><code><b>crossSellRelated</b>(<nobr>&lt;Int&gt;</nobr> <i>productId</i>, <nobr>&lt;Int&gt;</nobr> <i>channelId</i>, <i>{Int} productId</i>, <i>{Int} channelId</i>)</nobr></code></td>
@@ -3240,27 +3275,7 @@ Example pointsObj
 		<td>Returns JSON of what products are similar to the productId in the query params.
 { &quot;products&quot;: [ RelatedProduct ] }
 Score == 1 means these products were purchased by the exact same set of customers. 
-Score == 0 means no customer has purchased both of these
-Example Request
-`/v1/public/recommend/prod-prod/3?channel=2
-Example Response
-```
-{
-   &quot;products&quot;: [
-     {
-       &quot;id&quot;: 2,
-       &quot;score&quot;: 0
-     },
-     {
-       &quot;id&quot;: 1,
-       &quot;score&quot;: 1
-     },
-     {
-       &quot;id&quot;: 0,
-       &quot;score&quot;: 0
-     }
-   ]
-}</td>
+Score == 0 means no customer has purchased both of these</td>
 	</tr>
 </tbody></table>
 
