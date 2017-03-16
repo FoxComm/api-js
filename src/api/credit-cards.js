@@ -36,7 +36,7 @@ export default class CreditCards {
         if (response.error) {
           reject([response.error.message]);
         } else {
-          return createCardFromStripeToken(response, billingAddress, addressIsNew)
+          return this.createCardFromStripeToken(response, billingAddress, addressIsNew)
           .then(response => resolve(response))
           .catch(err => reject(err));
         }

@@ -233,6 +233,11 @@ You can define jwt string via <code>addAuth</code> method, if there is no jwt st
 		<td><code><a href='#analytics'>Analytics</a></code></td>
 		<td>Analytics instance</td>
 	</tr>
+	<tr id='foxapi-crosssell'>
+		<td><code><b>crossSell</b>
+		<td><code><a href='#crosssell'>CrossSell</a></code></td>
+		<td>CrossSell instance</td>
+	</tr>
 </tbody></table>
 
 </section>
@@ -3193,6 +3198,176 @@ Available values:
 </section>
 <span id='creditcardsresponse'></span>
 
+<h2 id='crosssell'>CrossSell</h2><p>Accessible via <a href="#foxapi-analytics">analytics</a> property of <a href="#foxapi">FoxApi</a> instance.</p>
+
+<section>
+<h3 id='crosssell-example'>Usage example</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+
+<pre><code>{
+   &quot;points&quot;: [
+     {
+       &quot;custID&quot;: 1,
+       &quot;prodID&quot;: 4,
+       &quot;chanID&quot;: 2,
+     } 
+   ]
+}
+</code></pre>
+<p>/v1/public/recommend/prod-prod/3?channel=2</p>
+
+<pre><code>{
+   &quot;products&quot;: [
+     {
+       &quot;id&quot;: 2,
+       &quot;score&quot;: 0
+     },
+     {
+       &quot;id&quot;: 1,
+       &quot;score&quot;: 1
+     },
+     {
+       &quot;id&quot;: 0,
+       &quot;score&quot;: 0
+     }
+   ]
+}
+</code></pre>
+
+
+</section>
+
+</section>
+<section>
+<h3 id='crosssell-method'>Methods</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+	<tr>
+		<th>Method</th>
+		<th>Returns</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='crosssell-crossselltrain'>
+		<td><code><b>crossSellTrain</b>(<nobr>&lt;object&gt;</nobr> <i>pointsObj</i>, <i>{Object} pointsObj</i>)</nobr></code></td>
+		<td><code>Promise</code></td>
+		<td>Sends a collection of &quot;points&quot; to populate a sparse matrix for cross-sell
+analytics and related product tracking. The POST body is an object with a &quot;points&quot; key
+and value filled with an array of &quot;Point&quot; objects.
+This method is intended for Admin use only.</td>
+	</tr>
+	<tr id='crosssell-crosssellrelated'>
+		<td><code><b>crossSellRelated</b>(<nobr>&lt;Int&gt;</nobr> <i>productId</i>, <nobr>&lt;Int&gt;</nobr> <i>channelId</i>, <i>{Int} productId</i>, <i>{Int} channelId</i>)</nobr></code></td>
+		<td><code>Promise</code></td>
+		<td>Returns JSON of what products are similar to the productId in the query params.
+{ &quot;products&quot;: [ RelatedProduct ] }
+Score == 1 means these products were purchased by the exact same set of customers. 
+Score == 0 means no customer has purchased both of these</td>
+	</tr>
+</tbody></table>
+
+</section>
+
+</section>
+<span id='point'></span>
+
+<section>
+<h3 id='point-field'>Point</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='point-custid'>
+        <td><code><b>custID</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>CustomerID number</td>
+    </tr>
+    <tr id='point-prodid'>
+        <td><code><b>prodID</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>ProductID number</td>
+    </tr>
+    <tr id='point-chanid'>
+        <td><code><b>chanID</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>Unique Channel ID number</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<span id='relatedproduct'></span>
+
+<section>
+<h3 id='relatedproduct-field'>RelatedProduct</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='relatedproduct-id'>
+        <td><code><b>id</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>RelatedProduct ID number</td>
+    </tr>
+    <tr id='relatedproduct-score'>
+        <td><code><b>score</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>RelatedProduct Similarity score</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
 <h2 id='orders'>Orders</h2>
 <section>
 <h3 id='orders-method'>Methods</h3>
