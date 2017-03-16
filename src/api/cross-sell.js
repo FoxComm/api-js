@@ -50,7 +50,7 @@ export default class CrossSell {
    * 
    * @example Request
    * 
-   * `/v1/public/recommend/prod-prod/3?channel=2
+   * /v1/public/recommend/prod-prod/3?channel=2
    * 
    * @example Response
    * 
@@ -71,6 +71,7 @@ export default class CrossSell {
    *      }
    *    ]
    * }
+   * ```
    */
   crossSellRelated(productId, channelId) {
     const query = `?channel=${channelId}`;
