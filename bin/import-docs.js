@@ -295,8 +295,8 @@ function convertDocs() {
   });
 
   const deps = {};
-  const collectDeps = (deps) => {
-    for (const name of deps)
+  const collectDeps = (depNames) => {
+    for (const name of depNames)
       if (!deps[name]) {
         deps[name] = true;
         collectDeps(depsTree[name] || []);
