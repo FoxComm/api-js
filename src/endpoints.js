@@ -79,4 +79,7 @@ export default Object.freeze({
 
   giftCards: '/v1/gift-cards',
   giftCard: giftCardCode => `/v1/gift-cards/${giftCardCode}`,
+
+  promotions: context => `/v1/promotions/${context}`,
+  promotion: (context, promotionId) => `/v1/promotions/${context}/${promotionId}`,
 });

@@ -274,6 +274,10 @@ const importData = {
     'GiftCardCreatePayload',
     'GiftCardUpdateStatePayload',
   ],
+  'Promotions': [
+    'PromotionPayload',
+    'PromotionIlluminated',
+  ],
 };
 
 function convertDocs() {

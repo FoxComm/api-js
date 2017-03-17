@@ -29,6 +29,7 @@ import Skus from './api/skus';
 import Products from './api/products';
 import ProductAlbums from './api/product-albums';
 import GiftCards from './api/gift-cards';
+import Promotions from './api/promotions';
 
 export default class Api {
   constructor(args) {
@@ -107,6 +108,10 @@ export default class Api {
     // @property giftCards: GiftCards
     // GiftCards instance
     this.giftCards = new GiftCards(this);
+
+    // @property promotions: Promotions
+    // Promotions instance
+    this.promotions = new Promotions(this);
   }
 
   // @method addAuth(jwt: String): FoxApi

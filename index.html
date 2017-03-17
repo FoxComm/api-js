@@ -46,6 +46,7 @@
                 <li><a href="#products">Products</a></li>
                 <li><a href="#productalbums">Product Albums</a></li>
                 <li><a href="#giftcards">Gift Cards</a></li>
+                <li><a href="#promotions">Promotions</a></li>
             </ul>
         </div>
     </div>
@@ -280,6 +281,11 @@ You can define jwt string via <code>addAuth</code> method, if there is no jwt st
 		<td><code><b>giftCards</b>
 		<td><code><a href='#giftcards'>GiftCards</a></code></td>
 		<td>GiftCards instance</td>
+	</tr>
+	<tr id='foxapi-promotions'>
+		<td><code><b>promotions</b>
+		<td><code><a href='#promotions'>Promotions</a></code></td>
+		<td>Promotions instance</td>
 	</tr>
 </tbody></table>
 
@@ -4752,6 +4758,326 @@ Available values:
         <td></td>
         <td></td>
         <td>Children taxons of the taxonomy (for hierarchical taxons only).</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<h2 id='promotions'>Promotions</h2><p>Accessible via <a href="#foxapi-promotions">promotions</a> property of <a href="#foxapi">FoxApi</a> instance.</p>
+
+<section>
+<h3 id='promotions-method'>Methods</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+	<tr>
+		<th>Method</th>
+		<th>Returns</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='promotions-create'>
+		<td><code><b>create</b>(<nobr>&lt;String&gt;</nobr> <i>context</i>, <nobr>&lt;<a href='#promotionpayload'>PromotionPayload</a>&gt;</nobr> <i>promotion</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#promotionilluminated'>PromotionIlluminated</a>&gt;</code></td>
+		<td>Create new promotion.</td>
+	</tr>
+	<tr id='promotions-one'>
+		<td><code><b>one</b>(<nobr>&lt;String&gt;</nobr> <i>context</i>, <nobr>&lt;Number&gt;</nobr> <i>promotionId</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#promotionilluminated'>PromotionIlluminated</a>&gt;</code></td>
+		<td>Find promotion by id.</td>
+	</tr>
+	<tr id='promotions-update'>
+		<td><code><b>update</b>(<nobr>&lt;String&gt;</nobr> <i>context</i>, <nobr>&lt;Number&gt;</nobr> <i>promotionId</i>, <nobr>&lt;<a href='#promotionpayload'>PromotionPayload</a>&gt;</nobr> <i>promotion</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#promotionilluminated'>PromotionIlluminated</a>&gt;</code></td>
+		<td>Update promotion details.</td>
+	</tr>
+</tbody></table>
+
+</section>
+
+</section>
+<span id='promotionapplytype'></span>
+
+<section>
+<h3 id='promotionapplytype-field'>PromotionApplyType</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='promotionapplytype-applytype'>
+        <td><code><b>applyType</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>auto</code></td>
+        <td>Promotion apply-type (either coupon or automatic).
+Available values:
+<ul class="collapsible collapsed">
+<li><code>auto</code></li>
+<li><code>coupon</code></li>
+</ul></td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<span id='promotionilluminated'></span>
+
+<section>
+<h3 id='promotionilluminated-field'>PromotionIlluminated</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='promotionilluminated-id'>
+        <td><code><b>id</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1</td>
+        <td>Promotion ID.</td>
+    </tr>
+    <tr id='promotionilluminated-context'>
+        <td><code><b>context</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>default</code></td>
+        <td>Related context.</td>
+    </tr>
+    <tr id='promotionilluminated-attributes'>
+        <td><code><b>attributes</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>&lt;json&gt;</code></td>
+        <td>Promotion attributes.</td>
+    </tr>
+    <tr id='promotionilluminated-discounts'>
+        <td><code><b>discounts</b></code></td>
+        <td><code>Array&lt;<a href='#discountilluminated'>DiscountIlluminated</a>&gt;</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>Related illuminated discounts.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+<div class='accordion'>
+	<label><span class='expander'>▶</span> Fields inherited from <a href='#promotionapplytype'>PromotionApplyType</a></label>
+	<div class='accordion-content'><section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='promotionilluminated-applytype'>
+        <td><code><b>applyType</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>auto</code></td>
+        <td>Promotion apply-type (either coupon or automatic).
+Available values:
+<ul class="collapsible collapsed">
+<li><code>auto</code></li>
+<li><code>coupon</code></li>
+</ul></td>
+    </tr>
+</tbody></table>
+
+
+</section></div>
+</div>
+
+</section>
+<span id='discountilluminated'></span>
+
+<section>
+<h3 id='discountilluminated-field'>DiscountIlluminated</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='discountilluminated-id'>
+        <td><code><b>id</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1</td>
+        <td>Promotion form ID.</td>
+    </tr>
+    <tr id='discountilluminated-context'>
+        <td><code><b>context</b></code></td>
+        <td><code>String</code>
+        <td></td>
+        <td><code>default</code></td>
+        <td>Related context.</td>
+    </tr>
+    <tr id='discountilluminated-attributes'>
+        <td><code><b>attributes</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>&lt;json&gt;</code></td>
+        <td>Promotion form attributes.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<span id='promotionpayload'></span>
+
+<section>
+<h3 id='promotionpayload-field'>PromotionPayload</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='promotionpayload-attributes'>
+        <td><code><b>attributes</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>&lt;json&gt;</code></td>
+        <td>Promotion form attributes.</td>
+    </tr>
+    <tr id='promotionpayload-discounts'>
+        <td><code><b>discounts</b></code></td>
+        <td><code>Array&lt;<a href='#creatediscountform'>CreateDiscountForm</a>&gt;</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>Promotion form discounts.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+<div class='accordion'>
+	<label><span class='expander'>▶</span> Fields inherited from <a href='#promotionapplytype'>PromotionApplyType</a></label>
+	<div class='accordion-content'><section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='promotionpayload-applytype'>
+        <td><code><b>applyType</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>auto</code></td>
+        <td>Promotion apply-type (either coupon or automatic).
+Available values:
+<ul class="collapsible collapsed">
+<li><code>auto</code></li>
+<li><code>coupon</code></li>
+</ul></td>
+    </tr>
+</tbody></table>
+
+
+</section></div>
+</div>
+
+</section>
+<span id='creatediscountform'></span>
+
+<section>
+<h3 id='creatediscountform-field'>CreateDiscountForm</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='creatediscountform-attributes'>
+        <td><code><b>attributes</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>&lt;json&gt;</code></td>
+        <td>Discount form attributes.</td>
     </tr>
 </tbody></table>
 
