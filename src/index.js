@@ -27,6 +27,7 @@ import CustomerCreditCards from './api/customer-credit-cards';
 import CustomerGroups from './api/customer-groups';
 import Skus from './api/skus';
 import Products from './api/products';
+import ProductAlbums from './api/product-albums';
 
 export default class Api {
   constructor(args) {
@@ -97,6 +98,10 @@ export default class Api {
     // @property products: Products
     // Products instance
     this.products = new Products(this);
+
+    // @property productAlbums: ProductAlbums
+    // ProductAlbums instance
+    this.productAlbums = new ProductAlbums(this);
   }
 
   // @method addAuth(jwt: String): FoxApi

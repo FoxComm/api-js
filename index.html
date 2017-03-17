@@ -44,6 +44,7 @@
                 <li><a href="#customergroups">Customer Groups</a></li>
                 <li><a href="#skus">SKUs</a></li>
                 <li><a href="#products">Products</a></li>
+                <li><a href="#productalbums">Product Albums</a></li>
             </ul>
         </div>
     </div>
@@ -269,108 +270,12 @@ You can define jwt string via <code>addAuth</code> method, if there is no jwt st
 		<td><code><a href='#products'>Products</a></code></td>
 		<td>Products instance</td>
 	</tr>
+	<tr id='foxapi-productalbums'>
+		<td><code><b>productAlbums</b>
+		<td><code><a href='#productalbums'>ProductAlbums</a></code></td>
+		<td>ProductAlbums instance</td>
+	</tr>
 </tbody></table>
-
-</section>
-
-</section>
-<span id='image'></span>
-
-<section>
-<h3 id='image-field'>Image</h3>
-
-<section >
-
-
-
-<div class='section-comments'></div>
-
-<table><thead>
-<tr>
-    <th>Field</th>
-    <th>Type</th>
-    <th>Required</th>
-    <th>Example</th>
-    <th>Description</th>
-</tr>
-</thead><tbody>
-    <tr id='image-src'>
-        <td><code><b>src</b></code></td>
-        <td><code>String</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td><code>http://lorempixel.com/test.png</code></td>
-        <td>URL pointing to the image.</td>
-    </tr>
-    <tr id='image-title'>
-        <td><code><b>title</b></code></td>
-        <td><code>String</code>
-        <td></td>
-        <td><code>test image</code></td>
-        <td>Title that identifies the image.</td>
-    </tr>
-    <tr id='image-alt'>
-        <td><code><b>alt</b></code></td>
-        <td><code>String</code>
-        <td></td>
-        <td><code>some image text</code></td>
-        <td>Alt text for the image.</td>
-    </tr>
-</tbody></table>
-
-
-</section>
-
-</section>
-<span id='album'></span>
-
-<section>
-<h3 id='album-field'>Album</h3>
-
-<section >
-
-
-
-<div class='section-comments'></div>
-
-<table><thead>
-<tr>
-    <th>Field</th>
-    <th>Type</th>
-    <th>Required</th>
-    <th>Example</th>
-    <th>Description</th>
-</tr>
-</thead><tbody>
-    <tr id='album-id'>
-        <td><code><b>id</b></code></td>
-        <td><code>Number</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td>1</td>
-        <td>Unique identifier.</td>
-    </tr>
-    <tr id='album-name'>
-        <td><code><b>name</b></code></td>
-        <td><code>String</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td><code>Desktop images</code></td>
-        <td>Name of the album.</td>
-    </tr>
-    <tr id='album-images'>
-        <td><code><b>images</b></code></td>
-        <td><code>Array&lt;<a href='#image'>Image</a>&gt;</code>
-        <td></td>
-        <td></td>
-        <td>Images that are part of the album.</td>
-    </tr>
-    <tr id='album-archivedat'>
-        <td><code><b>archivedAt</b></code></td>
-        <td><code>String</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td><code>2020-01-01T12:00:00Z</code></td>
-        <td>Archiving date.</td>
-    </tr>
-</tbody></table>
-
 
 </section>
 
@@ -4292,6 +4197,199 @@ Available values:
 </section>
 
 </section>
+<h2 id='productalbums'>ProductAlbums</h2><p>Accessible via <a href="#foxapi-productalbums">productAlbums</a> property of <a href="#foxapi">FoxApi</a> instance.</p>
+
+<section>
+<h3 id='productalbums-method'>Methods</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+	<tr>
+		<th>Method</th>
+		<th>Returns</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='productalbums-list'>
+		<td><code><b>list</b>(<nobr>&lt;String&gt;</nobr> <i>context</i>, <nobr>&lt;Number&gt;</nobr> <i>productId</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#albumresponse'>AlbumResponse</a>[]&gt;</code></td>
+		<td>List product albums.</td>
+	</tr>
+	<tr id='productalbums-create'>
+		<td><code><b>create</b>(<nobr>&lt;String&gt;</nobr> <i>context</i>, <nobr>&lt;Number&gt;</nobr> <i>productId</i>, <nobr>&lt;<a href='#albumpayload'>AlbumPayload</a>&gt;</nobr> <i>album</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#albumresponse'>AlbumResponse</a>&gt;</code></td>
+		<td>Create new product album.</td>
+	</tr>
+	<tr id='productalbums-updateposition'>
+		<td><code><b>updatePosition</b>(<nobr>&lt;String&gt;</nobr> <i>context</i>, <nobr>&lt;Number&gt;</nobr> <i>productId</i>, <nobr>&lt;UpdateAlbumPositionPayload&gt;</nobr> <i>payload</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#albumresponse'>AlbumResponse</a>&gt;</code></td>
+		<td>Create new product.</td>
+	</tr>
+</tbody></table>
+
+</section>
+
+</section>
+<span id='image'></span>
+
+<section>
+<h3 id='image-field'>Image</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='image-src'>
+        <td><code><b>src</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>http://lorempixel.com/test.png</code></td>
+        <td>URL pointing to the image.</td>
+    </tr>
+    <tr id='image-title'>
+        <td><code><b>title</b></code></td>
+        <td><code>String</code>
+        <td></td>
+        <td><code>test image</code></td>
+        <td>Title that identifies the image.</td>
+    </tr>
+    <tr id='image-alt'>
+        <td><code><b>alt</b></code></td>
+        <td><code>String</code>
+        <td></td>
+        <td><code>some image text</code></td>
+        <td>Alt text for the image.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<span id='albumpayload'></span>
+
+<section>
+<h3 id='albumpayload-field'>AlbumPayload</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='albumpayload-name'>
+        <td><code><b>name</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>Desktop images</code></td>
+        <td>Name of the album.</td>
+    </tr>
+    <tr id='albumpayload-images'>
+        <td><code><b>images</b></code></td>
+        <td><code>Array&lt;<a href='#image'>Image</a>&gt;</code>
+        <td></td>
+        <td></td>
+        <td>Images that are part of the album.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<span id='albumresponse'></span>
+
+<section>
+<h3 id='albumresponse-field'>AlbumResponse</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='albumresponse-id'>
+        <td><code><b>id</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1</td>
+        <td>Unique identifier.</td>
+    </tr>
+    <tr id='albumresponse-name'>
+        <td><code><b>name</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>Desktop images</code></td>
+        <td>Name of the album.</td>
+    </tr>
+    <tr id='albumresponse-images'>
+        <td><code><b>images</b></code></td>
+        <td><code>Array&lt;<a href='#image'>Image</a>&gt;</code>
+        <td></td>
+        <td></td>
+        <td>Images that are part of the album.</td>
+    </tr>
+    <tr id='albumresponse-createdat'>
+        <td><code><b>createdAt</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>2020-01-01T12:00:00Z</code></td>
+        <td>Creation date.</td>
+    </tr>
+    <tr id='albumresponse-updatedat'>
+        <td><code><b>updatedAt</b></code></td>
+        <td><code>String</code>
+        <td></td>
+        <td><code>2020-01-01T12:00:00Z</code></td>
+        <td>Last update date.</td>
+    </tr>
+    <tr id='albumresponse-archivedat'>
+        <td><code><b>archivedAt</b></code></td>
+        <td><code>String</code>
+        <td></td>
+        <td><code>2020-01-01T12:00:00Z</code></td>
+        <td>Archiving date.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
 <h2 id='products'>Products</h2><p>Accessible via <a href="#foxapi-products">products</a> property of <a href="#foxapi">FoxApi</a> instance.</p>
 
 <section>
@@ -4425,7 +4523,7 @@ Available values:
     </tr>
     <tr id='productresponse-albums'>
         <td><code><b>albums</b></code></td>
-        <td><code>Array&lt;<a href='#album'>Album</a>&gt;</code>
+        <td><code>Array&lt;<a href='#albumresponse'>AlbumResponse</a>&gt;</code>
         <td><div data-icon="ei-check"></div></td>
         <td></td>
         <td>Product albums.</td>
@@ -4841,7 +4939,7 @@ Available values:
     </tr>
     <tr id='skuresponse-albums'>
         <td><code><b>albums</b></code></td>
-        <td><code>Array&lt;<a href='#album'>Album</a>&gt;</code>
+        <td><code>Array&lt;<a href='#albumresponse'>AlbumResponse</a>&gt;</code>
         <td><div data-icon="ei-check"></div></td>
         <td></td>
         <td>SKU albums.</td>

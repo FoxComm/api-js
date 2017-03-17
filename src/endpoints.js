@@ -73,4 +73,7 @@ export default Object.freeze({
 
   products: context => `/v1/products/${context}`,
   product: (context, productId) => `/v1/products/${context}/${productId}`,
+
+  productAlbums: (context, productId) => `/v1/products/${context}/${productId}/albums`,
+  productAlbumPosition: (context, productId) => `/v1/products/${context}/${productId}/albums/position`,
 });

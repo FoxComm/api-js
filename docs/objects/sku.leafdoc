@@ -17,7 +17,7 @@ SKU attributes.
 @field context: ObjectContext
 Related context.
 
-@field albums: Array<Album>
+@field albums: Array<AlbumResponse>
 SKU albums.
 
 @field archivedAt?: String = `2020-01-01T12:00:00Z`

@@ -264,6 +264,11 @@ const importData = {
     'ProductPayload',
     'ProductResponse',
   ],
+  'ProductAlbums': [
+    'Image',
+    'AlbumPayload',
+    'AlbumResponse',
+  ],
 };
 
 function convertDocs() {
