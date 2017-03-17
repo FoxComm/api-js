@@ -45,6 +45,7 @@
                 <li><a href="#skus">SKUs</a></li>
                 <li><a href="#products">Products</a></li>
                 <li><a href="#productalbums">Product Albums</a></li>
+                <li><a href="#giftcards">Gift Cards</a></li>
             </ul>
         </div>
     </div>
@@ -275,6 +276,11 @@ You can define jwt string via <code>addAuth</code> method, if there is no jwt st
 		<td><code><a href='#productalbums'>ProductAlbums</a></code></td>
 		<td>ProductAlbums instance</td>
 	</tr>
+	<tr id='foxapi-giftcards'>
+		<td><code><b>giftCards</b>
+		<td><code><a href='#giftcards'>GiftCards</a></code></td>
+		<td>GiftCards instance</td>
+	</tr>
 </tbody></table>
 
 </section>
@@ -456,415 +462,6 @@ Available values:
 
 
 </section>
-
-</section>
-<span id='giftcardorigintype'></span>
-
-<section>
-<h3 id='giftcardorigintype-field'>GiftCardOriginType</h3>
-
-<section >
-
-
-
-<div class='section-comments'></div>
-
-<table><thead>
-<tr>
-    <th>Field</th>
-    <th>Type</th>
-    <th>Required</th>
-    <th>Example</th>
-    <th>Description</th>
-</tr>
-</thead><tbody>
-    <tr id='giftcardorigintype-origintype'>
-        <td><code><b>originType</b></code></td>
-        <td><code>String</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td><code>csrAppeasement</code></td>
-        <td>GC origin type.
-Available values:
-<ul class="collapsible collapsed">
-<li><code>csrAppeasement</code></li>
-<li><code>customerPurchase</code></li>
-<li><code>fromStoreCredit</code></li>
-</ul></td>
-    </tr>
-</tbody></table>
-
-
-</section>
-
-</section>
-<span id='giftcardstate'></span>
-
-<section>
-<h3 id='giftcardstate-field'>GiftCardState</h3>
-
-<section >
-
-
-
-<div class='section-comments'></div>
-
-<table><thead>
-<tr>
-    <th>Field</th>
-    <th>Type</th>
-    <th>Required</th>
-    <th>Example</th>
-    <th>Description</th>
-</tr>
-</thead><tbody>
-    <tr id='giftcardstate-state'>
-        <td><code><b>state</b></code></td>
-        <td><code>String</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td>OnHold</td>
-        <td>GC state.
-Available values:
-<ul class="collapsible collapsed">
-<li><code>onHold</code></li>
-<li><code>active</code></li>
-<li><code>canceled</code></li>
-</ul></td>
-    </tr>
-</tbody></table>
-
-
-</section>
-
-</section>
-<span id='giftcardbase'></span>
-
-<section>
-<h3 id='giftcardbase-field'>GiftCardBase</h3>
-
-<section >
-
-
-
-<div class='section-comments'></div>
-
-<table><thead>
-<tr>
-    <th>Field</th>
-    <th>Type</th>
-    <th>Required</th>
-    <th>Example</th>
-    <th>Description</th>
-</tr>
-</thead><tbody>
-    <tr id='giftcardbase-id'>
-        <td><code><b>id</b></code></td>
-        <td><code>Number</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td>1</td>
-        <td>Unique identifier.</td>
-    </tr>
-    <tr id='giftcardbase-createdat'>
-        <td><code><b>createdAt</b></code></td>
-        <td><code>String</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td><code>2020-01-01T12:00:00Z</code></td>
-        <td>Creation date.</td>
-    </tr>
-    <tr id='giftcardbase-code'>
-        <td><code><b>code</b></code></td>
-        <td><code>String</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td><code>ABC-123</code></td>
-        <td>Public unique identifier.</td>
-    </tr>
-    <tr id='giftcardbase-subtypeid'>
-        <td><code><b>subTypeId</b></code></td>
-        <td><code>Number</code>
-        <td></td>
-        <td>1</td>
-        <td>Optional subtype.</td>
-    </tr>
-    <tr id='giftcardbase-originalbalance'>
-        <td><code><b>originalBalance</b></code></td>
-        <td><code>Number</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td>50</td>
-        <td>Opening balance for GC (amount it was issued for).</td>
-    </tr>
-    <tr id='giftcardbase-currentbalance'>
-        <td><code><b>currentBalance</b></code></td>
-        <td><code>Number</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td>50</td>
-        <td>Opening balance minus &quot;captured&quot; debits.</td>
-    </tr>
-    <tr id='giftcardbase-availablebalance'>
-        <td><code><b>availableBalance</b></code></td>
-        <td><code>Number</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td>50</td>
-        <td>Opening balance minus &quot;auth&quot; debits.</td>
-    </tr>
-</tbody></table>
-
-
-</section>
-
-<div class='accordion'>
-	<label><span class='expander'>▶</span> Fields inherited from <a href='#giftcardorigintype'>GiftCardOriginType</a></label>
-	<div class='accordion-content'><section >
-
-
-
-<div class='section-comments'></div>
-
-<table><thead>
-<tr>
-    <th>Field</th>
-    <th>Type</th>
-    <th>Required</th>
-    <th>Example</th>
-    <th>Description</th>
-</tr>
-</thead><tbody>
-    <tr id='giftcardbase-origintype'>
-        <td><code><b>originType</b></code></td>
-        <td><code>String</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td><code>csrAppeasement</code></td>
-        <td>GC origin type.
-Available values:
-<ul class="collapsible collapsed">
-<li><code>csrAppeasement</code></li>
-<li><code>customerPurchase</code></li>
-<li><code>fromStoreCredit</code></li>
-</ul></td>
-    </tr>
-</tbody></table>
-
-
-</section></div>
-</div>
-
-<div class='accordion'>
-	<label><span class='expander'>▶</span> Fields inherited from <a href='#giftcardstate'>GiftCardState</a></label>
-	<div class='accordion-content'><section >
-
-
-
-<div class='section-comments'></div>
-
-<table><thead>
-<tr>
-    <th>Field</th>
-    <th>Type</th>
-    <th>Required</th>
-    <th>Example</th>
-    <th>Description</th>
-</tr>
-</thead><tbody>
-    <tr id='giftcardbase-state'>
-        <td><code><b>state</b></code></td>
-        <td><code>String</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td>OnHold</td>
-        <td>GC state.
-Available values:
-<ul class="collapsible collapsed">
-<li><code>onHold</code></li>
-<li><code>active</code></li>
-<li><code>canceled</code></li>
-</ul></td>
-    </tr>
-</tbody></table>
-
-
-</section></div>
-</div>
-
-</section>
-<span id='giftcard'></span>
-
-<section>
-<h3 id='giftcard-field'>GiftCard</h3>
-
-<section >
-
-
-
-<div class='section-comments'></div>
-
-<table><thead>
-<tr>
-    <th>Field</th>
-    <th>Type</th>
-    <th>Required</th>
-    <th>Example</th>
-    <th>Description</th>
-</tr>
-</thead><tbody>
-    <tr id='giftcard-customer'>
-        <td><code><b>customer</b></code></td>
-        <td><code><a href='#customerresponse'>CustomerResponse</a></code>
-        <td></td>
-        <td></td>
-        <td>If customer have purchased GiftCard, returns his info.</td>
-    </tr>
-    <tr id='giftcard-storeadmin'>
-        <td><code><b>storeAdmin</b></code></td>
-        <td><code><a href='#storeadminresponse'>StoreAdminResponse</a></code>
-        <td></td>
-        <td></td>
-        <td>If CSR created GiftCard, return his info.</td>
-    </tr>
-</tbody></table>
-
-
-</section>
-
-<div class='accordion'>
-	<label><span class='expander'>▶</span> Fields inherited from <a href='#giftcardbase'>GiftCardBase</a></label>
-	<div class='accordion-content'><section >
-
-
-
-<div class='section-comments'></div>
-
-<table><thead>
-<tr>
-    <th>Field</th>
-    <th>Type</th>
-    <th>Required</th>
-    <th>Example</th>
-    <th>Description</th>
-</tr>
-</thead><tbody>
-    <tr id='giftcard-id'>
-        <td><code><b>id</b></code></td>
-        <td><code>Number</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td>1</td>
-        <td>Unique identifier.</td>
-    </tr>
-    <tr id='giftcard-createdat'>
-        <td><code><b>createdAt</b></code></td>
-        <td><code>String</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td><code>2020-01-01T12:00:00Z</code></td>
-        <td>Creation date.</td>
-    </tr>
-    <tr id='giftcard-code'>
-        <td><code><b>code</b></code></td>
-        <td><code>String</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td><code>ABC-123</code></td>
-        <td>Public unique identifier.</td>
-    </tr>
-    <tr id='giftcard-subtypeid'>
-        <td><code><b>subTypeId</b></code></td>
-        <td><code>Number</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td>1</td>
-        <td>Optional subtype.</td>
-    </tr>
-    <tr id='giftcard-originalbalance'>
-        <td><code><b>originalBalance</b></code></td>
-        <td><code>Number</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td>50</td>
-        <td>Opening balance for GC (amount it was issued for).</td>
-    </tr>
-    <tr id='giftcard-currentbalance'>
-        <td><code><b>currentBalance</b></code></td>
-        <td><code>Number</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td>50</td>
-        <td>Opening balance minus &quot;captured&quot; debits.</td>
-    </tr>
-    <tr id='giftcard-availablebalance'>
-        <td><code><b>availableBalance</b></code></td>
-        <td><code>Number</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td>50</td>
-        <td>Opening balance minus &quot;auth&quot; debits.</td>
-    </tr>
-</tbody></table>
-
-
-</section></div>
-</div>
-
-<div class='accordion'>
-	<label><span class='expander'>▶</span> Fields inherited from <a href='#giftcardorigintype'>GiftCardOriginType</a></label>
-	<div class='accordion-content'><section >
-
-
-
-<div class='section-comments'></div>
-
-<table><thead>
-<tr>
-    <th>Field</th>
-    <th>Type</th>
-    <th>Required</th>
-    <th>Example</th>
-    <th>Description</th>
-</tr>
-</thead><tbody>
-    <tr id='giftcard-origintype'>
-        <td><code><b>originType</b></code></td>
-        <td><code>String</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td><code>csrAppeasement</code></td>
-        <td>GC origin type.
-Available values:
-<ul class="collapsible collapsed">
-<li><code>csrAppeasement</code></li>
-<li><code>customerPurchase</code></li>
-<li><code>fromStoreCredit</code></li>
-</ul></td>
-    </tr>
-</tbody></table>
-
-
-</section></div>
-</div>
-
-<div class='accordion'>
-	<label><span class='expander'>▶</span> Fields inherited from <a href='#giftcardstate'>GiftCardState</a></label>
-	<div class='accordion-content'><section >
-
-
-
-<div class='section-comments'></div>
-
-<table><thead>
-<tr>
-    <th>Field</th>
-    <th>Type</th>
-    <th>Required</th>
-    <th>Example</th>
-    <th>Description</th>
-</tr>
-</thead><tbody>
-    <tr id='giftcard-state'>
-        <td><code><b>state</b></code></td>
-        <td><code>String</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td>OnHold</td>
-        <td>GC state.
-Available values:
-<ul class="collapsible collapsed">
-<li><code>onHold</code></li>
-<li><code>active</code></li>
-<li><code>canceled</code></li>
-</ul></td>
-    </tr>
-</tbody></table>
-
-
-</section></div>
-</div>
 
 </section>
 <span id='stockitempayload'></span>
@@ -4158,6 +3755,559 @@ Available values:
         <td></td>
         <td><code>555 55 55</code></td>
         <td>Phone number.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<h2 id='giftcards'>GiftCards</h2><p>Accessible via <a href="#foxapi-giftcards">giftCards</a> property of <a href="#foxapi">FoxApi</a> instance.</p>
+
+<section>
+<h3 id='giftcards-method'>Methods</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+	<tr>
+		<th>Method</th>
+		<th>Returns</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='giftcards-list'>
+		<td><code><b>list</b>()</nobr></code></td>
+		<td><code>Promise&lt;<a href='#giftcard'>GiftCard</a>[]&gt;</code></td>
+		<td>List gift cards.</td>
+	</tr>
+	<tr id='giftcards-create'>
+		<td><code><b>create</b>(<nobr>&lt;<a href='#giftcardcreatepayload'>GiftCardCreatePayload</a>&gt;</nobr> <i>giftCard</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#giftcard'>GiftCard</a>&gt;</code></td>
+		<td>Create gift card.</td>
+	</tr>
+	<tr id='giftcards-one'>
+		<td><code><b>one</b>(<nobr>&lt;String&gt;</nobr> <i>giftCardCode</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#giftcard'>GiftCard</a>&gt;</code></td>
+		<td>Find gift card by code.</td>
+	</tr>
+	<tr id='giftcards-update'>
+		<td><code><b>update</b>(<nobr>&lt;String&gt;</nobr> <i>giftCardCode</i>, <nobr>&lt;<a href='#giftcardupdatestatepayload'>GiftCardUpdateStatePayload</a>&gt;</nobr> <i>payload</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#giftcard'>GiftCard</a>&gt;</code></td>
+		<td>Update gift card.</td>
+	</tr>
+</tbody></table>
+
+</section>
+
+</section>
+<span id='giftcardorigintype'></span>
+
+<section>
+<h3 id='giftcardorigintype-field'>GiftCardOriginType</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='giftcardorigintype-origintype'>
+        <td><code><b>originType</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>csrAppeasement</code></td>
+        <td>GC origin type.
+Available values:
+<ul class="collapsible collapsed">
+<li><code>csrAppeasement</code></li>
+<li><code>customerPurchase</code></li>
+<li><code>fromStoreCredit</code></li>
+</ul></td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<span id='giftcardstate'></span>
+
+<section>
+<h3 id='giftcardstate-field'>GiftCardState</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='giftcardstate-state'>
+        <td><code><b>state</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>OnHold</td>
+        <td>GC state.
+Available values:
+<ul class="collapsible collapsed">
+<li><code>onHold</code></li>
+<li><code>active</code></li>
+<li><code>canceled</code></li>
+</ul></td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<span id='giftcardbase'></span>
+
+<section>
+<h3 id='giftcardbase-field'>GiftCardBase</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='giftcardbase-id'>
+        <td><code><b>id</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1</td>
+        <td>Unique identifier.</td>
+    </tr>
+    <tr id='giftcardbase-createdat'>
+        <td><code><b>createdAt</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>2020-01-01T12:00:00Z</code></td>
+        <td>Creation date.</td>
+    </tr>
+    <tr id='giftcardbase-code'>
+        <td><code><b>code</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>ABC-123</code></td>
+        <td>Public unique identifier.</td>
+    </tr>
+    <tr id='giftcardbase-subtypeid'>
+        <td><code><b>subTypeId</b></code></td>
+        <td><code>Number</code>
+        <td></td>
+        <td>1</td>
+        <td>Optional subtype.</td>
+    </tr>
+    <tr id='giftcardbase-originalbalance'>
+        <td><code><b>originalBalance</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>50</td>
+        <td>Opening balance for GC (amount it was issued for).</td>
+    </tr>
+    <tr id='giftcardbase-currentbalance'>
+        <td><code><b>currentBalance</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>50</td>
+        <td>Opening balance minus &quot;captured&quot; debits.</td>
+    </tr>
+    <tr id='giftcardbase-availablebalance'>
+        <td><code><b>availableBalance</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>50</td>
+        <td>Opening balance minus &quot;auth&quot; debits.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+<div class='accordion'>
+	<label><span class='expander'>▶</span> Fields inherited from <a href='#giftcardorigintype'>GiftCardOriginType</a></label>
+	<div class='accordion-content'><section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='giftcardbase-origintype'>
+        <td><code><b>originType</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>csrAppeasement</code></td>
+        <td>GC origin type.
+Available values:
+<ul class="collapsible collapsed">
+<li><code>csrAppeasement</code></li>
+<li><code>customerPurchase</code></li>
+<li><code>fromStoreCredit</code></li>
+</ul></td>
+    </tr>
+</tbody></table>
+
+
+</section></div>
+</div>
+
+<div class='accordion'>
+	<label><span class='expander'>▶</span> Fields inherited from <a href='#giftcardstate'>GiftCardState</a></label>
+	<div class='accordion-content'><section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='giftcardbase-state'>
+        <td><code><b>state</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>OnHold</td>
+        <td>GC state.
+Available values:
+<ul class="collapsible collapsed">
+<li><code>onHold</code></li>
+<li><code>active</code></li>
+<li><code>canceled</code></li>
+</ul></td>
+    </tr>
+</tbody></table>
+
+
+</section></div>
+</div>
+
+</section>
+<span id='giftcard'></span>
+
+<section>
+<h3 id='giftcard-field'>GiftCard</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='giftcard-customer'>
+        <td><code><b>customer</b></code></td>
+        <td><code><a href='#customerresponse'>CustomerResponse</a></code>
+        <td></td>
+        <td></td>
+        <td>If customer have purchased GiftCard, returns his info.</td>
+    </tr>
+    <tr id='giftcard-storeadmin'>
+        <td><code><b>storeAdmin</b></code></td>
+        <td><code><a href='#storeadminresponse'>StoreAdminResponse</a></code>
+        <td></td>
+        <td></td>
+        <td>If CSR created GiftCard, return his info.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+<div class='accordion'>
+	<label><span class='expander'>▶</span> Fields inherited from <a href='#giftcardbase'>GiftCardBase</a></label>
+	<div class='accordion-content'><section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='giftcard-id'>
+        <td><code><b>id</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1</td>
+        <td>Unique identifier.</td>
+    </tr>
+    <tr id='giftcard-createdat'>
+        <td><code><b>createdAt</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>2020-01-01T12:00:00Z</code></td>
+        <td>Creation date.</td>
+    </tr>
+    <tr id='giftcard-code'>
+        <td><code><b>code</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>ABC-123</code></td>
+        <td>Public unique identifier.</td>
+    </tr>
+    <tr id='giftcard-subtypeid'>
+        <td><code><b>subTypeId</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1</td>
+        <td>Optional subtype.</td>
+    </tr>
+    <tr id='giftcard-originalbalance'>
+        <td><code><b>originalBalance</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>50</td>
+        <td>Opening balance for GC (amount it was issued for).</td>
+    </tr>
+    <tr id='giftcard-currentbalance'>
+        <td><code><b>currentBalance</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>50</td>
+        <td>Opening balance minus &quot;captured&quot; debits.</td>
+    </tr>
+    <tr id='giftcard-availablebalance'>
+        <td><code><b>availableBalance</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>50</td>
+        <td>Opening balance minus &quot;auth&quot; debits.</td>
+    </tr>
+</tbody></table>
+
+
+</section></div>
+</div>
+
+<div class='accordion'>
+	<label><span class='expander'>▶</span> Fields inherited from <a href='#giftcardorigintype'>GiftCardOriginType</a></label>
+	<div class='accordion-content'><section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='giftcard-origintype'>
+        <td><code><b>originType</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>csrAppeasement</code></td>
+        <td>GC origin type.
+Available values:
+<ul class="collapsible collapsed">
+<li><code>csrAppeasement</code></li>
+<li><code>customerPurchase</code></li>
+<li><code>fromStoreCredit</code></li>
+</ul></td>
+    </tr>
+</tbody></table>
+
+
+</section></div>
+</div>
+
+<div class='accordion'>
+	<label><span class='expander'>▶</span> Fields inherited from <a href='#giftcardstate'>GiftCardState</a></label>
+	<div class='accordion-content'><section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='giftcard-state'>
+        <td><code><b>state</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>OnHold</td>
+        <td>GC state.
+Available values:
+<ul class="collapsible collapsed">
+<li><code>onHold</code></li>
+<li><code>active</code></li>
+<li><code>canceled</code></li>
+</ul></td>
+    </tr>
+</tbody></table>
+
+
+</section></div>
+</div>
+
+</section>
+<span id='giftcardcreatepayload'></span>
+
+<section>
+<h3 id='giftcardcreatepayload-field'>GiftCardCreatePayload</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='giftcardcreatepayload-balance'>
+        <td><code><b>balance</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>10</td>
+        <td>Gift card balance.</td>
+    </tr>
+    <tr id='giftcardcreatepayload-quantity'>
+        <td><code><b>quantity</b></code></td>
+        <td><code>Number</code>
+        <td></td>
+        <td>1</td>
+        <td>Quantity.</td>
+    </tr>
+    <tr id='giftcardcreatepayload-reasonid'>
+        <td><code><b>reasonId</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1</td>
+        <td>Reason ID for generation.</td>
+    </tr>
+    <tr id='giftcardcreatepayload-currency'>
+        <td><code><b>currency</b></code></td>
+        <td><code>String</code>
+        <td></td>
+        <td>USD</td>
+        <td>Gift card currency.</td>
+    </tr>
+    <tr id='giftcardcreatepayload-subtypeid'>
+        <td><code><b>subTypeId</b></code></td>
+        <td><code>Number</code>
+        <td></td>
+        <td>1</td>
+        <td>Possible subtype ID.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<span id='giftcardupdatestatepayload'></span>
+
+<section>
+<h3 id='giftcardupdatestatepayload-field'>GiftCardUpdateStatePayload</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='giftcardupdatestatepayload-state'>
+        <td><code><b>state</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>onHold</td>
+        <td>New gift card state.</td>
+    </tr>
+    <tr id='giftcardupdatestatepayload-reasonid'>
+        <td><code><b>reasonId</b></code></td>
+        <td><code>Number</code>
+        <td></td>
+        <td>1</td>
+        <td>ID of cancellation reason.</td>
     </tr>
 </tbody></table>
 

@@ -269,6 +269,11 @@ const importData = {
     'AlbumPayload',
     'AlbumResponse',
   ],
+  'GiftCards': [
+    'GiftCard',
+    'GiftCardCreatePayload',
+    'GiftCardUpdateStatePayload',
+  ],
 };
 
 function convertDocs() {

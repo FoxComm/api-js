@@ -28,6 +28,7 @@ import CustomerGroups from './api/customer-groups';
 import Skus from './api/skus';
 import Products from './api/products';
 import ProductAlbums from './api/product-albums';
+import GiftCards from './api/gift-cards';
 
 export default class Api {
   constructor(args) {
@@ -102,6 +103,10 @@ export default class Api {
     // @property productAlbums: ProductAlbums
     // ProductAlbums instance
     this.productAlbums = new ProductAlbums(this);
+
+    // @property giftCards: GiftCards
+    // GiftCards instance
+    this.giftCards = new GiftCards(this);
   }
 
   // @method addAuth(jwt: String): FoxApi

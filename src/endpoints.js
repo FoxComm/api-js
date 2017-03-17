@@ -76,4 +76,7 @@ export default Object.freeze({
 
   productAlbums: (context, productId) => `/v1/products/${context}/${productId}/albums`,
   productAlbumPosition: (context, productId) => `/v1/products/${context}/${productId}/albums/position`,
+
+  giftCards: '/v1/gift-cards',
+  giftCard: giftCardCode => `/v1/gift-cards/${giftCardCode}`,
 });
