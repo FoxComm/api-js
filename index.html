@@ -47,6 +47,7 @@
                 <li><a href="#productalbums">Product Albums</a></li>
                 <li><a href="#giftcards">Gift Cards</a></li>
                 <li><a href="#promotions">Promotions</a></li>
+                <li><a href="#coupons">Coupons</a></li>
             </ul>
         </div>
     </div>
@@ -286,6 +287,11 @@ You can define jwt string via <code>addAuth</code> method, if there is no jwt st
 		<td><code><b>promotions</b>
 		<td><code><a href='#promotions'>Promotions</a></code></td>
 		<td>Promotions instance</td>
+	</tr>
+	<tr id='foxapi-coupons'>
+		<td><code><b>coupons</b>
+		<td><code><a href='#coupons'>Coupons</a></code></td>
+		<td>Coupons instance</td>
 	</tr>
 </tbody></table>
 
@@ -2761,6 +2767,138 @@ Available values:
 </section>
 
 </section>
+<h2 id='coupons'>Coupons</h2><p>Accessible via <a href="#foxapi-coupons">coupons</a> property of <a href="#foxapi">FoxApi</a> instance.</p>
+
+<section>
+<h3 id='coupons-method'>Methods</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+	<tr>
+		<th>Method</th>
+		<th>Returns</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='coupons-create'>
+		<td><code><b>create</b>(<nobr>&lt;String&gt;</nobr> <i>context</i>, <nobr>&lt;<a href='#couponpayload'>CouponPayload</a>&gt;</nobr> <i>coupon</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#coupon'>Coupon</a>&gt;</code></td>
+		<td>Create new coupon.</td>
+	</tr>
+	<tr id='coupons-one'>
+		<td><code><b>one</b>(<nobr>&lt;String&gt;</nobr> <i>context</i>, <nobr>&lt;Number | String&gt;</nobr> <i>couponIdOrCode</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#coupon'>Coupon</a>&gt;</code></td>
+		<td>Find coupon by id or code.</td>
+	</tr>
+	<tr id='coupons-update'>
+		<td><code><b>update</b>(<nobr>&lt;String&gt;</nobr> <i>context</i>, <nobr>&lt;Number&gt;</nobr> <i>couponId</i>, <nobr>&lt;<a href='#couponpayload'>CouponPayload</a>&gt;</nobr> <i>coupon</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#coupon'>Coupon</a>&gt;</code></td>
+		<td>Update coupon details.</td>
+	</tr>
+</tbody></table>
+
+</section>
+
+</section>
+<span id='coupon'></span>
+
+<section>
+<h3 id='coupon-field'>Coupon</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='coupon-id'>
+        <td><code><b>id</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1</td>
+        <td>Coupon ID.</td>
+    </tr>
+    <tr id='coupon-promotion'>
+        <td><code><b>promotion</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1</td>
+        <td>Related promotion ID.</td>
+    </tr>
+    <tr id='coupon-attributes'>
+        <td><code><b>attributes</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>&lt;json&gt;</code></td>
+        <td>Coupon attributes.</td>
+    </tr>
+    <tr id='coupon-archivedat'>
+        <td><code><b>archivedAt</b></code></td>
+        <td><code>String</code>
+        <td></td>
+        <td><code>2020-01-01T12:00:00Z</code></td>
+        <td>Archiving date.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<span id='couponpayload'></span>
+
+<section>
+<h3 id='couponpayload-field'>CouponPayload</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='couponpayload-promotion'>
+        <td><code><b>promotion</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1</td>
+        <td>Related promotion ID.</td>
+    </tr>
+    <tr id='couponpayload-attributes'>
+        <td><code><b>attributes</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>&lt;json&gt;</code></td>
+        <td>Coupon attributes.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
 <h2 id='creditcards'>CreditCards</h2><p>Accessible via <a href="#foxapi-creditcards">creditCards</a> property of <a href="#foxapi">FoxApi</a> instance.</p>
 
 <section>
@@ -4832,7 +4970,7 @@ Available values:
 Available values:
 <ul class="collapsible collapsed">
 <li><code>auto</code></li>
-<li><code>coupon</code></li>
+<li><a href="#coupon"><code>coupon</code></a></li>
 </ul></td>
     </tr>
 </tbody></table>
@@ -4920,7 +5058,7 @@ Available values:
 Available values:
 <ul class="collapsible collapsed">
 <li><code>auto</code></li>
-<li><code>coupon</code></li>
+<li><a href="#coupon"><code>coupon</code></a></li>
 </ul></td>
     </tr>
 </tbody></table>
@@ -5042,7 +5180,7 @@ Available values:
 Available values:
 <ul class="collapsible collapsed">
 <li><code>auto</code></li>
-<li><code>coupon</code></li>
+<li><a href="#coupon"><code>coupon</code></a></li>
 </ul></td>
     </tr>
 </tbody></table>

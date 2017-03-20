@@ -278,6 +278,10 @@ const importData = {
     'PromotionPayload',
     'PromotionIlluminated',
   ],
+  'Coupons': [
+    'CouponPayload',
+    'Coupon',
+  ],
 };
 
 function convertDocs() {

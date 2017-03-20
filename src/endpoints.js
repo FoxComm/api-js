@@ -82,4 +82,7 @@ export default Object.freeze({
 
   promotions: context => `/v1/promotions/${context}`,
   promotion: (context, promotionId) => `/v1/promotions/${context}/${promotionId}`,
+
+  coupons: context => `/v1/coupons/${context}`,
+  coupon: (context, couponIdOrCode) => `/v1/coupons/${context}/${couponIdOrCode}`,
 });

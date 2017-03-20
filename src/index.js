@@ -30,6 +30,7 @@ import Products from './api/products';
 import ProductAlbums from './api/product-albums';
 import GiftCards from './api/gift-cards';
 import Promotions from './api/promotions';
+import Coupons from './api/coupons';
 
 export default class Api {
   constructor(args) {
@@ -112,6 +113,10 @@ export default class Api {
     // @property promotions: Promotions
     // Promotions instance
     this.promotions = new Promotions(this);
+
+    // @property coupons: Coupons
+    // Coupons instance
+    this.coupons = new Coupons(this);
   }
 
   // @method addAuth(jwt: String): FoxApi

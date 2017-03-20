@@ -1,0 +1,24 @@
+
+@miniclass Coupon (Coupons)
+@aka coupon
+
+@field id: Number = 1
+Coupon ID.
+
+@field promotion: Number = 1
+Related promotion ID.
+
+@field attributes: String = `<json>`
+Coupon attributes.
+
+@field archivedAt?: String = `2020-01-01T12:00:00Z`
+Archiving date.
+
+@miniclass CouponPayload (Coupons)
+@aka couponpayload
+
+@field promotion: Number = 1
+Related promotion ID.
+
+@field attributes: String = `<json>`
+Coupon attributes.
