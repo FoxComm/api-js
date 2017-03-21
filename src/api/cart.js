@@ -15,7 +15,7 @@ function collectLineItems(skus) {
 }
 
 function normalizeResponse(payload) {
-  if (payload.lineItems) {
+  if (payload && payload.lineItems) {
     payload.lineItems.skus = collectLineItems(payload.lineItems.skus);
   }
   return payload;
@@ -75,11 +75,11 @@ export default class Cart {
   }
 
   /**
-   * @method removeShippingAddress(): Promise<FullOrder>
+   * @method removeShippingAddress(): Promise<void>
    * Removes a shipping address from the cart.
    */
   removeShippingAddress() {
-    return this.api.delete(endpoints.shippingAddress).then(normalizeResponse);
+    return this.api.delete(endpoints.shippingAddress);
   }
 
   /**
