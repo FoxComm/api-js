@@ -264,11 +264,11 @@ const importData = {
     'ProductPayload',
     'ProductResponse',
   ],
-  'ProductAlbums': [
-    'Image',
-    'AlbumPayload',
-    'AlbumResponse',
-  ],
+  // 'ProductAlbums': [
+  //   'Image',
+  //   'AlbumPayload',
+  //   'AlbumResponse',
+  // ],
   'GiftCards': [
     'GiftCard',
     'GiftCardCreatePayload',
@@ -283,6 +283,11 @@ const importData = {
     'Coupon',
     'CouponCode',
     'GenerateCodesPayload',
+  ],
+  'Albums': [
+    'AlbumPayload',
+    'AlbumResponse',
+    'Image',
   ],
 };
 

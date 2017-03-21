@@ -88,4 +88,8 @@ export default Object.freeze({
 
   couponCodes: couponId => `/v1/coupons/codes/${couponId}`,
   couponCodesGenerate: couponId => `/v1/coupons/codes/generate/${couponId}`,
+
+  albums: context => `/v1/albums/${context}`,
+  album: (context, albumId) => `/v1/albums/${context}/${albumId}`,
+  albumImages: (context, albumId) => `/v1/albums/${context}/${albumId}/images`,
 });

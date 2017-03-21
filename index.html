@@ -34,6 +34,7 @@
                 <li><a href="#auth">Auth</a></li>
                 <li><a href="#account">Account</a></li>
                 <li><a href="#addresses">Addresses</a></li>
+                <li><a href="#albums">Albums</a></li>
                 <li><a href="#cart">Cart</a></li>
                 <li><a href="#orders">Orders</a></li>
                 <li><a href="#creditcards">Credit Cards</a></li>
@@ -298,6 +299,11 @@ You can define jwt string via <code>addAuth</code> method, if there is no jwt st
 		<td><code><b>couponCodes</b>
 		<td><code><a href='#couponcodes'>CouponCodes</a></code></td>
 		<td>CouponCodes instance</td>
+	</tr>
+	<tr id='foxapi-albums'>
+		<td><code><b>albums</b>
+		<td><code><a href='#albums'>Albums</a></code></td>
+		<td>Albums instance</td>
 	</tr>
 </tbody></table>
 
@@ -1356,6 +1362,209 @@ In case if err is Error itself returns array of single element - that error as a
         <td></td>
         <td><code>555-555-555</code></td>
         <td>Contact phone number.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<h2 id='albums'>Albums</h2><p>Accessible via <a href="#foxapi-albums">albums</a> property of <a href="#foxapi">FoxApi</a> instance.</p>
+
+<section>
+<h3 id='albums-method'>Methods</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+	<tr>
+		<th>Method</th>
+		<th>Returns</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='albums-create'>
+		<td><code><b>create</b>(<nobr>&lt;String&gt;</nobr> <i>context</i>, <nobr>&lt;<a href='#albumpayload'>AlbumPayload</a>&gt;</nobr> <i>album</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#albumresponse'>AlbumResponse</a>&gt;</code></td>
+		<td>Create an album.</td>
+	</tr>
+	<tr id='albums-one'>
+		<td><code><b>one</b>(<nobr>&lt;String&gt;</nobr> <i>context</i>, <nobr>&lt;Number&gt;</nobr> <i>albumId</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#albumresponse'>AlbumResponse</a>&gt;</code></td>
+		<td>Find album by id.</td>
+	</tr>
+	<tr id='albums-update'>
+		<td><code><b>update</b>(<nobr>&lt;String&gt;</nobr> <i>context</i>, <nobr>&lt;Number&gt;</nobr> <i>albumId</i>, <nobr>&lt;<a href='#albumpayload'>AlbumPayload</a>&gt;</nobr> <i>album</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#albumresponse'>AlbumResponse</a>&gt;</code></td>
+		<td>Update album details.</td>
+	</tr>
+	<tr id='albums-archive'>
+		<td><code><b>archive</b>(<nobr>&lt;String&gt;</nobr> <i>context</i>, <nobr>&lt;Number&gt;</nobr> <i>albumId</i>)</nobr></code></td>
+		<td><code>Promise</code></td>
+		<td>Archive an album.</td>
+	</tr>
+	<tr id='albums-uploadimages'>
+		<td><code><b>uploadImages</b>(<nobr>&lt;String&gt;</nobr> <i>context</i>, <nobr>&lt;Number&gt;</nobr> <i>albumId</i>, <nobr>&lt;String[]&gt;</nobr> <i>images</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#albumresponse'>AlbumResponse</a>&gt;</code></td>
+		<td>Upload images to an album.</td>
+	</tr>
+</tbody></table>
+
+</section>
+
+</section>
+<span id='image'></span>
+
+<section>
+<h3 id='image-field'>Image</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='image-src'>
+        <td><code><b>src</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>http://lorempixel.com/test.png</code></td>
+        <td>URL pointing to the image.</td>
+    </tr>
+    <tr id='image-title'>
+        <td><code><b>title</b></code></td>
+        <td><code>String</code>
+        <td></td>
+        <td><code>test image</code></td>
+        <td>Title that identifies the image.</td>
+    </tr>
+    <tr id='image-alt'>
+        <td><code><b>alt</b></code></td>
+        <td><code>String</code>
+        <td></td>
+        <td><code>some image text</code></td>
+        <td>Alt text for the image.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<span id='albumpayload'></span>
+
+<section>
+<h3 id='albumpayload-field'>AlbumPayload</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='albumpayload-name'>
+        <td><code><b>name</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>Desktop images</code></td>
+        <td>Name of the album.</td>
+    </tr>
+    <tr id='albumpayload-images'>
+        <td><code><b>images</b></code></td>
+        <td><code>Array&lt;<a href='#image'>Image</a>&gt;</code>
+        <td></td>
+        <td></td>
+        <td>Images that are part of the album.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<span id='albumresponse'></span>
+
+<section>
+<h3 id='albumresponse-field'>AlbumResponse</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='albumresponse-id'>
+        <td><code><b>id</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1</td>
+        <td>Unique identifier.</td>
+    </tr>
+    <tr id='albumresponse-name'>
+        <td><code><b>name</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>Desktop images</code></td>
+        <td>Name of the album.</td>
+    </tr>
+    <tr id='albumresponse-images'>
+        <td><code><b>images</b></code></td>
+        <td><code>Array&lt;<a href='#image'>Image</a>&gt;</code>
+        <td></td>
+        <td></td>
+        <td>Images that are part of the album.</td>
+    </tr>
+    <tr id='albumresponse-createdat'>
+        <td><code><b>createdAt</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>2020-01-01T12:00:00Z</code></td>
+        <td>Creation date.</td>
+    </tr>
+    <tr id='albumresponse-updatedat'>
+        <td><code><b>updatedAt</b></code></td>
+        <td><code>String</code>
+        <td></td>
+        <td><code>2020-01-01T12:00:00Z</code></td>
+        <td>Last update date.</td>
+    </tr>
+    <tr id='albumresponse-archivedat'>
+        <td><code><b>archivedAt</b></code></td>
+        <td><code>String</code>
+        <td></td>
+        <td><code>2020-01-01T12:00:00Z</code></td>
+        <td>Archiving date.</td>
     </tr>
 </tbody></table>
 
@@ -4651,161 +4860,6 @@ Available values:
 		<td>Create new product.</td>
 	</tr>
 </tbody></table>
-
-</section>
-
-</section>
-<span id='image'></span>
-
-<section>
-<h3 id='image-field'>Image</h3>
-
-<section >
-
-
-
-<div class='section-comments'></div>
-
-<table><thead>
-<tr>
-    <th>Field</th>
-    <th>Type</th>
-    <th>Required</th>
-    <th>Example</th>
-    <th>Description</th>
-</tr>
-</thead><tbody>
-    <tr id='image-src'>
-        <td><code><b>src</b></code></td>
-        <td><code>String</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td><code>http://lorempixel.com/test.png</code></td>
-        <td>URL pointing to the image.</td>
-    </tr>
-    <tr id='image-title'>
-        <td><code><b>title</b></code></td>
-        <td><code>String</code>
-        <td></td>
-        <td><code>test image</code></td>
-        <td>Title that identifies the image.</td>
-    </tr>
-    <tr id='image-alt'>
-        <td><code><b>alt</b></code></td>
-        <td><code>String</code>
-        <td></td>
-        <td><code>some image text</code></td>
-        <td>Alt text for the image.</td>
-    </tr>
-</tbody></table>
-
-
-</section>
-
-</section>
-<span id='albumpayload'></span>
-
-<section>
-<h3 id='albumpayload-field'>AlbumPayload</h3>
-
-<section >
-
-
-
-<div class='section-comments'></div>
-
-<table><thead>
-<tr>
-    <th>Field</th>
-    <th>Type</th>
-    <th>Required</th>
-    <th>Example</th>
-    <th>Description</th>
-</tr>
-</thead><tbody>
-    <tr id='albumpayload-name'>
-        <td><code><b>name</b></code></td>
-        <td><code>String</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td><code>Desktop images</code></td>
-        <td>Name of the album.</td>
-    </tr>
-    <tr id='albumpayload-images'>
-        <td><code><b>images</b></code></td>
-        <td><code>Array&lt;<a href='#image'>Image</a>&gt;</code>
-        <td></td>
-        <td></td>
-        <td>Images that are part of the album.</td>
-    </tr>
-</tbody></table>
-
-
-</section>
-
-</section>
-<span id='albumresponse'></span>
-
-<section>
-<h3 id='albumresponse-field'>AlbumResponse</h3>
-
-<section >
-
-
-
-<div class='section-comments'></div>
-
-<table><thead>
-<tr>
-    <th>Field</th>
-    <th>Type</th>
-    <th>Required</th>
-    <th>Example</th>
-    <th>Description</th>
-</tr>
-</thead><tbody>
-    <tr id='albumresponse-id'>
-        <td><code><b>id</b></code></td>
-        <td><code>Number</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td>1</td>
-        <td>Unique identifier.</td>
-    </tr>
-    <tr id='albumresponse-name'>
-        <td><code><b>name</b></code></td>
-        <td><code>String</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td><code>Desktop images</code></td>
-        <td>Name of the album.</td>
-    </tr>
-    <tr id='albumresponse-images'>
-        <td><code><b>images</b></code></td>
-        <td><code>Array&lt;<a href='#image'>Image</a>&gt;</code>
-        <td></td>
-        <td></td>
-        <td>Images that are part of the album.</td>
-    </tr>
-    <tr id='albumresponse-createdat'>
-        <td><code><b>createdAt</b></code></td>
-        <td><code>String</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td><code>2020-01-01T12:00:00Z</code></td>
-        <td>Creation date.</td>
-    </tr>
-    <tr id='albumresponse-updatedat'>
-        <td><code><b>updatedAt</b></code></td>
-        <td><code>String</code>
-        <td></td>
-        <td><code>2020-01-01T12:00:00Z</code></td>
-        <td>Last update date.</td>
-    </tr>
-    <tr id='albumresponse-archivedat'>
-        <td><code><b>archivedAt</b></code></td>
-        <td><code>String</code>
-        <td></td>
-        <td><code>2020-01-01T12:00:00Z</code></td>
-        <td>Archiving date.</td>
-    </tr>
-</tbody></table>
-
 
 </section>
 
