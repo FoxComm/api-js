@@ -281,6 +281,8 @@ const importData = {
   'Coupons': [
     'CouponPayload',
     'Coupon',
+    'CouponCode',
+    'GenerateCodesPayload',
   ],
 };
 

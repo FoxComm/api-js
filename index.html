@@ -48,6 +48,7 @@
                 <li><a href="#giftcards">Gift Cards</a></li>
                 <li><a href="#promotions">Promotions</a></li>
                 <li><a href="#coupons">Coupons</a></li>
+                <li><a href="#couponcodes">Coupon Codes</a></li>
             </ul>
         </div>
     </div>
@@ -292,6 +293,11 @@ You can define jwt string via <code>addAuth</code> method, if there is no jwt st
 		<td><code><b>coupons</b>
 		<td><code><a href='#coupons'>Coupons</a></code></td>
 		<td>Coupons instance</td>
+	</tr>
+	<tr id='foxapi-couponcodes'>
+		<td><code><b>couponCodes</b>
+		<td><code><a href='#couponcodes'>CouponCodes</a></code></td>
+		<td>CouponCodes instance</td>
 	</tr>
 </tbody></table>
 
@@ -2767,6 +2773,39 @@ Available values:
 </section>
 
 </section>
+<h2 id='couponcodes'>CouponCodes</h2><p>Accessible via <a href="#foxapi-couponcodes">couponcodes</a> property of <a href="#foxapi">FoxApi</a> instance.</p>
+
+<section>
+<h3 id='couponcodes-method'>Methods</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+	<tr>
+		<th>Method</th>
+		<th>Returns</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='couponcodes-list'>
+		<td><code><b>list</b>(<nobr>&lt;Number&gt;</nobr> <i>couponId</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#couponcode'>CouponCode</a>[]&gt;</code></td>
+		<td>List coupon codes.</td>
+	</tr>
+	<tr id='couponcodes-generate'>
+		<td><code><b>generate</b>(<nobr>&lt;Number&gt;</nobr> <i>couponId</i>, <nobr>&lt;<a href='#generatecodespayload'>GenerateCodesPayload</a>&gt;</nobr> <i>payload</i>)</nobr></code></td>
+		<td><code>Promise&lt;String[]&gt;</code></td>
+		<td>Generate coupon codes.</td>
+	</tr>
+</tbody></table>
+
+</section>
+
+</section>
 <h2 id='coupons'>Coupons</h2><p>Accessible via <a href="#foxapi-coupons">coupons</a> property of <a href="#foxapi">FoxApi</a> instance.</p>
 
 <section>
@@ -2859,6 +2898,46 @@ Available values:
 </section>
 
 </section>
+<span id='couponcode'></span>
+
+<section>
+<h3 id='couponcode-field'>CouponCode</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='couponcode-code'>
+        <td><code><b>code</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>ABC-123</code></td>
+        <td>Coupon code.</td>
+    </tr>
+    <tr id='couponcode-createdat'>
+        <td><code><b>createdAt</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>2020-01-01T12:00:00Z</code></td>
+        <td>Creation date.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
 <span id='couponpayload'></span>
 
 <section>
@@ -2892,6 +2971,53 @@ Available values:
         <td><div data-icon="ei-check"></div></td>
         <td><code>&lt;json&gt;</code></td>
         <td>Coupon attributes.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<span id='generatecodespayload'></span>
+
+<section>
+<h3 id='generatecodespayload-field'>GenerateCodesPayload</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='generatecodespayload-prefix'>
+        <td><code><b>prefix</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>ABC</code></td>
+        <td>Coupon codes prefix.</td>
+    </tr>
+    <tr id='generatecodespayload-quantity'>
+        <td><code><b>quantity</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1</td>
+        <td>Number of coupon codes to generate.</td>
+    </tr>
+    <tr id='generatecodespayload-length'>
+        <td><code><b>length</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>10</td>
+        <td>Resulting coupons code length.</td>
     </tr>
 </tbody></table>
 

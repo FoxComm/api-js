@@ -14,6 +14,15 @@ Coupon attributes.
 @field archivedAt?: String = `2020-01-01T12:00:00Z`
 Archiving date.
 
+@miniclass CouponCode (Coupons)
+@aka couponcode
+
+@field code: String = `ABC-123`
+Coupon code.
+
+@field createdAt: String = `2020-01-01T12:00:00Z`
+Creation date.
+
 @miniclass CouponPayload (Coupons)
 @aka couponpayload
 
@@ -22,3 +31,15 @@ Related promotion ID.
 
 @field attributes: String = `<json>`
 Coupon attributes.
+
+@miniclass GenerateCodesPayload (Coupons)
+@aka generatecodespayload
+
+@field prefix: String = `ABC`
+Coupon codes prefix.
+
+@field quantity: Number = 1
+Number of coupon codes to generate.
+
+@field length: Number = 10
+Resulting coupons code length.
