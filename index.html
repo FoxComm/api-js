@@ -35,6 +35,7 @@
                 <li><a href="#account">Account</a></li>
                 <li><a href="#addresses">Addresses</a></li>
                 <li><a href="#albums">Albums</a></li>
+                <li><a href="#notes">Notes</a></li>
                 <li><a href="#cart">Cart</a></li>
                 <li><a href="#orders">Orders</a></li>
                 <li><a href="#creditcards">Credit Cards</a></li>
@@ -304,6 +305,11 @@ You can define jwt string via <code>addAuth</code> method, if there is no jwt st
 		<td><code><b>albums</b>
 		<td><code><a href='#albums'>Albums</a></code></td>
 		<td>Albums instance</td>
+	</tr>
+	<tr id='foxapi-notes'>
+		<td><code><b>notes</b>
+		<td><code><a href='#notes'>Notes</a></code></td>
+		<td>Notes instance</td>
 	</tr>
 </tbody></table>
 
@@ -4787,6 +4793,171 @@ Available values:
         <td></td>
         <td>1</td>
         <td>ID of cancellation reason.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<h2 id='notes'>Notes</h2><p>Accessible via <a href="#foxapi-notes">notes</a> property of <a href="#foxapi">FoxApi</a> instance.</p>
+
+<section>
+<h3 id='notes-method'>Methods</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+	<tr>
+		<th>Method</th>
+		<th>Returns</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='notes-list'>
+		<td><code><b>list</b>(<nobr>&lt;String&gt;</nobr> <i>objectType</i>, <nobr>&lt;String|Number&gt;</nobr> <i>objectIdOrCode</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#adminnote'>AdminNote</a>[]&gt;</code></td>
+		<td>List notes.</td>
+	</tr>
+	<tr id='notes-create'>
+		<td><code><b>create</b>(<nobr>&lt;String&gt;</nobr> <i>objectType</i>, <nobr>&lt;String|Number&gt;</nobr> <i>objectIdOrCode</i>, <nobr>&lt;<a href='#notepayload'>NotePayload</a>&gt;</nobr> <i>note</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#adminnote'>AdminNote</a>&gt;</code></td>
+		<td>Create a note.</td>
+	</tr>
+	<tr id='notes-update'>
+		<td><code><b>update</b>(<nobr>&lt;String&gt;</nobr> <i>objectType</i>, <nobr>&lt;String|Number&gt;</nobr> <i>objectIdOrCode</i>, <nobr>&lt;Number&gt;</nobr> <i>noteId</i>, <nobr>&lt;<a href='#notepayload'>NotePayload</a>&gt;</nobr> <i>note</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#adminnote'>AdminNote</a>&gt;</code></td>
+		<td>Update note details.</td>
+	</tr>
+</tbody></table>
+
+</section>
+
+</section>
+<span id='adminnote'></span>
+
+<section>
+<h3 id='adminnote-field'>AdminNote</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='adminnote-id'>
+        <td><code><b>id</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1</td>
+        <td>Unique identifier.</td>
+    </tr>
+    <tr id='adminnote-body'>
+        <td><code><b>body</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>Lorem ipsum</code></td>
+        <td>Note message.</td>
+    </tr>
+    <tr id='adminnote-author'>
+        <td><code><b>author</b></code></td>
+        <td><code><a href='#noteauthor'>NoteAuthor</a></code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>Note author.</td>
+    </tr>
+    <tr id='adminnote-createdat'>
+        <td><code><b>createdAt</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>2020-01-01T12:00:00Z</code></td>
+        <td>Creation date.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<span id='notepayload'></span>
+
+<section>
+<h3 id='notepayload-field'>NotePayload</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='notepayload-body'>
+        <td><code><b>body</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>Lorem ipsum</code></td>
+        <td>Note message.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<span id='noteauthor'></span>
+
+<section>
+<h3 id='noteauthor-field'>NoteAuthor</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='noteauthor-name'>
+        <td><code><b>name</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>John Smith</code></td>
+        <td>Author name.</td>
+    </tr>
+    <tr id='noteauthor-email'>
+        <td><code><b>email</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>john@smith.com</code></td>
+        <td>E-mail.</td>
     </tr>
 </tbody></table>
 

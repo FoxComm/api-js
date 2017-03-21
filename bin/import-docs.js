@@ -289,6 +289,10 @@ const importData = {
     'AlbumResponse',
     'Image',
   ],
+  'Notes': [
+    'NotePayload',
+    'AdminNote',
+  ],
 };
 
 function convertDocs() {

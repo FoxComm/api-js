@@ -92,4 +92,7 @@ export default Object.freeze({
   albums: context => `/v1/albums/${context}`,
   album: (context, albumId) => `/v1/albums/${context}/${albumId}`,
   albumImages: (context, albumId) => `/v1/albums/${context}/${albumId}/images`,
+
+  notes: (objectType, objectId) => `/v1/notes/${objectType}/${objectId}`,
+  note: (objectType, objectId, noteId) => `/v1/notes/${objectType}/${objectId}/${noteId}`,
 });
