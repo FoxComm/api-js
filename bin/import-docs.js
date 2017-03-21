@@ -245,6 +245,7 @@ const importData = {
   ],
   'FoxApi': [
     'ShippingMethod',
+    'ValidationResult',
   ],
   'Customers': [
     'CustomerCreatePayload',
@@ -264,11 +265,6 @@ const importData = {
     'ProductPayload',
     'ProductResponse',
   ],
-  // 'ProductAlbums': [
-  //   'Image',
-  //   'AlbumPayload',
-  //   'AlbumResponse',
-  // ],
   'GiftCards': [
     'GiftCard',
     'GiftCardCreatePayload',
@@ -292,6 +288,10 @@ const importData = {
   'Notes': [
     'NotePayload',
     'AdminNote',
+  ],
+  'Watchers': [
+    'Watcher',
+    'AddWatchersPayload',
   ],
 };
 

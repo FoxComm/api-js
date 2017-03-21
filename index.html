@@ -36,7 +36,8 @@
                 <li><a href="#addresses">Addresses</a></li>
                 <li><a href="#albums">Albums</a></li>
                 <li><a href="#notes">Notes</a></li>
-                <li><a href="#cart">Cart</a></li>
+                <li><a href="#cart">Customer Cart</a></li>
+                <li><a href="#carts">Carts</a></li>
                 <li><a href="#orders">Orders</a></li>
                 <li><a href="#creditcards">Credit Cards</a></li>
                 <li><a href="#storecredits">Store Credits</a></li>
@@ -310,6 +311,11 @@ You can define jwt string via <code>addAuth</code> method, if there is no jwt st
 		<td><code><b>notes</b>
 		<td><code><a href='#notes'>Notes</a></code></td>
 		<td>Notes instance</td>
+	</tr>
+	<tr id='foxapi-carts'>
+		<td><code><b>carts</b>
+		<td><code><a href='#carts'>Carts</a></code></td>
+		<td>Carts instance</td>
 	</tr>
 </tbody></table>
 
@@ -946,6 +952,46 @@ Available values:
 		<td>Field to sort by (-fieldName for descending order).</td>
 	</tr>
 </tbody></table>
+
+</section>
+
+</section>
+<span id='validationresult'></span>
+
+<section>
+<h3 id='validationresult-field'>ValidationResult</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='validationresult-result'>
+        <td><code><b>result</b></code></td>
+        <td><code>&lt;T&gt;</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>request&#39;s result</td>
+    </tr>
+    <tr id='validationresult-warnings'>
+        <td><code><b>warnings</b></code></td>
+        <td><code>String[]</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>list of validation warnings</td>
+    </tr>
+</tbody></table>
+
 
 </section>
 
@@ -2984,6 +3030,64 @@ Available values:
     </tr>
 </tbody></table>
 
+
+</section>
+
+</section>
+<h2 id='carts'>Carts</h2><p>Accessible via <a href="#foxapi-carts">carts</a> property of <a href="#foxapi">FoxApi</a> instance.</p>
+
+<section>
+<h3 id='carts-method'>Methods</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+	<tr>
+		<th>Method</th>
+		<th>Returns</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='carts-one'>
+		<td><code><b>one</b>(<nobr>&lt;String&gt;</nobr> <i>referenceNumber</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#validationresult'>ValidationResult</a>&lt;<a href='#fullorder'>FullOrder</a>&gt;&gt;</code></td>
+		<td>Find cart by reference number.</td>
+	</tr>
+	<tr id='carts-getshippingmethods'>
+		<td><code><b>getShippingMethods</b>(<nobr>&lt;String&gt;</nobr> <i>referenceNumber</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#shippingmethod'>ShippingMethod</a>[]&gt;</code></td>
+		<td>Retrieve cart&#39;s shipping methods.</td>
+	</tr>
+	<tr id='carts-updatelineitemquantities'>
+		<td><code><b>updateLineItemQuantities</b>(<nobr>&lt;String&gt;</nobr> <i>referenceNumber</i>, <nobr>&lt;<a href='#updatelineitemspayload'>UpdateLineItemsPayload</a>[]&gt;</nobr> <i>lineItems</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#validationresult'>ValidationResult</a>&lt;<a href='#fullorder'>FullOrder</a>&gt;&gt;</code></td>
+		<td>Update cart&#39;s line item quantities.</td>
+	</tr>
+	<tr id='carts-addlineitemquantities'>
+		<td><code><b>addLineItemQuantities</b>(<nobr>&lt;String&gt;</nobr> <i>referenceNumber</i>, <nobr>&lt;<a href='#updatelineitemspayload'>UpdateLineItemsPayload</a>[]&gt;</nobr> <i>lineItems</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#validationresult'>ValidationResult</a>&lt;<a href='#fullorder'>FullOrder</a>&gt;&gt;</code></td>
+		<td>Add cart&#39;s line item quantities.</td>
+	</tr>
+	<tr id='carts-getwatchers'>
+		<td><code><b>getWatchers</b>(<nobr>&lt;String&gt;</nobr> <i>referenceNumber</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#watcher'>Watcher</a>[]&gt;</code></td>
+		<td>List notes.</td>
+	</tr>
+	<tr id='carts-addwatchers'>
+		<td><code><b>addWatchers</b>(<nobr>&lt;String&gt;</nobr> <i>referenceNumber</i>, <nobr>&lt;<a href='#addwatcherspayload'>AddWatchersPayload</a>&gt;</nobr> <i>watchers</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#validationresult'>ValidationResult</a>&lt;<a href='#watcher'>Watcher</a>[]&gt;&gt;</code></td>
+		<td>List notes.</td>
+	</tr>
+	<tr id='carts-removewatcher'>
+		<td><code><b>removeWatcher</b>(<nobr>&lt;String&gt;</nobr> <i>referenceNumber</i>, <nobr>&lt;Number&gt;</nobr> <i>watcherId</i>)</nobr></code></td>
+		<td><code>Promise</code></td>
+		<td>List notes.</td>
+	</tr>
+</tbody></table>
 
 </section>
 

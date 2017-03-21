@@ -31,7 +31,7 @@ export default class Cart {
    * Returns available shipping methods.
    */
   getShippingMethods() {
-    return this.api.get(endpoints.shippingMethods);
+    return this.api.get(endpoints.customerCartShippingMethods);
   }
 
   /**
@@ -39,7 +39,7 @@ export default class Cart {
    * Chooses shipping method for the cart.
    */
   chooseShippingMethod(shippingMethodId) {
-    return this.api.patch(endpoints.shippingMethod, { shippingMethodId }).then(normalizeResponse);
+    return this.api.patch(endpoints.customerCartShippingMethod, { shippingMethodId }).then(normalizeResponse);
   }
 
   /**
@@ -47,7 +47,7 @@ export default class Cart {
    * Removes the shipping method from the cart.
    */
   removeShippingMethod() {
-    return this.api.delete(endpoints.shippingMethod);
+    return this.api.delete(endpoints.customerCartShippingMethod);
   }
 
   /**
@@ -55,7 +55,7 @@ export default class Cart {
    * Creates shipping address for the cart by a given address payload.
    */
   setShippingAddress(shippingAddress) {
-    return this.api.post(endpoints.shippingAddress, shippingAddress).then(normalizeResponse)
+    return this.api.post(endpoints.customerCartShippingAddress, shippingAddress).then(normalizeResponse)
   }
 
   /**
@@ -71,7 +71,7 @@ export default class Cart {
    * Updates shipping address for the cart.
    */
   updateShippingAddress(shippingAddress) {
-    return this.api.patch(endpoints.shippingAddress, shippingAddress).then(normalizeResponse);
+    return this.api.patch(endpoints.customerCartShippingAddress, shippingAddress).then(normalizeResponse);
   }
 
   /**
@@ -79,7 +79,7 @@ export default class Cart {
    * Removes a shipping address from the cart.
    */
   removeShippingAddress() {
-    return this.api.delete(endpoints.shippingAddress).then(normalizeResponse);
+    return this.api.delete(endpoints.customerCartShippingAddress).then(normalizeResponse);
   }
 
   /**
@@ -87,7 +87,7 @@ export default class Cart {
    * Returns or creates new cart.
    */
   get() {
-    return this.api.get(endpoints.cart).then(normalizeResponse);
+    return this.api.get(endpoints.customerCart).then(normalizeResponse);
   }
 
   /**
@@ -95,7 +95,7 @@ export default class Cart {
    * Place order from cart.
    */
   checkout() {
-    return this.api.post(endpoints.cartCheckout).then(normalizeResponse);
+    return this.api.post(endpoints.customerCartCheckout).then(normalizeResponse);
   }
 
   /**
@@ -109,7 +109,7 @@ export default class Cart {
       };
     });
 
-    return this.api.post(endpoints.cartLineItems, updateSkusPayload).then(normalizeResponse);
+    return this.api.post(endpoints.customerCartLineItems, updateSkusPayload).then(normalizeResponse);
   }
 
   /**
@@ -151,7 +151,7 @@ export default class Cart {
    * Adds a credit card as payment method for the cart.
    */
   addCreditCard(creditCardId) {
-    return this.api.post(endpoints.cartPaymentCreditCarts, { creditCardId }).then(normalizeResponse);
+    return this.api.post(endpoints.customerCartPaymentCreditCards, { creditCardId }).then(normalizeResponse);
   }
 
   /**
@@ -159,7 +159,7 @@ export default class Cart {
    * Removes all credit cards payment methods of the cart.
    */
   removeCreditCards() {
-    return this.api.delete(endpoints.cartPaymentCreditCarts).then(normalizeResponse);
+    return this.api.delete(endpoints.customerCartPaymentCreditCards).then(normalizeResponse);
   }
 
   /**
@@ -167,7 +167,7 @@ export default class Cart {
    * Adds a gift card as payment method for the cart.
    */
   addGiftCard(giftCardPayload) {
-    return this.api.post(endpoints.cartPaymentGiftCards, giftCardPayload).then(normalizeResponse);
+    return this.api.post(endpoints.customerCartPaymentGiftCards, giftCardPayload).then(normalizeResponse);
   }
 
   /**
@@ -175,7 +175,7 @@ export default class Cart {
    * Removes gift card with provided code payment method from the cart.
    */
   removeGiftCard(giftCardCode) {
-    return this.api.delete(endpoints.cartPaymentGiftCardsWithCode(giftCardCode)).then(normalizeResponse);
+    return this.api.delete(endpoints.customerCartPaymentGiftCardsWithCode(giftCardCode)).then(normalizeResponse);
   }
 
   /**
@@ -183,7 +183,7 @@ export default class Cart {
    * Creates payment method with a given amount using store credit.
    */
   addStoreCredit(amount) {
-    return this.api.post(endpoints.cartPaymentStoreCredits, { amount }).then(normalizeResponse);
+    return this.api.post(endpoints.customerCartPaymentStoreCredits, { amount }).then(normalizeResponse);
   }
 
   /**
@@ -191,7 +191,7 @@ export default class Cart {
    * Removes all store credits payment methods of the cart.
    */
   removeStoreCredits() {
-    return this.api.delete(endpoints.cartPaymentStoreCredits).then(normalizeResponse);
+    return this.api.delete(endpoints.customerCartPaymentStoreCredits).then(normalizeResponse);
   }
 
 
@@ -200,7 +200,7 @@ export default class Cart {
    * Adds coupon code to the cart.
    */
   addCoupon(code) {
-    return this.api.post(endpoints.cartPaymentCouponCodeWithCode(code.trim()), {}).then(normalizeResponse);
+    return this.api.post(endpoints.customerCartPaymentCouponCodeWithCode(code.trim()), {}).then(normalizeResponse);
   }
 
   /**
@@ -208,7 +208,7 @@ export default class Cart {
    * Removes coupon code of the cart.
    */
   removeCoupon() {
-    return this.api.delete(endpoints.cartPaymentCouponCode).then(normalizeResponse);
+    return this.api.delete(endpoints.customerCartPaymentCouponCode).then(normalizeResponse);
   }
 }
 

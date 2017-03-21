@@ -14,19 +14,19 @@ export default Object.freeze({
   search: `/search/products_catalog_view/_search?size=${MAX_RESULTS}`,
 
   // cart
-  cart: '/v1/my/cart',
-  cartCheckout: '/v1/my/cart/checkout',
-  shippingMethods: '/v1/my/cart/shipping-methods',
-  shippingMethod: '/v1/my/cart/shipping-method',
-  shippingAddress: '/v1/my/cart/shipping-address',
+  customerCart: '/v1/my/cart',
+  customerCartCheckout: '/v1/my/cart/checkout',
+  customerCartShippingMethods: '/v1/my/cart/shipping-methods',
+  customerCartShippingMethod: '/v1/my/cart/shipping-method',
+  customerCartShippingAddress: '/v1/my/cart/shipping-address',
+  customerCartLineItems: '/v1/my/cart/line-items',
+  customerCartPaymentCreditCards: '/v1/my/cart/payment-methods/credit-cards',
+  customerCartPaymentGiftCards: '/v1/my/cart/payment-methods/gift-cards',
+  customerCartPaymentGiftCardsWithCode: giftCardCode => `/v1/my/cart/payment-methods/gift-cards/${giftCardCode}`,
+  customerCartPaymentStoreCredits: '/v1/my/cart/payment-methods/store-credits',
+  customerCartPaymentCouponCode: '/v1/my/cart/coupon',
+  customerCartPaymentCouponCodeWithCode: code => `/v1/my/cart/coupon/${code}`,
   shippingAddressId: id => `${shippingAddress}/${id}`,
-  cartLineItems: '/v1/my/cart/line-items',
-  cartPaymentCreditCarts: '/v1/my/cart/payment-methods/credit-cards',
-  cartPaymentGiftCards: '/v1/my/cart/payment-methods/gift-cards',
-  cartPaymentGiftCardsWithCode: giftCardCode => `/v1/my/cart/payment-methods/gift-cards/${giftCardCode}`,
-  cartPaymentStoreCredits: '/v1/my/cart/payment-methods/store-credits',
-  cartPaymentCouponCode: '/v1/my/cart/coupon',
-  cartPaymentCouponCodeWithCode: code => `/v1/my/cart/coupon/${code}`,
 
   addToCart: '/v1/my/cart/add',
   removeFromCart: '/v1/my/cart/line-items/:id/edit',
@@ -95,4 +95,10 @@ export default Object.freeze({
 
   notes: (objectType, objectId) => `/v1/notes/${objectType}/${objectId}`,
   note: (objectType, objectId, noteId) => `/v1/notes/${objectType}/${objectId}/${noteId}`,
+
+  cart: referenceNumber => `/v1/carts/${referenceNumber}`,
+  cartLineItems: referenceNumber => `/v1/carts/${referenceNumber}/line-items`,
+  cartWatchers: referenceNumber => `/v1/carts/${referenceNumber}/watchers`,
+  cartWatcher: (referenceNumber, watcherId) => `/v1/carts/${referenceNumber}/watchers/${watcherId}`,
+  cartShippingMethods: referenceNumber => `/v1/shipping-methods/${referenceNumber}`,
 });
