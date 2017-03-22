@@ -54,6 +54,7 @@
                 <li><a href="#couponcodes">Coupon Codes</a></li>
                 <li><a href="#inventories">Inventories</a></li>
                 <li><a href="#orders">Orders</a></li>
+                <li><a href="#sharedsearches">Shared Searches</a></li>
             </ul>
         </div>
     </div>
@@ -323,6 +324,11 @@ You can define jwt string via <code>addAuth</code> method, if there is no jwt st
 		<td><code><b>inventories</b>
 		<td><code><a href='#inventories'>Inventories</a></code></td>
 		<td>Inventories instance</td>
+	</tr>
+	<tr id='foxapi-sharedsearches'>
+		<td><code><b>sharedSearches</b>
+		<td><code><a href='#sharedsearches'>SharedSearches</a></code></td>
+		<td>SharedSearches instance</td>
 	</tr>
 </tbody></table>
 
@@ -6465,6 +6471,316 @@ Available values:
         <td><div data-icon="ei-check"></div></td>
         <td><code>&lt;json&gt;</code></td>
         <td>Discount form attributes.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<h2 id='sharedsearches'>SharedSearches</h2><p>Accessible via <a href="#foxapi-sharedsearches">sharedSearches</a> property of <a href="#foxapi">FoxApi</a> instance.</p>
+
+<section>
+<h3 id='sharedsearches-method'>Methods</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+	<tr>
+		<th>Method</th>
+		<th>Returns</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='sharedsearches-list'>
+		<td><code><b>list</b>(<nobr>&lt;String&gt;</nobr> <i>scope</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#sharedsearch'>SharedSearch</a>[]&gt;</code></td>
+		<td>List shared searches.</td>
+	</tr>
+	<tr id='sharedsearches-create'>
+		<td><code><b>create</b>(<nobr>&lt;<a href='#sharedsearchpayload'>SharedSearchPayload</a>&gt;</nobr> <i>sharedSearch</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#sharedsearch'>SharedSearch</a>&gt;</code></td>
+		<td>Create shared search.</td>
+	</tr>
+	<tr id='sharedsearches-one'>
+		<td><code><b>one</b>(<nobr>&lt;String&gt;</nobr> <i>code</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#sharedsearch'>SharedSearch</a>&gt;</code></td>
+		<td>Find shared search by code.</td>
+	</tr>
+	<tr id='sharedsearches-delete'>
+		<td><code><b>delete</b>(<nobr>&lt;String&gt;</nobr> <i>code</i>)</nobr></code></td>
+		<td><code>Promise</code></td>
+		<td>Delete shared search.</td>
+	</tr>
+	<tr id='sharedsearches-getassociates'>
+		<td><code><b>getAssociates</b>(<nobr>&lt;String&gt;</nobr> <i>code</i>)</nobr></code></td>
+		<td><code>Promise&lt;StoreAdmin[]&gt;</code></td>
+		<td>Get shared search associates.</td>
+	</tr>
+	<tr id='sharedsearches-addassociate'>
+		<td><code><b>addAssociate</b>(<nobr>&lt;String&gt;</nobr> <i>code</i>, <nobr>&lt;<a href='#sharedsearchassociationpayload'>SharedSearchAssociationPayload</a>&gt;</nobr> <i>payload</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#validationresult'>ValidationResult</a>&lt;<a href='#sharedsearch'>SharedSearch</a>&gt;&gt;</code></td>
+		<td>Add shared search associate.</td>
+	</tr>
+	<tr id='sharedsearches-removeassociate'>
+		<td><code><b>removeAssociate</b>(<nobr>&lt;String&gt;</nobr> <i>code</i>, <nobr>&lt;Number&gt;</nobr> <i>associateId</i>)</nobr></code></td>
+		<td><code>Promise</code></td>
+		<td>Remove shared search associate.</td>
+	</tr>
+</tbody></table>
+
+</section>
+
+</section>
+<span id='sharedsearchscope'></span>
+
+<section>
+<h3 id='sharedsearchscope-field'>SharedSearchScope</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='sharedsearchscope-scope'>
+        <td><code><b>scope</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>CustomersScope</code></td>
+        <td>Scope of search.
+Available values:
+<ul class="collapsible collapsed">
+<li><code>CustomersScope</code></li>
+<li><code>OrdersScope</code></li>
+<li><code>StoreAdminsScope</code></li>
+</ul></td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<span id='sharedsearch'></span>
+
+<section>
+<h3 id='sharedsearch-field'>SharedSearch</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='sharedsearch-id'>
+        <td><code><b>id</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1</td>
+        <td>ID.</td>
+    </tr>
+    <tr id='sharedsearch-code'>
+        <td><code><b>code</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>abc123</code></td>
+        <td>Unique code.</td>
+    </tr>
+    <tr id='sharedsearch-title'>
+        <td><code><b>title</b></code></td>
+        <td><code>String</code>
+        <td></td>
+        <td><code>List of customers sorted by name</code></td>
+        <td>Title of shared search.</td>
+    </tr>
+    <tr id='sharedsearch-query'>
+        <td><code><b>query</b></code></td>
+        <td><code>Object</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>Saved query for Elasticsearch.</td>
+    </tr>
+    <tr id='sharedsearch-storeadminid'>
+        <td><code><b>storeAdminId</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1</td>
+        <td>Store Admin ID.</td>
+    </tr>
+    <tr id='sharedsearch-createdat'>
+        <td><code><b>createdAt</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>2015-10-28T12:20:27.794Z</code></td>
+        <td>Creation date.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+<div class='accordion'>
+	<label><span class='expander'>▶</span> Fields inherited from <a href='#sharedsearchscope'>SharedSearchScope</a></label>
+	<div class='accordion-content'><section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='sharedsearch-scope'>
+        <td><code><b>scope</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>CustomersScope</code></td>
+        <td>Scope of search.
+Available values:
+<ul class="collapsible collapsed">
+<li><code>CustomersScope</code></li>
+<li><code>OrdersScope</code></li>
+<li><code>StoreAdminsScope</code></li>
+</ul></td>
+    </tr>
+</tbody></table>
+
+
+</section></div>
+</div>
+
+</section>
+<span id='sharedsearchpayload'></span>
+
+<section>
+<h3 id='sharedsearchpayload-field'>SharedSearchPayload</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='sharedsearchpayload-title'>
+        <td><code><b>title</b></code></td>
+        <td><code>String</code>
+        <td></td>
+        <td><code>List of customers sorted by name</code></td>
+        <td>Title of shared search.</td>
+    </tr>
+    <tr id='sharedsearchpayload-query'>
+        <td><code><b>query</b></code></td>
+        <td><code>Object</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>Saved query for Elasticsearch.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+<div class='accordion'>
+	<label><span class='expander'>▶</span> Fields inherited from <a href='#sharedsearchscope'>SharedSearchScope</a></label>
+	<div class='accordion-content'><section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='sharedsearchpayload-scope'>
+        <td><code><b>scope</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>CustomersScope</code></td>
+        <td>Scope of search.
+Available values:
+<ul class="collapsible collapsed">
+<li><code>CustomersScope</code></li>
+<li><code>OrdersScope</code></li>
+<li><code>StoreAdminsScope</code></li>
+</ul></td>
+    </tr>
+</tbody></table>
+
+
+</section></div>
+</div>
+
+</section>
+<span id='sharedsearchassociationpayload'></span>
+
+<section>
+<h3 id='sharedsearchassociationpayload-field'>SharedSearchAssociationPayload</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='sharedsearchassociationpayload-associates'>
+        <td><code><b>associates</b></code></td>
+        <td><code>Array&lt;Number&gt;</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>StoreAdmin IDs.</td>
     </tr>
 </tbody></table>
 

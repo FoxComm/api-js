@@ -300,6 +300,11 @@ const importData = {
     'FullOrder',
     'OrderStatePayload',
   ],
+  'SharedSearches': [
+    'SharedSearch',
+    'SharedSearchPayload',
+    'SharedSearchAssociationPayload',
+  ],
 };
 
 function convertDocs() {

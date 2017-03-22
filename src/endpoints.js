@@ -101,4 +101,10 @@ export default Object.freeze({
   inventoryIncrement: stockItemId => `/v1/inventory/stock-items/${stockItemId}/increment`,
   inventoryDecrement: stockItemId => `/v1/inventory/stock-items/${stockItemId}/decrement`,
   inventoryShipments: referenceNumber => `/v1/inventory/shipments/${referenceNumber}`,
+
+  sharedSearches: (scope = null) => `/v1/shared-search${scope ? `?scope=${scope}` : ''}`,
+  sharedSearch: code => `/v1/shared-search/${code}`,
+  sharedSearchAssociates: code => `/v1/shared-search/${code}/associates`,
+  sharedSearchAssociate: (code, associateId = null) =>
+    `/v1/shared-search/${code}/associate${associateId ? `/${associateId}` : ''}`,
 });

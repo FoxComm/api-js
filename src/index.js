@@ -36,6 +36,7 @@ import Albums from './api/albums';
 import Notes from './api/notes';
 import Carts from './api/carts';
 import Inventories from './api/inventories';
+import SharedSearches from './api/shared-searches';
 
 export default class Api {
   constructor(args) {
@@ -142,6 +143,10 @@ export default class Api {
     // @property inventories: Inventories
     // Inventories instance
     this.inventories = new Inventories(this);
+
+    // @property sharedSearches: SharedSearches
+    // SharedSearches instance
+    this.sharedSearches = new SharedSearches(this);
   }
 
   // @method addAuth(jwt: String): FoxApi
