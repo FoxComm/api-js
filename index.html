@@ -53,6 +53,7 @@
                 <li><a href="#coupons">Coupons</a></li>
                 <li><a href="#couponcodes">Coupon Codes</a></li>
                 <li><a href="#inventories">Inventories</a></li>
+                <li><a href="#orders">Orders</a></li>
             </ul>
         </div>
     </div>
@@ -2059,6 +2060,50 @@ Available values:
 <li><code>Canceled</code></li>
 <li><code>FulfillmentStarted</code></li>
 <li><code>Shipped</code></li>
+</ul></td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<span id='orderstatepayload'></span>
+
+<section>
+<h3 id='orderstatepayload-field'>OrderStatePayload</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='orderstatepayload-state'>
+        <td><code><b>state</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>Cart</td>
+        <td>Order State.
+Available values:
+<ul class="collapsible collapsed">
+<li><a href="#cart"><code>cart</code></a></li>
+<li><code>ordered</code></li>
+<li><code>fraudHold</code></li>
+<li><code>remorseHold</code></li>
+<li><code>manualHold</code></li>
+<li><code>canceled</code></li>
+<li><code>fulfillmentStarted</code></li>
+<li><code>shipped</code></li>
 </ul></td>
     </tr>
 </tbody></table>
@@ -5787,7 +5832,8 @@ Available values:
 </section>
 
 </section>
-<h2 id='orders'>Orders</h2>
+<h2 id='orders'>Orders</h2><p>Accessible via <a href="#foxapi-orders">orders</a> property of <a href="#foxapi">FoxApi</a> instance.</p>
+
 <section>
 <h3 id='orders-method'>Methods</h3>
 
@@ -5806,13 +5852,43 @@ Available values:
 	</thead><tbody>
 	<tr id='orders-list'>
 		<td><code><b>list</b>()</nobr></code></td>
-		<td><code>Promise</code></td>
-		<td></td>
+		<td><code>Promise&lt;<a href='#fullorder'>FullOrder</a>[]&gt;</code></td>
+		<td>List orders.</td>
 	</tr>
 	<tr id='orders-get'>
-		<td><code><b>get</b>(<nobr>&lt;string&gt;</nobr> <i>referenceNumber</i>)</nobr></code></td>
+		<td><code><b>get</b>(<nobr>&lt;String&gt;</nobr> <i>referenceNumber</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#validationresult'>ValidationResult</a>&lt;<a href='#fullorder'>FullOrder</a>&gt;&gt;</code></td>
+		<td>Deprecated, use either <code>foxapi.orders.one</code> or <code>foxapi.cart.get</code>.</td>
+	</tr>
+	<tr id='orders-one'>
+		<td><code><b>one</b>(<nobr>&lt;String&gt;</nobr> <i>referenceNumber</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#validationresult'>ValidationResult</a>&lt;<a href='#fullorder'>FullOrder</a>&gt;&gt;</code></td>
+		<td>Find order by reference number.</td>
+	</tr>
+	<tr id='orders-update'>
+		<td><code><b>update</b>(<nobr>&lt;String&gt;</nobr> <i>referenceNumber</i>, <nobr>&lt;<a href='#orderstatepayload'>OrderStatePayload</a>&gt;</nobr> <i>payload</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#fullorder'>FullOrder</a>&gt;</code></td>
+		<td>Update order details.</td>
+	</tr>
+	<tr id='orders-increaseremorseperiod'>
+		<td><code><b>increaseRemorsePeriod</b>(<nobr>&lt;String&gt;</nobr> <i>referenceNumber</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#fullorder'>FullOrder</a>&gt;</code></td>
+		<td>Increase order remorse period.</td>
+	</tr>
+	<tr id='orders-getwatchers'>
+		<td><code><b>getWatchers</b>(<nobr>&lt;String&gt;</nobr> <i>referenceNumber</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#watcher'>Watcher</a>[]&gt;</code></td>
+		<td>Get order watchers.</td>
+	</tr>
+	<tr id='orders-addwatchers'>
+		<td><code><b>addWatchers</b>(<nobr>&lt;String&gt;</nobr> <i>referenceNumber</i>, <nobr>&lt;<a href='#addwatcherspayload'>AddWatchersPayload</a>&gt;</nobr> <i>watchers</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#validationresult'>ValidationResult</a>&lt;<a href='#watcher'>Watcher</a>[]&gt;&gt;</code></td>
+		<td>Add watchers to order.</td>
+	</tr>
+	<tr id='orders-removewatcher'>
+		<td><code><b>removeWatcher</b>(<nobr>&lt;String&gt;</nobr> <i>referenceNumber</i>, <nobr>&lt;Number&gt;</nobr> <i>watcherId</i>)</nobr></code></td>
 		<td><code>Promise</code></td>
-		<td></td>
+		<td>Remove watcher from order.</td>
 	</tr>
 </tbody></table>
 

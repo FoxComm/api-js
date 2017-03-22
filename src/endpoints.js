@@ -45,7 +45,11 @@ export default Object.freeze({
   changePassword: '/v1/my/account/change-password',
 
   orders: '/v1/my/orders',
-  order: referenceNumber => `/v1/my/orders/${referenceNumber}`,
+  order: referenceNumber => `/v1/orders/${referenceNumber}`,
+  orderIncreaseRemorsePeriod: referenceNumber => `/v1/orders/${referenceNumber}/increase-remorse-period`,
+  orderWatchers: referenceNumber => `/v1/orders/${referenceNumber}/watchers`,
+  orderWatcher: (referenceNumber, watcherId) => `/v1/orders/${referenceNumber}/watchers/${watcherId}`,
+  customerOrder: referenceNumber => `/v1/my/orders/${referenceNumber}`,
 
   hal: '/v1/hal',
 

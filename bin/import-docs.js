@@ -239,7 +239,6 @@ const importData = {
     'StoreCreditCreateSinglePayload',
   ],
   'Cart': [
-    'FullOrder',
     'UpdateLineItemsPayload',
     'GiftCardPaymentPayload',
   ],
@@ -296,6 +295,10 @@ const importData = {
     'InventoryResponse',
     'ShipmentResponse',
     'ModifyInventoryItemQuantityPayload',
+  ],
+  'Orders': [
+    'FullOrder',
+    'OrderStatePayload',
   ],
 };
 

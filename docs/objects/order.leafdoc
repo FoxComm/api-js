@@ -31,6 +31,23 @@ Available values:
 <li>`Shipped`</li>
 </ul>
 
+@miniclass OrderStatePayload (Cart)
+@aka orderstatepayload
+
+@field state: String = Cart
+Order State.
+Available values:
+<ul class="collapsible collapsed">
+<li>`cart`</li>
+<li>`ordered`</li>
+<li>`fraudHold`</li>
+<li>`remorseHold`</li>
+<li>`manualHold`</li>
+<li>`canceled`</li>
+<li>`fulfillmentStarted`</li>
+<li>`shipped`</li>
+</ul>
+
 @miniclass PaymentState (Cart)
 @aka paymentstate
 
