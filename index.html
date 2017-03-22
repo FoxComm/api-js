@@ -52,6 +52,7 @@
                 <li><a href="#promotions">Promotions</a></li>
                 <li><a href="#coupons">Coupons</a></li>
                 <li><a href="#couponcodes">Coupon Codes</a></li>
+                <li><a href="#inventories">Inventories</a></li>
             </ul>
         </div>
     </div>
@@ -316,6 +317,11 @@ You can define jwt string via <code>addAuth</code> method, if there is no jwt st
 		<td><code><b>carts</b>
 		<td><code><a href='#carts'>Carts</a></code></td>
 		<td>Carts instance</td>
+	</tr>
+	<tr id='foxapi-inventories'>
+		<td><code><b>inventories</b>
+		<td><code><a href='#inventories'>Inventories</a></code></td>
+		<td>Inventories instance</td>
 	</tr>
 </tbody></table>
 
@@ -4904,6 +4910,718 @@ Available values:
 </section>
 
 </section>
+<h2 id='inventories'>Inventories</h2><p>Accessible via <a href="#foxapi-inventories">inventories</a> property of <a href="#foxapi">FoxApi</a> instance.</p>
+
+<section>
+<h3 id='inventories-method'>Methods</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+	<tr>
+		<th>Method</th>
+		<th>Returns</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='inventories-get'>
+		<td><code><b>get</b>(<nobr>&lt;String&gt;</nobr> <i>skuCode</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#inventoryresponse'>InventoryResponse</a>&gt;</code></td>
+		<td>Get SKU inventory by code.</td>
+	</tr>
+	<tr id='inventories-getshipments'>
+		<td><code><b>getShipments</b>(<nobr>&lt;String&gt;</nobr> <i>referenceNumber</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#shipmentresponse'>ShipmentResponse</a>[]&gt;</code></td>
+		<td>Get shipments by reference number.</td>
+	</tr>
+	<tr id='inventories-increment'>
+		<td><code><b>increment</b>(<nobr>&lt;Number&gt;</nobr> <i>stockItemId</i>, <nobr>&lt;<a href='#modifyinventoryitemquantitypayload'>ModifyInventoryItemQuantityPayload</a>&gt;</nobr> <i>payload</i>)</nobr></code></td>
+		<td><code>Promise</code></td>
+		<td>Increment inventory item quantity.</td>
+	</tr>
+	<tr id='inventories-decrement'>
+		<td><code><b>decrement</b>(<nobr>&lt;Number&gt;</nobr> <i>stockItemId</i>, <nobr>&lt;<a href='#modifyinventoryitemquantitypayload'>ModifyInventoryItemQuantityPayload</a>&gt;</nobr> <i>payload</i>)</nobr></code></td>
+		<td><code>Promise</code></td>
+		<td>Decrement inventory item quantity.</td>
+	</tr>
+</tbody></table>
+
+</section>
+
+</section>
+<span id='inventoryitemtype'></span>
+
+<section>
+<h3 id='inventoryitemtype-field'>InventoryItemType</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='inventoryitemtype-type'>
+        <td><code><b>type</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>Sellable</code></td>
+        <td>Inventory item type.
+Available values:
+<ul class="collapsible collapsed">
+<li><code>Sellable</code></li>
+<li><code>Non-sellable</code></li>
+<li><code>Preorder</code></li>
+<li><code>Backorder</code></li>
+</ul></td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<span id='inventoryitem'></span>
+
+<section>
+<h3 id='inventoryitem-field'>InventoryItem</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='inventoryitem-sku'>
+        <td><code><b>sku</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>TEST-SKU</code></td>
+        <td>Associated SKU code.</td>
+    </tr>
+    <tr id='inventoryitem-stockitem'>
+        <td><code><b>stockItem</b></code></td>
+        <td><code><a href='#stockitemresponse'>StockItemResponse</a></code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>Associated stock item.</td>
+    </tr>
+    <tr id='inventoryitem-stocklocation'>
+        <td><code><b>stockLocation</b></code></td>
+        <td><code><a href='#stocklocationresponse'>StockLocationResponse</a></code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>Associated stock location.</td>
+    </tr>
+    <tr id='inventoryitem-onhand'>
+        <td><code><b>onHand</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1</td>
+        <td>Number of items on hand.</td>
+    </tr>
+    <tr id='inventoryitem-onhold'>
+        <td><code><b>onHold</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1</td>
+        <td>Number of items on hold.</td>
+    </tr>
+    <tr id='inventoryitem-reserved'>
+        <td><code><b>reserved</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1</td>
+        <td>Number of reserved items.</td>
+    </tr>
+    <tr id='inventoryitem-shipped'>
+        <td><code><b>shipped</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1</td>
+        <td>Number of shipped items.</td>
+    </tr>
+    <tr id='inventoryitem-afs'>
+        <td><code><b>afs</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1</td>
+        <td>Number of items available for sale.</td>
+    </tr>
+    <tr id='inventoryitem-afscost'>
+        <td><code><b>afsCost</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1000</td>
+        <td>Total cost of all the items available for sale.</td>
+    </tr>
+    <tr id='inventoryitem-createdat'>
+        <td><code><b>createdAt</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>2020-01-01T12:00:00Z</code></td>
+        <td>Creation date.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+<div class='accordion'>
+	<label><span class='expander'>▶</span> Fields inherited from <a href='#inventoryitemtype'>InventoryItemType</a></label>
+	<div class='accordion-content'><section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='inventoryitem-type'>
+        <td><code><b>type</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>Sellable</code></td>
+        <td>Inventory item type.
+Available values:
+<ul class="collapsible collapsed">
+<li><code>Sellable</code></li>
+<li><code>Non-sellable</code></li>
+<li><code>Preorder</code></li>
+<li><code>Backorder</code></li>
+</ul></td>
+    </tr>
+</tbody></table>
+
+
+</section></div>
+</div>
+
+</section>
+<span id='inventoryresponse'></span>
+
+<section>
+<h3 id='inventoryresponse-field'>InventoryResponse</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='inventoryresponse-summary'>
+        <td><code><b>summary</b></code></td>
+        <td><code>Array&lt;<a href='#inventoryitem'>InventoryItem</a>&gt;</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>Inventory items.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<span id='modifyinventoryitemquantitypayload'></span>
+
+<section>
+<h3 id='modifyinventoryitemquantitypayload-field'>ModifyInventoryItemQuantityPayload</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='modifyinventoryitemquantitypayload-qty'>
+        <td><code><b>qty</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1</td>
+        <td>Items quantity.</td>
+    </tr>
+    <tr id='modifyinventoryitemquantitypayload-status'>
+        <td><code><b>status</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>onHand</code></td>
+        <td>Item status.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+<div class='accordion'>
+	<label><span class='expander'>▶</span> Fields inherited from <a href='#inventoryitemtype'>InventoryItemType</a></label>
+	<div class='accordion-content'><section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='modifyinventoryitemquantitypayload-type'>
+        <td><code><b>type</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>Sellable</code></td>
+        <td>Inventory item type.
+Available values:
+<ul class="collapsible collapsed">
+<li><code>Sellable</code></li>
+<li><code>Non-sellable</code></li>
+<li><code>Preorder</code></li>
+<li><code>Backorder</code></li>
+</ul></td>
+    </tr>
+</tbody></table>
+
+
+</section></div>
+</div>
+
+</section>
+<span id='shipmentstate'></span>
+
+<section>
+<h3 id='shipmentstate-field'>ShipmentState</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='shipmentstate-state'>
+        <td><code><b>state</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>pending</td>
+        <td>Shipment state.
+Available values:
+<ul class="collapsible collapsed">
+<li><code>pending</code></li>
+<li><code>shipped</code></li>
+<li><code>delivered</code></li>
+<li><code>cancelled</code></li>
+</ul></td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<span id='shipmentresponse'></span>
+
+<section>
+<h3 id='shipmentresponse-field'>ShipmentResponse</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='shipmentresponse-id'>
+        <td><code><b>id</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1</td>
+        <td>Unique ID.</td>
+    </tr>
+    <tr id='shipmentresponse-referencenumber'>
+        <td><code><b>referenceNumber</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>SR10001</code></td>
+        <td>Unique ID for the shipment.</td>
+    </tr>
+    <tr id='shipmentresponse-orderrefnum'>
+        <td><code><b>orderRefNum</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>BR10001</code></td>
+        <td>Order that the shipment is associated with.</td>
+    </tr>
+    <tr id='shipmentresponse-shipmentdate'>
+        <td><code><b>shipmentDate</b></code></td>
+        <td><code>String</code>
+        <td></td>
+        <td><code>2020-01-01T12:00:00Z</code></td>
+        <td>Date that the shipment leaves the warehouse.</td>
+    </tr>
+    <tr id='shipmentresponse-estimatedarrival'>
+        <td><code><b>estimatedArrival</b></code></td>
+        <td><code>String</code>
+        <td></td>
+        <td><code>2020-01-01T12:00:00Z</code></td>
+        <td>Date that the shipment is expected to arrive to the customer.</td>
+    </tr>
+    <tr id='shipmentresponse-delivereddate'>
+        <td><code><b>deliveredDate</b></code></td>
+        <td><code>String</code>
+        <td></td>
+        <td><code>2020-01-01T12:00:00Z</code></td>
+        <td>Date that the shipment was delivered.</td>
+    </tr>
+    <tr id='shipmentresponse-address'>
+        <td><code><b>address</b></code></td>
+        <td><code><a href='#shippingaddressresponse'>ShippingAddressResponse</a></code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>Destination address.</td>
+    </tr>
+    <tr id='shipmentresponse-shipmentlineitems'>
+        <td><code><b>shipmentLineItems</b></code></td>
+        <td><code>Array&lt;<a href='#shipmentlineitemresponse'>ShipmentLineItemResponse</a>&gt;</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>The items that should be part of the shipment.</td>
+    </tr>
+    <tr id='shipmentresponse-trackingnumber'>
+        <td><code><b>trackingNumber</b></code></td>
+        <td><code>String</code>
+        <td></td>
+        <td><code>1Z9999999999999999</code></td>
+        <td>An optional tracking number, if it&#39;s provided.</td>
+    </tr>
+    <tr id='shipmentresponse-shippingprice'>
+        <td><code><b>shippingPrice</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>399</td>
+        <td>The price of the shipment.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+<div class='accordion'>
+	<label><span class='expander'>▶</span> Fields inherited from <a href='#shipmentstate'>ShipmentState</a></label>
+	<div class='accordion-content'><section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='shipmentresponse-state'>
+        <td><code><b>state</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>pending</td>
+        <td>Shipment state.
+Available values:
+<ul class="collapsible collapsed">
+<li><code>pending</code></li>
+<li><code>shipped</code></li>
+<li><code>delivered</code></li>
+<li><code>cancelled</code></li>
+</ul></td>
+    </tr>
+</tbody></table>
+
+
+</section></div>
+</div>
+
+</section>
+<span id='shippingaddress'></span>
+
+<section>
+<h3 id='shippingaddress-field'>ShippingAddress</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='shippingaddress-id'>
+        <td><code><b>id</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1</td>
+        <td>Unique ID.</td>
+    </tr>
+    <tr id='shippingaddress-region'>
+        <td><code><b>region</b></code></td>
+        <td><code><a href='#region'>Region</a></code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>Associated region.</td>
+    </tr>
+    <tr id='shippingaddress-name'>
+        <td><code><b>name</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>Home</code></td>
+        <td>Address record name.</td>
+    </tr>
+    <tr id='shippingaddress-address1'>
+        <td><code><b>address1</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>38 Baker Street</code></td>
+        <td>Actual address.</td>
+    </tr>
+    <tr id='shippingaddress-address2'>
+        <td><code><b>address2</b></code></td>
+        <td><code>String</code>
+        <td></td>
+        <td><code>39 Baker Street</code></td>
+        <td>Additional address line.</td>
+    </tr>
+    <tr id='shippingaddress-city'>
+        <td><code><b>city</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>Donkeyville</code></td>
+        <td>City.</td>
+    </tr>
+    <tr id='shippingaddress-zip'>
+        <td><code><b>zip</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>55555</code></td>
+        <td>Zip code.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<span id='shippingaddressresponse'></span>
+
+<section>
+<h3 id='shippingaddressresponse-field'>ShippingAddressResponse</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='shippingaddressresponse-id'>
+        <td><code><b>id</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1</td>
+        <td>Unique ID.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+<div class='accordion'>
+	<label><span class='expander'>▶</span> Fields inherited from <a href='#shippingaddress'>ShippingAddress</a></label>
+	<div class='accordion-content'><section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='shippingaddressresponse-region'>
+        <td><code><b>region</b></code></td>
+        <td><code><a href='#region'>Region</a></code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>Associated region.</td>
+    </tr>
+    <tr id='shippingaddressresponse-name'>
+        <td><code><b>name</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>Home</code></td>
+        <td>Address record name.</td>
+    </tr>
+    <tr id='shippingaddressresponse-address1'>
+        <td><code><b>address1</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>38 Baker Street</code></td>
+        <td>Actual address.</td>
+    </tr>
+    <tr id='shippingaddressresponse-address2'>
+        <td><code><b>address2</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>39 Baker Street</code></td>
+        <td>Additional address line.</td>
+    </tr>
+    <tr id='shippingaddressresponse-city'>
+        <td><code><b>city</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>Donkeyville</code></td>
+        <td>City.</td>
+    </tr>
+    <tr id='shippingaddressresponse-zip'>
+        <td><code><b>zip</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>55555</code></td>
+        <td>Zip code.</td>
+    </tr>
+</tbody></table>
+
+
+</section></div>
+</div>
+
+</section>
+<span id='shipmentlineitemresponse'></span>
+
+<section>
+<h3 id='shipmentlineitemresponse-field'>ShipmentLineItemResponse</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='shipmentlineitemresponse-id'>
+        <td><code><b>id</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1</td>
+        <td>Unique ID.</td>
+    </tr>
+    <tr id='shipmentlineitemresponse-referencenumber'>
+        <td><code><b>referenceNumber</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>SR10001</code></td>
+        <td>Unique ID for the line item.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
 <h2 id='notes'>Notes</h2><p>Accessible via <a href="#foxapi-notes">notes</a> property of <a href="#foxapi">FoxApi</a> instance.</p>
 
 <section>
@@ -5722,212 +6440,6 @@ Available values:
 		<td>Lookup SKU inventory.</td>
 	</tr>
 </tbody></table>
-
-</section>
-
-</section>
-<span id='inventoryitemtype'></span>
-
-<section>
-<h3 id='inventoryitemtype-field'>InventoryItemType</h3>
-
-<section >
-
-
-
-<div class='section-comments'></div>
-
-<table><thead>
-<tr>
-    <th>Field</th>
-    <th>Type</th>
-    <th>Required</th>
-    <th>Example</th>
-    <th>Description</th>
-</tr>
-</thead><tbody>
-    <tr id='inventoryitemtype-type'>
-        <td><code><b>type</b></code></td>
-        <td><code>String</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td><code>Sellable</code></td>
-        <td>Inventory item type.
-Available values:
-<ul class="collapsible collapsed">
-<li><code>Sellable</code></li>
-<li><code>Non-sellable</code></li>
-<li><code>Preorder</code></li>
-<li><code>Backorder</code></li>
-</ul></td>
-    </tr>
-</tbody></table>
-
-
-</section>
-
-</section>
-<span id='inventoryitem'></span>
-
-<section>
-<h3 id='inventoryitem-field'>InventoryItem</h3>
-
-<section >
-
-
-
-<div class='section-comments'></div>
-
-<table><thead>
-<tr>
-    <th>Field</th>
-    <th>Type</th>
-    <th>Required</th>
-    <th>Example</th>
-    <th>Description</th>
-</tr>
-</thead><tbody>
-    <tr id='inventoryitem-sku'>
-        <td><code><b>sku</b></code></td>
-        <td><code>String</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td><code>TEST-SKU</code></td>
-        <td>Associated SKU code.</td>
-    </tr>
-    <tr id='inventoryitem-stockitem'>
-        <td><code><b>stockItem</b></code></td>
-        <td><code><a href='#stockitemresponse'>StockItemResponse</a></code>
-        <td><div data-icon="ei-check"></div></td>
-        <td></td>
-        <td>Associated stock item.</td>
-    </tr>
-    <tr id='inventoryitem-stocklocation'>
-        <td><code><b>stockLocation</b></code></td>
-        <td><code><a href='#stocklocationresponse'>StockLocationResponse</a></code>
-        <td><div data-icon="ei-check"></div></td>
-        <td></td>
-        <td>Associated stock location.</td>
-    </tr>
-    <tr id='inventoryitem-onhand'>
-        <td><code><b>onHand</b></code></td>
-        <td><code>Number</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td>1</td>
-        <td>Number of items on hand.</td>
-    </tr>
-    <tr id='inventoryitem-onhold'>
-        <td><code><b>onHold</b></code></td>
-        <td><code>Number</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td>1</td>
-        <td>Number of items on hold.</td>
-    </tr>
-    <tr id='inventoryitem-reserved'>
-        <td><code><b>reserved</b></code></td>
-        <td><code>Number</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td>1</td>
-        <td>Number of reserved items.</td>
-    </tr>
-    <tr id='inventoryitem-shipped'>
-        <td><code><b>shipped</b></code></td>
-        <td><code>Number</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td>1</td>
-        <td>Number of shipped items.</td>
-    </tr>
-    <tr id='inventoryitem-afs'>
-        <td><code><b>afs</b></code></td>
-        <td><code>Number</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td>1</td>
-        <td>Number of items available for sale.</td>
-    </tr>
-    <tr id='inventoryitem-afscost'>
-        <td><code><b>afsCost</b></code></td>
-        <td><code>Number</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td>1000</td>
-        <td>Total cost of all the items available for sale.</td>
-    </tr>
-    <tr id='inventoryitem-createdat'>
-        <td><code><b>createdAt</b></code></td>
-        <td><code>String</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td><code>2020-01-01T12:00:00Z</code></td>
-        <td>Creation date.</td>
-    </tr>
-</tbody></table>
-
-
-</section>
-
-<div class='accordion'>
-	<label><span class='expander'>▶</span> Fields inherited from <a href='#inventoryitemtype'>InventoryItemType</a></label>
-	<div class='accordion-content'><section >
-
-
-
-<div class='section-comments'></div>
-
-<table><thead>
-<tr>
-    <th>Field</th>
-    <th>Type</th>
-    <th>Required</th>
-    <th>Example</th>
-    <th>Description</th>
-</tr>
-</thead><tbody>
-    <tr id='inventoryitem-type'>
-        <td><code><b>type</b></code></td>
-        <td><code>String</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td><code>Sellable</code></td>
-        <td>Inventory item type.
-Available values:
-<ul class="collapsible collapsed">
-<li><code>Sellable</code></li>
-<li><code>Non-sellable</code></li>
-<li><code>Preorder</code></li>
-<li><code>Backorder</code></li>
-</ul></td>
-    </tr>
-</tbody></table>
-
-
-</section></div>
-</div>
-
-</section>
-<span id='inventoryresponse'></span>
-
-<section>
-<h3 id='inventoryresponse-field'>InventoryResponse</h3>
-
-<section >
-
-
-
-<div class='section-comments'></div>
-
-<table><thead>
-<tr>
-    <th>Field</th>
-    <th>Type</th>
-    <th>Required</th>
-    <th>Example</th>
-    <th>Description</th>
-</tr>
-</thead><tbody>
-    <tr id='inventoryresponse-summary'>
-        <td><code><b>summary</b></code></td>
-        <td><code>Array&lt;<a href='#inventoryitem'>InventoryItem</a>&gt;</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td></td>
-        <td>Inventory items.</td>
-    </tr>
-</tbody></table>
-
 
 </section>
 

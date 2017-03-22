@@ -35,6 +35,7 @@ import CouponCodes from './api/coupon-codes';
 import Albums from './api/albums';
 import Notes from './api/notes';
 import Carts from './api/carts';
+import Inventories from './api/inventories';
 
 export default class Api {
   constructor(args) {
@@ -137,6 +138,10 @@ export default class Api {
     // @property carts: Carts
     // Carts instance
     this.carts = new Carts(this);
+
+    // @property inventories: Inventories
+    // Inventories instance
+    this.inventories = new Inventories(this);
   }
 
   // @method addAuth(jwt: String): FoxApi

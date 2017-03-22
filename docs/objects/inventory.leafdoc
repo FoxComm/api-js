@@ -1,5 +1,5 @@
 
-@miniclass InventoryItemType (Skus)
+@miniclass InventoryItemType (Inventories)
 @aka inventoryitemtype
 
 @field type: String = `Sellable`
@@ -12,7 +12,7 @@ Available values:
 <li>`Backorder`</li>
 </ul>
 
-@miniclass InventoryItem (Skus)
+@miniclass InventoryItem (Inventories)
 @aka inventoryitem
 @inherits InventoryItemType
 
@@ -46,8 +46,18 @@ Total cost of all the items available for sale.
 @field createdAt: String = `2020-01-01T12:00:00Z`
 Creation date.
 
-@miniclass InventoryResponse (Skus)
+@miniclass InventoryResponse (Inventories)
 @aka inventoryresponse
 
 @field summary: Array<InventoryItem>
 Inventory items.
+
+@miniclass ModifyInventoryItemQuantityPayload (Inventories)
+@aka modifyinventoryitemquantitypayload
+@inherits InventoryItemType
+
+@field qty: Number = 1
+Items quantity.
+
+@field status: String = `onHand`
+Item status.

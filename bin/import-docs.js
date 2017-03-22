@@ -259,7 +259,6 @@ const importData = {
   'Skus': [
     'SkuPayload',
     'SkuResponse',
-    'InventoryResponse',
   ],
   'Products': [
     'ProductPayload',
@@ -292,6 +291,11 @@ const importData = {
   'Watchers': [
     'Watcher',
     'AddWatchersPayload',
+  ],
+  'Inventories': [
+    'InventoryResponse',
+    'ShipmentResponse',
+    'ModifyInventoryItemQuantityPayload',
   ],
 };
 

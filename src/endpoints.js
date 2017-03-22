@@ -2,7 +2,6 @@
 const MAX_RESULTS = 1000;
 
 export default Object.freeze({
-  // auth
   login: '/v1/public/login',
   signup: '/v1/public/registrations/new',
   googleSignin: '/v1/public/signin/google/customer',
@@ -10,10 +9,8 @@ export default Object.freeze({
   sendRestPassword: '/v1/public/send-password-reset',
   resetPassword: '/v1/public/reset-password',
 
-  // product
   search: `/search/products_catalog_view/_search?size=${MAX_RESULTS}`,
 
-  // cart
   customerCart: '/v1/my/cart',
   customerCartCheckout: '/v1/my/cart/checkout',
   customerCartShippingMethods: '/v1/my/cart/shipping-methods',
@@ -31,31 +28,25 @@ export default Object.freeze({
   addToCart: '/v1/my/cart/add',
   removeFromCart: '/v1/my/cart/line-items/:id/edit',
 
-  // address
   addresses: '/v1/my/addresses',
   address: addressId => `/v1/my/addresses/${addressId}`,
   addressDefault: addressId => `${address(addressId)}/default`,
   addressesDefault: '/v1/my/address/default',
 
-  // payment methods, credit cards
   creditCards: '/v1/my/payment-methods/credit-cards',
   creditCard: creditCardId => `${creditCards}/${creditCardId}`,
   creditCardDefault: creditCardId => `${creditCard(creditCardId)}/default`,
 
-  // payment methods, store credits
   storeCredit: storeCreditId => `/v1/my/payment-methods/store-credits/${storeCreditId}`,
   storeCreditTotals: `/v1/my/payment-methods/store-credits/totals`,
   storeCredits: `/search/store_credits_search_view/_search`,
 
-  // account
   account: '/v1/my/account',
   changePassword: '/v1/my/account/change-password',
 
-  // orders
   orders: '/v1/my/orders',
   order: referenceNumber => `/v1/my/orders/${referenceNumber}`,
 
-  // analytics
   hal: '/v1/hal',
 
   customers: '/v1/customers',
@@ -101,4 +92,9 @@ export default Object.freeze({
   cartWatchers: referenceNumber => `/v1/carts/${referenceNumber}/watchers`,
   cartWatcher: (referenceNumber, watcherId) => `/v1/carts/${referenceNumber}/watchers/${watcherId}`,
   cartShippingMethods: referenceNumber => `/v1/shipping-methods/${referenceNumber}`,
+
+  inventory: skuCode => `/v1/inventory/summary/${skuCode}`,
+  inventoryIncrement: stockItemId => `/v1/inventory/stock-items/${stockItemId}/increment`,
+  inventoryDecrement: stockItemId => `/v1/inventory/stock-items/${stockItemId}/decrement`,
+  inventoryShipments: referenceNumber => `/v1/inventory/shipments/${referenceNumber}`,
 });
