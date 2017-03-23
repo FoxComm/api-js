@@ -1972,18 +1972,22 @@ creates new password</td>
 	<tr id='cart-addgiftcard'>
 		<td><code><b>addGiftCard</b>(<nobr>&lt;<a href='#giftcardpaymentpayload'>GiftCardPaymentPayload</a>&gt;</nobr> <i>giftCardPayload</i>)</nobr></code></td>
 		<td><code>Promise&lt;<a href='#fullorder'>FullOrder</a>&gt;</code></td>
-		<td>Adds a gift card as payment method for the cart.
-<p>Creates payment method with a given amount using store credit.</p></td>
+		<td>Adds a gift card as payment method for the cart.</td>
 	</tr>
 	<tr id='cart-removegiftcard'>
 		<td><code><b>removeGiftCard</b>(<nobr>&lt;string&gt;</nobr> <i>giftCardCode</i>)</nobr></code></td>
 		<td><code>Promise&lt;<a href='#fullorder'>FullOrder</a>&gt;</code></td>
 		<td>Removes gift card with provided code payment method from the cart.</td>
 	</tr>
+	<tr id='cart-addstorecredit'>
+		<td><code><b>addStoreCredit</b>(<nobr>&lt;Number&gt;</nobr> <i>amount</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#fullorder'>FullOrder</a>&gt;</code></td>
+		<td>Add store credit to customer&#39;s cart.</td>
+	</tr>
 	<tr id='cart-removestorecredits'>
 		<td><code><b>removeStoreCredits</b>()</nobr></code></td>
 		<td><code>Promise&lt;<a href='#fullorder'>FullOrder</a>&gt;</code></td>
-		<td>Removes all store credits payment methods of the cart.</td>
+		<td>Removes all store credits from cart.</td>
 	</tr>
 	<tr id='cart-addcoupon'>
 		<td><code><b>addCoupon</b>(<nobr>&lt;Number&gt;</nobr> <i>code</i>)</nobr></code></td>

@@ -20,7 +20,7 @@ export default Object.freeze({
   customerCartPaymentCreditCards: '/v1/my/cart/payment-methods/credit-cards',
   customerCartPaymentGiftCards: '/v1/my/cart/payment-methods/gift-cards',
   customerCartPaymentGiftCardsWithCode: giftCardCode => `/v1/my/cart/payment-methods/gift-cards/${giftCardCode}`,
-  customerCartPaymentStoreCredits: '/v1/my/cart/payment-methods/store-credits',
+  customerCartPaymentStoreCredit: '/v1/my/cart/payment-methods/store-credit',
   customerCartPaymentCouponCode: '/v1/my/cart/coupon',
   customerCartPaymentCouponCodeWithCode: code => `/v1/my/cart/coupon/${code}`,
   shippingAddressId: id => `${shippingAddress}/${id}`,

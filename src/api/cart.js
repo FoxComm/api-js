@@ -179,19 +179,19 @@ export default class Cart {
   }
 
   /**
-   * @method addGiftCard(amount: Number): Promise<FullOrder>
-   * Creates payment method with a given amount using store credit.
+   * @method addStoreCredit(amount: Number): Promise<FullOrder>
+   * Add store credit to customer's cart.
    */
   addStoreCredit(amount) {
-    return this.api.post(endpoints.customerCartPaymentStoreCredits, { amount }).then(normalizeResponse);
+    return this.api.post(endpoints.customerCartPaymentStoreCredit, { amount });
   }
 
   /**
    * @method removeStoreCredits(): Promise<FullOrder>
-   * Removes all store credits payment methods of the cart.
+   * Removes all store credits from cart.
    */
-  removeStoreCredits() {
-    return this.api.delete(endpoints.customerCartPaymentStoreCredits).then(normalizeResponse);
+  removeStoreCredit() {
+    return this.api.delete(endpoints.customerCartPaymentStoreCredit);
   }
 
 
