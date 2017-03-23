@@ -55,6 +55,7 @@
                 <li><a href="#inventories">Inventories</a></li>
                 <li><a href="#orders">Orders</a></li>
                 <li><a href="#sharedsearches">Shared Searches</a></li>
+                <li><a href="#storeadmins">Store Admins</a></li>
                 <li><a href="#dev">Dev</a></li>
             </ul>
         </div>
@@ -330,6 +331,11 @@ You can define jwt string via <code>addAuth</code> method, if there is no jwt st
 		<td><code><b>sharedSearches</b>
 		<td><code><a href='#sharedsearches'>SharedSearches</a></code></td>
 		<td>SharedSearches instance</td>
+	</tr>
+	<tr id='foxapi-storeadmins'>
+		<td><code><b>storeAdmins</b>
+		<td><code><a href='#storeadmins'>StoreAdmins</a></code></td>
+		<td>StoreAdmins instance</td>
 	</tr>
 	<tr id='foxapi-dev'>
 		<td><code><b>dev</b>
@@ -6667,7 +6673,7 @@ Available values:
 	</tr>
 	<tr id='sharedsearches-getassociates'>
 		<td><code><b>getAssociates</b>(<nobr>&lt;String&gt;</nobr> <i>code</i>)</nobr></code></td>
-		<td><code>Promise&lt;StoreAdmin[]&gt;</code></td>
+		<td><code>Promise&lt;<a href='#storeadmin'>StoreAdmin</a>[]&gt;</code></td>
 		<td>Get shared search associates.</td>
 	</tr>
 	<tr id='sharedsearches-addassociate'>
@@ -7072,6 +7078,220 @@ Available values:
         <td></td>
         <td><code>2020-01-01T12:00:00Z</code></td>
         <td>Archiving date.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<h2 id='storeadmins'>StoreAdmins</h2><p>Accessible via <a href="#foxapi-storeadmins">storeAdmins</a> property of <a href="#foxapi">FoxApi</a> instance.</p>
+
+<section>
+<h3 id='storeadmins-method'>Methods</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+	<tr>
+		<th>Method</th>
+		<th>Returns</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='storeadmins-create'>
+		<td><code><b>create</b>(<nobr>&lt;<a href='#storeadmincreatepayload'>StoreAdminCreatePayload</a>&gt;</nobr> <i>storeAdmin</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#storeadmin'>StoreAdmin</a>&gt;</code></td>
+		<td>Create new store admin.</td>
+	</tr>
+	<tr id='storeadmins-one'>
+		<td><code><b>one</b>(<nobr>&lt;Number&gt;</nobr> <i>storeAdminId</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#storeadmin'>StoreAdmin</a>&gt;</code></td>
+		<td>Find store admin by id.</td>
+	</tr>
+	<tr id='storeadmins-update'>
+		<td><code><b>update</b>(<nobr>&lt;Number&gt;</nobr> <i>storeAdminId</i>, <nobr>&lt;<a href='#storeadminupdatepayload'>StoreAdminUpdatePayload</a>&gt;</nobr> <i>storeAdmin</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#storeadmin'>StoreAdmin</a>&gt;</code></td>
+		<td>Update store admin details.</td>
+	</tr>
+</tbody></table>
+
+</section>
+
+</section>
+<span id='storeadmin'></span>
+
+<section>
+<h3 id='storeadmin-field'>StoreAdmin</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='storeadmin-id'>
+        <td><code><b>id</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1</td>
+        <td>ID.</td>
+    </tr>
+    <tr id='storeadmin-email'>
+        <td><code><b>email</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>admin@admin.com</td>
+        <td>Email.</td>
+    </tr>
+    <tr id='storeadmin-org'>
+        <td><code><b>org</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>tenant</td>
+        <td>Organisation.</td>
+    </tr>
+    <tr id='storeadmin-department'>
+        <td><code><b>department</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>Superadmins</td>
+        <td>Department.</td>
+    </tr>
+    <tr id='storeadmin-phonenumber'>
+        <td><code><b>phoneNumber</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1231231233</td>
+        <td>Phone Number.</td>
+    </tr>
+    <tr id='storeadmin-state'>
+        <td><code><b>state</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>active</td>
+        <td>State, can be one of next values: &#39;active&#39;, &#39;inactive&#39;, &#39;archived&#39;, &quot;invited.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<span id='storeadmincreatepayload'></span>
+
+<section>
+<h3 id='storeadmincreatepayload-field'>StoreAdminCreatePayload</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='storeadmincreatepayload-email'>
+        <td><code><b>email</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>admin@admin.com</td>
+        <td>Email.</td>
+    </tr>
+    <tr id='storeadmincreatepayload-org'>
+        <td><code><b>org</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>tenant</td>
+        <td>Organisation.</td>
+    </tr>
+    <tr id='storeadmincreatepayload-password'>
+        <td><code><b>password</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>somepassword</td>
+        <td>Password.</td>
+    </tr>
+    <tr id='storeadmincreatepayload-department'>
+        <td><code><b>department</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>Superadmins</td>
+        <td>Department.</td>
+    </tr>
+    <tr id='storeadmincreatepayload-phonenumber'>
+        <td><code><b>phoneNumber</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1231231233</td>
+        <td>Phone Number.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<span id='storeadminupdatepayload'></span>
+
+<section>
+<h3 id='storeadminupdatepayload-field'>StoreAdminUpdatePayload</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='storeadminupdatepayload-email'>
+        <td><code><b>email</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>admin@admin.com</td>
+        <td>Email.</td>
+    </tr>
+    <tr id='storeadminupdatepayload-org'>
+        <td><code><b>org</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>tenant</td>
+        <td>Organisation.</td>
+    </tr>
+    <tr id='storeadminupdatepayload-phonenumber'>
+        <td><code><b>phoneNumber</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1231231233</td>
+        <td>Phone Number.</td>
     </tr>
 </tbody></table>
 

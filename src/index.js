@@ -37,6 +37,7 @@ import Notes from './api/notes';
 import Carts from './api/carts';
 import Inventories from './api/inventories';
 import SharedSearches from './api/shared-searches';
+import StoreAdmins from './api/store-admins';
 import Dev from './api/dev';
 
 export default class Api {
@@ -148,6 +149,10 @@ export default class Api {
     // @property sharedSearches: SharedSearches
     // SharedSearches instance
     this.sharedSearches = new SharedSearches(this);
+
+    // @property storeAdmins: StoreAdmins
+    // StoreAdmins instance
+    this.storeAdmins = new StoreAdmins(this);
 
     // @property dev: Dev
     // Dev instance

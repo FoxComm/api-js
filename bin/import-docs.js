@@ -307,6 +307,11 @@ const importData = {
     'SharedSearchPayload',
     'SharedSearchAssociationPayload',
   ],
+  'StoreAdmins': [
+    'StoreAdmin',
+    'StoreAdminCreatePayload',
+    'StoreAdminUpdatePayload',
+  ],
 };
 
 function convertDocs() {

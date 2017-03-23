@@ -109,4 +109,7 @@ export default Object.freeze({
     `/v1/shared-search/${code}/associate${associateId ? `/${associateId}` : ''}`,
 
   creditCardToken: '/v1/credit-card-token',
+
+  storeAdmins: '/v1/store-admins',
+  storeAdmin: storeAdminId => `/v1/store-admins/${storeAdminId}`,
 });
