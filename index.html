@@ -55,6 +55,7 @@
                 <li><a href="#inventories">Inventories</a></li>
                 <li><a href="#orders">Orders</a></li>
                 <li><a href="#sharedsearches">Shared Searches</a></li>
+                <li><a href="#dev">Dev</a></li>
             </ul>
         </div>
     </div>
@@ -329,6 +330,11 @@ You can define jwt string via <code>addAuth</code> method, if there is no jwt st
 		<td><code><b>sharedSearches</b>
 		<td><code><a href='#sharedsearches'>SharedSearches</a></code></td>
 		<td>SharedSearches instance</td>
+	</tr>
+	<tr id='foxapi-dev'>
+		<td><code><b>dev</b>
+		<td><code><a href='#dev'>Dev</a></code></td>
+		<td>Dev instance</td>
 	</tr>
 </tbody></table>
 
@@ -3715,6 +3721,121 @@ Available values:
 </section>
 <span id='creditcardsresponse'></span>
 
+<span id='issuecreditcardtokenpayload'></span>
+
+<section>
+<h3 id='issuecreditcardtokenpayload-field'>IssueCreditCardTokenPayload</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='issuecreditcardtokenpayload-customerid'>
+        <td><code><b>customerId</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>1</td>
+        <td>Customer ID.</td>
+    </tr>
+    <tr id='issuecreditcardtokenpayload-cardnumber'>
+        <td><code><b>cardNumber</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>4242424242424242</code></td>
+        <td>Credit card number.</td>
+    </tr>
+    <tr id='issuecreditcardtokenpayload-expmonth'>
+        <td><code><b>expMonth</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>4</td>
+        <td>Expiration month.</td>
+    </tr>
+    <tr id='issuecreditcardtokenpayload-expyear'>
+        <td><code><b>expYear</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>2020</td>
+        <td>Expiration year.</td>
+    </tr>
+    <tr id='issuecreditcardtokenpayload-cvv'>
+        <td><code><b>cvv</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>123</td>
+        <td>Credit card CVV.</td>
+    </tr>
+    <tr id='issuecreditcardtokenpayload-address'>
+        <td><code><b>address</b></code></td>
+        <td><code><a href='#address'>Address</a></code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>Billing address.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<span id='creditcardtokenresponse'></span>
+
+<section>
+<h3 id='creditcardtokenresponse-field'>CreditCardTokenResponse</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='creditcardtokenresponse-token'>
+        <td><code><b>token</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>tok_absj22123mjssm</code></td>
+        <td>stripe.js credit card token.</td>
+    </tr>
+    <tr id='creditcardtokenresponse-brand'>
+        <td><code><b>brand</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>Visa</code></td>
+        <td>Credit card brand.</td>
+    </tr>
+    <tr id='creditcardtokenresponse-lastfour'>
+        <td><code><b>lastFour</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>1234</code></td>
+        <td>Last four digits of card number.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
 <h2 id='customeraddresses'>CustomerAddresses</h2><p>Accessible via <a href="#foxapi-customeraddresses">customerAddresses</a> property of <a href="#foxapi">FoxApi</a> instance.</p>
 
 <section>
@@ -4404,6 +4525,34 @@ Available values:
     </tr>
 </tbody></table>
 
+
+</section>
+
+</section>
+<h2 id='dev'>Dev</h2><p>Accessible via <a href="#foxapi-dev">dev</a> property of <a href="#foxapi">FoxApi</a> instance.</p>
+
+<section>
+<h3 id='dev-method'>Methods</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+	<tr>
+		<th>Method</th>
+		<th>Returns</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='dev-creditcardtoken'>
+		<td><code><b>creditCardToken</b>(<nobr>&lt;<a href='#issuecreditcardtokenpayload'>IssueCreditCardTokenPayload</a>&gt;</nobr> <i>creditCard</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#creditcardtokenresponse'>CreditCardTokenResponse</a>&gt;</code></td>
+		<td>Issue credit card token.</td>
+	</tr>
+</tbody></table>
 
 </section>
 

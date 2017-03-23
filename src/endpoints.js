@@ -107,4 +107,6 @@ export default Object.freeze({
   sharedSearchAssociates: code => `/v1/shared-search/${code}/associates`,
   sharedSearchAssociate: (code, associateId = null) =>
     `/v1/shared-search/${code}/associate${associateId ? `/${associateId}` : ''}`,
+
+  creditCardToken: '/v1/credit-card-token',
 });
