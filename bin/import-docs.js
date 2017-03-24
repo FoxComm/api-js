@@ -160,7 +160,7 @@ function apiaryToLeafdoc(str, namesMap, parentsMap) {
           description = description + '.'; // Add a point to let style to be similar
         }
 
-        const type = rename(convertType(attrs[attrs.length-1]));
+        const type = rename(convertType(attrs[attrs.length - 1]));
         const defaultPart = example ? ` = ${example}` : '';
         let required = true;
         if (attrs.indexOf('optional') != -1) {
@@ -211,11 +211,6 @@ function apiaryToLeafdoc(str, namesMap, parentsMap) {
 
   doc.setParentNamespace(parentNamespace);
   return doc;
-}
-
-function indexArray(arr, hash = {}) {
-  arr.forEach(value => hash[value] = true);
-  return hash;
 }
 
 function rename(filename, newExt) {
@@ -273,31 +268,33 @@ function convertDocs() {
     return acc;
   }, {});
 
-  const deps = {};
+  const depsTree = {};
   const docs = collectDocs()
     .map(([filename, contents]) => {
       const leafdoc = apiaryToLeafdoc(contents, newNames, parentsMap);
-      leafdoc.indexDeps(deps);
+      leafdoc.indexDeps(depsTree);
       leafdoc.filename = rename(filename, '.leafdoc');
 
       return leafdoc;
     });
 
-  function collectDeps(required) {
-    const requiredDeps = _.flatMap(required, function(name) {
-      return collectDeps(deps[name] || []);
-    });
-
-    return [...required, ...requiredDeps];
-  }
-  const allDeps = indexArray(collectDeps(requiredStructures));
-
-  docs.map(leafdoc => {
-      const value = leafdoc.filterAndDump(allDeps);
-      if (value) {
-        fs.writeFileSync(path.join(outPath, leafdoc.filename), value);
+  const deps = {};
+  const collectDeps = (depNames) =>
+    depNames.forEach(name => {
+      if (!deps[name]) {
+        deps[name] = true;
+        collectDeps(depsTree[name] || []);
       }
     });
+
+  collectDeps(requiredStructures);
+
+  docs.forEach(leafdoc => {
+    const value = leafdoc.filterAndDump(deps);
+    if (value) {
+      fs.writeFileSync(path.join(outPath, leafdoc.filename), value);
+    }
+  });
 }
 
 if (docsPath && outPath) {
@@ -307,4 +304,3 @@ if (docsPath && outPath) {
   console.log('APIARY_DOCS_PATH=../docs/apiary-objects node bin/import-docs.js');
   process.exit(1);
 }
-
