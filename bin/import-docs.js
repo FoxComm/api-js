@@ -145,7 +145,7 @@ function apiaryToLeafdoc(str, namesMap, parentsMap) {
       doc.addStructure(structureName);
     }
     linePadding = 0;
-    if (/^\s+/.test(line)) {
+    if (/^\s+(?:\s|[+\-])/.test(line)) {
       linePadding = /^\s+/.exec(line)[0].length;
       line = line.replace(/^\s+/, '');
     }
