@@ -29,6 +29,12 @@ Contact phone number.
 @field isDefault?: Boolean = false
 Default or not in address book.
 
+@miniclass AddressesResponse (Addresses)
+@aka addressesresponse
+
+@field results: Array<Address>
+Addresses list.
+
 @miniclass CreateAddressPayload (Addresses)
 @aka createaddresspayload
 

@@ -35,29 +35,29 @@ Billing address.
 @miniclass CreditCardCreatePayload (CreditCards)
 @aka creditcardcreatepayload
 
-@field holderName: String = `John Smith`
-Cardholder name.
+@field token: String = `tok_absj22123mjssm`
+stripe.js credit card token.
 
-@field number: String = `5555 5555 5555 5555`
-Credit card number.
-
-@field cvv: String = `555`
-CVV.
-
-@field expMonth: Number = 4
-Expiration month.
+@field lastFour: String = `1234`
+Last four digits of card number.
 
 @field expYear: Number = 2020
 Expiration year.
 
-@field address?: CreateAddressPayload
+@field expMonth: Number = 4
+Expiration month.
+
+@field brand: String = `Visa`
+Credit card brand.
+
+@field holderName: String = `John Smith`
+Cardholder name.
+
+@field billingAddress: CreateAddressPayload
 Billing address.
 
-@field addressId?: Number
-Billing address ID.
-
-@field isDefault?: Boolean = false
-Defines whether credit card is default.
+@field addressIsNew: Boolean = false
+If the billing address was just created.
 
 @miniclass CreditCardUpdatePayload (CreditCards)
 @aka creditcardupdatepayload

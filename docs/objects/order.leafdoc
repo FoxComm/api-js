@@ -72,7 +72,7 @@ Fraud score.
 @field customer?: CustomerResponse
 Associated customer.
 
-@field totals: Totals
+@field totals: OrderTotals
 Order totals.
 
 @field shippingMethod?: ShippingMethod
@@ -86,9 +86,6 @@ Remorse period end.
 
 @field paymentMethods?: Array<DisplayPayment>
 Order payment.
-
-@field lockedBy?: StoreAdminResponse
-Currently locked by.
 
 @field warnings?: Array<String> = `List of validation errors and warnings`
 Warnings.
@@ -147,8 +144,8 @@ Available values:
 <li>`StoreCredit`</li>
 </ul>
 
-@miniclass Totals (Cart)
-@aka totals
+@miniclass OrderTotals (Cart)
+@aka ordertotals
 
 @field subTotal: Number = 100
 Subtotal.
