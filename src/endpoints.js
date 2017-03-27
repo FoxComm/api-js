@@ -23,7 +23,7 @@ export const cartLineItems = '/v1/my/cart/line-items';
 export const cartPaymentCreditCarts = '/v1/my/cart/payment-methods/credit-cards';
 export const cartPaymentGiftCards = '/v1/my/cart/payment-methods/gift-cards';
 export const cartPaymentGiftCardsWithCode = giftCardCode => `/v1/my/cart/payment-methods/gift-cards/${giftCardCode}`;
-export const cartPaymentStoreCredits = '/v1/my/cart/payment-methods/store-credits';
+export const cartPaymentStoreCredit = '/v1/my/cart/payment-methods/store-credit';
 export const cartPaymentCouponCode = '/v1/my/cart/coupon';
 export const cartPaymentCouponCodeWithCode = code => `/v1/my/cart/coupon/${code}`;
 
