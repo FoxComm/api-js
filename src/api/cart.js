@@ -116,7 +116,7 @@ export default class Cart {
    * @method updateQty(sku: String, quantity: Number, attributes?: ItemAttributes): Promise<FullOrder>
    * Updates quantity and optionally attributes for selected item in the cart
    */
-  updateQty(sku, quantity , attributes = {}) {
+  updateQty(sku, quantity, attributes = {}) {
     return this.updateItems({
       [sku]: {
         attributes,
@@ -183,7 +183,7 @@ export default class Cart {
    * Creates payment method with a given amount using store credit.
    */
   addStoreCredit(amount) {
-    return this.api.post(endpoints.cartPaymentStoreCredits, { amount }).then(normalizeResponse);
+    return this.api.post(endpoints.cartPaymentStoreCredit, { amount }).then(normalizeResponse);
   }
 
   /**
@@ -191,7 +191,7 @@ export default class Cart {
    * Removes all store credits payment methods of the cart.
    */
   removeStoreCredits() {
-    return this.api.delete(endpoints.cartPaymentStoreCredits).then(normalizeResponse);
+    return this.api.delete(endpoints.cartPaymentStoreCredit).then(normalizeResponse);
   }
 
 
