@@ -1167,7 +1167,7 @@ In case if err is Error itself returns array of single element - that error as a
 	</thead><tbody>
 	<tr id='addresses-list'>
 		<td><code><b>list</b>(<nobr>&lt;<a href='#query-options'>Query options</a>&gt;</nobr> <i>options</i>)</nobr></code></td>
-		<td><code>Promise&lt;AddressesResponse&gt;</code></td>
+		<td><code>Promise&lt;<a href='#addressesresponse'>AddressesResponse</a>&gt;</code></td>
 		<td>Choices for <code>options.sortBy</code> parameter:
 <ul class="collapsible collapsed">
   <li><code>id</code></li>
@@ -1303,6 +1303,39 @@ In case if err is Error itself returns array of single element - that error as a
         <td></td>
         <td>false</td>
         <td>Default or not in address book.</td>
+    </tr>
+</tbody></table>
+
+
+</section>
+
+</section>
+<span id='addressesresponse'></span>
+
+<section>
+<h3 id='addressesresponse-field'>AddressesResponse</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+<tr>
+    <th>Field</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Example</th>
+    <th>Description</th>
+</tr>
+</thead><tbody>
+    <tr id='addressesresponse-results'>
+        <td><code><b>results</b></code></td>
+        <td><code>Array&lt;<a href='#address'>Address</a>&gt;</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td></td>
+        <td>Addresses list.</td>
     </tr>
 </tbody></table>
 
@@ -2019,7 +2052,7 @@ Available values:
     </tr>
     <tr id='fullorder-totals'>
         <td><code><b>totals</b></code></td>
-        <td><code><a href='#totals'>Totals</a></code>
+        <td><code><a href='#ordertotals'>OrderTotals</a></code>
         <td><div data-icon="ei-check"></div></td>
         <td></td>
         <td>Order totals.</td>
@@ -2051,13 +2084,6 @@ Available values:
         <td></td>
         <td></td>
         <td>Order payment.</td>
-    </tr>
-    <tr id='fullorder-lockedby'>
-        <td><code><b>lockedBy</b></code></td>
-        <td><code><a href='#storeadminresponse'>StoreAdminResponse</a></code>
-        <td></td>
-        <td></td>
-        <td>Currently locked by.</td>
     </tr>
     <tr id='fullorder-warnings'>
         <td><code><b>warnings</b></code></td>
@@ -2370,10 +2396,10 @@ Available values:
 </section>
 
 </section>
-<span id='totals'></span>
+<span id='ordertotals'></span>
 
 <section>
-<h3 id='totals-field'>Totals</h3>
+<h3 id='ordertotals-field'>OrderTotals</h3>
 
 <section >
 
@@ -2390,35 +2416,35 @@ Available values:
     <th>Description</th>
 </tr>
 </thead><tbody>
-    <tr id='totals-subtotal'>
+    <tr id='ordertotals-subtotal'>
         <td><code><b>subTotal</b></code></td>
         <td><code>Number</code>
         <td><div data-icon="ei-check"></div></td>
         <td>100</td>
         <td>Subtotal.</td>
     </tr>
-    <tr id='totals-taxes'>
+    <tr id='ordertotals-taxes'>
         <td><code><b>taxes</b></code></td>
         <td><code>Number</code>
         <td><div data-icon="ei-check"></div></td>
         <td>50</td>
         <td>Taxes total.</td>
     </tr>
-    <tr id='totals-shipping'>
+    <tr id='ordertotals-shipping'>
         <td><code><b>shipping</b></code></td>
         <td><code>Number</code>
         <td><div data-icon="ei-check"></div></td>
         <td>5</td>
         <td>Taxes total.</td>
     </tr>
-    <tr id='totals-adjustments'>
+    <tr id='ordertotals-adjustments'>
         <td><code><b>adjustments</b></code></td>
         <td><code>Number</code>
         <td><div data-icon="ei-check"></div></td>
         <td>50</td>
         <td>Adjustments total.</td>
     </tr>
-    <tr id='totals-total'>
+    <tr id='ordertotals-total'>
         <td><code><b>total</b></code></td>
         <td><code>Number</code>
         <td><div data-icon="ei-check"></div></td>
@@ -3073,33 +3099,19 @@ Available values:
     <th>Description</th>
 </tr>
 </thead><tbody>
-    <tr id='creditcardcreatepayload-holdername'>
-        <td><code><b>holderName</b></code></td>
+    <tr id='creditcardcreatepayload-token'>
+        <td><code><b>token</b></code></td>
         <td><code>String</code>
         <td><div data-icon="ei-check"></div></td>
-        <td><code>John Smith</code></td>
-        <td>Cardholder name.</td>
+        <td><code>tok_absj22123mjssm</code></td>
+        <td>stripe.js credit card token.</td>
     </tr>
-    <tr id='creditcardcreatepayload-number'>
-        <td><code><b>number</b></code></td>
+    <tr id='creditcardcreatepayload-lastfour'>
+        <td><code><b>lastFour</b></code></td>
         <td><code>String</code>
         <td><div data-icon="ei-check"></div></td>
-        <td><code>5555 5555 5555 5555</code></td>
-        <td>Credit card number.</td>
-    </tr>
-    <tr id='creditcardcreatepayload-cvv'>
-        <td><code><b>cvv</b></code></td>
-        <td><code>String</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td><code>555</code></td>
-        <td>CVV.</td>
-    </tr>
-    <tr id='creditcardcreatepayload-expmonth'>
-        <td><code><b>expMonth</b></code></td>
-        <td><code>Number</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td>4</td>
-        <td>Expiration month.</td>
+        <td><code>1234</code></td>
+        <td>Last four digits of card number.</td>
     </tr>
     <tr id='creditcardcreatepayload-expyear'>
         <td><code><b>expYear</b></code></td>
@@ -3108,26 +3120,40 @@ Available values:
         <td>2020</td>
         <td>Expiration year.</td>
     </tr>
-    <tr id='creditcardcreatepayload-address'>
-        <td><code><b>address</b></code></td>
+    <tr id='creditcardcreatepayload-expmonth'>
+        <td><code><b>expMonth</b></code></td>
+        <td><code>Number</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td>4</td>
+        <td>Expiration month.</td>
+    </tr>
+    <tr id='creditcardcreatepayload-brand'>
+        <td><code><b>brand</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>Visa</code></td>
+        <td>Credit card brand.</td>
+    </tr>
+    <tr id='creditcardcreatepayload-holdername'>
+        <td><code><b>holderName</b></code></td>
+        <td><code>String</code>
+        <td><div data-icon="ei-check"></div></td>
+        <td><code>John Smith</code></td>
+        <td>Cardholder name.</td>
+    </tr>
+    <tr id='creditcardcreatepayload-billingaddress'>
+        <td><code><b>billingAddress</b></code></td>
         <td><code><a href='#createaddresspayload'>CreateAddressPayload</a></code>
-        <td></td>
+        <td><div data-icon="ei-check"></div></td>
         <td></td>
         <td>Billing address.</td>
     </tr>
-    <tr id='creditcardcreatepayload-addressid'>
-        <td><code><b>addressId</b></code></td>
-        <td><code>Number</code>
-        <td></td>
-        <td></td>
-        <td>Billing address ID.</td>
-    </tr>
-    <tr id='creditcardcreatepayload-isdefault'>
-        <td><code><b>isDefault</b></code></td>
+    <tr id='creditcardcreatepayload-addressisnew'>
+        <td><code><b>addressIsNew</b></code></td>
         <td><code>Boolean</code>
-        <td></td>
+        <td><div data-icon="ei-check"></div></td>
         <td>false</td>
-        <td>Defines whether credit card is default.</td>
+        <td>If the billing address was just created.</td>
     </tr>
 </tbody></table>
 
