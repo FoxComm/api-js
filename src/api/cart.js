@@ -179,8 +179,8 @@ export default class Cart {
   }
 
   /**
-   * @method addGiftCard(amount: Number): Promise<FullOrder>
-   * Creates payment method with a given amount using store credit.
+   * @method addStoreCredit(amount: Number): Promise<FullOrder>
+   * Adds store credit of specified amount to the cart.
    */
   addStoreCredit(amount) {
     return this.api.post(endpoints.cartPaymentStoreCredit, { amount }).then(normalizeResponse);
