@@ -74,7 +74,7 @@ export default function request(method, uri, data, options) {
   }
 
   if (options.handleResponse !== false) {
-    return requestPromise
+    const chained = requestPromise
       .then(
         response => {
           debug(`${response.status} ${method.toUpperCase()} ${uri}`);
@@ -94,6 +94,8 @@ export default function request(method, uri, data, options) {
           throw error;
         }
       );
+    chained.abort = () => requestPromise.abort();
+    return chained;
   }
 
   return requestPromise;
