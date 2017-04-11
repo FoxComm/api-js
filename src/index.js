@@ -12,6 +12,8 @@
 
 import _ from 'lodash';
 import request from './utils/request';
+import jwtDecode from 'jwt-decode';
+
 import Addresses from './api/adresses';
 import Auth from './api/auth';
 import CreditCards from './api/credit-cards';
@@ -23,6 +25,7 @@ import Reviews from './api/reviews';
 import jwtDecode from 'jwt-decode';
 import Analytics from './api/analytics';
 import CrossSell from './api/cross-sell';
+import ApplePay from './api/apple-pay';
 
 export default class Api {
   constructor(args) {
@@ -49,6 +52,10 @@ export default class Api {
     // @property creditCards: CreditCards
     // CreditCards instance
     this.creditCards = new CreditCards(this);
+
+    // @property applePay: ApplePay
+    // ApplePay instance
+    this.applePay = new ApplePay(this);
 
     // @property storeCredits: StoreCredits
     // StoreCredits instance
