@@ -13,6 +13,7 @@
 import _ from 'lodash';
 import request from './utils/request';
 import jwtDecode from 'jwt-decode';
+import { isBrowser, loadScript } from './utils/browser';
 
 import Addresses from './api/adresses';
 import Auth from './api/auth';
@@ -32,6 +33,7 @@ export default class Api {
     // @option api_url: String
     // Required option. Should point to phoenix backend.
     if (!args.api_url) throw new Error('You must specify an API URL');
+
     // @option stripe_key: String
     // Required option. Should contain Stripe.js publishable key. https://stripe.com/docs/stripe.js#setting-publishable-key
     if (!args.stripe_key) throw new Error('You must specify stripe publishable key. See https://stripe.com/docs/stripe.js#setting-publishable-key');
@@ -42,24 +44,34 @@ export default class Api {
     // could be passed superagent or supertest instance
     this.agent = args.agent || require('superagent');
 
+    // add the stripe.js script if in the browser
+    let stripeLoaded = Promise.resolve();
+
+    if (isBrowser()) {
+    stripeLoaded = loadScript('https://js.stripe.com/v2/').then(() => {
+        Stripe.setPublishableKey(this.stripe_key);
+      });
+    }
+
     // @property addresses: Addresses
     // Addresses instance
     this.addresses = new Addresses(this);
+
     // @property auth: Auth
     // Auth instance
     this.auth = new Auth(this);
 
-    // @property creditCards: CreditCards
-    // CreditCards instance
-    this.creditCards = new CreditCards(this);
-
     // @property applePay: ApplePay
     // ApplePay instance
-    this.applePay = new ApplePay(this);
+    this.applePay = new ApplePay(this, stripeLoaded);
 
     // @property storeCredits: StoreCredits
     // StoreCredits instance
     this.storeCredits = new StoreCredits(this);
+
+    // @property creditCards: CreditCards
+    // CreditCards instance
+    this.creditCards = new CreditCards(this);
 
     // @property cart: Cart
     // Cart instance

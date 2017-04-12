@@ -1,20 +1,44 @@
 import * as endpoints from '../endpoints';
-import { isBrowser, loadScript } from '../utils/browser';
 
 export default class ApplePay {
-  constructor(api) {
+  constructor(api, stripe) {
     this.api = api;
-    if (isBrowser()) {
-      // load Stripe.js
-      loadScript('https://js.stripe.com/v2/').then(() => {
-        Stripe.setPublishableKey(this.api.stripe_key);
-      });
-    }
+    this.stripe = stripe;
   }
 
-  // @method available(): Boolean
+  // @method available(): Promise
   // check if payment with apple pay is possible
   available() {
-    return Stripe.applePay.checkAvailability((available) => available);
+    return this.stripe.then(() => {
+      return new Promise((resolve, reject) => {
+        Stripe.applePay.checkAvailability((available) => {
+          console.log('response from api-js -> ', available);
+          resolve(available);
+        });
+      });
+    });
+  }
+
+  beginApplePay(paymentRequest) {
+    return new Promise((resolve, reject) => {
+      console.log('starting apple pay payment process');
+      console.log('received the request obj -> ', paymentRequest);
+      const session = Stripe.applePay.buildSession(paymentRequest,
+        (result, completion) => {
+          console.log('session is built');
+          console.log('result obj returned -> ', result);
+          completion(ApplePaySession.STATUS_SUCCESS);
+          console.log('completion func is invoked with status -> success');
+          resolve();
+        },
+        (err) => {
+          console.log('Stripe encountered an error with your configuration or has a problem with your user\'s payment information.');
+          reject(err.message);
+        });
+
+      console.log('start the session');
+      console.log('session obj -> ', session);
+      session.begin();
+    });
   }
 }

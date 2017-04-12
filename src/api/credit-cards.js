@@ -7,13 +7,6 @@ import { isBrowser, loadScript } from '../utils/browser';
 export default class CreditCards {
   constructor(api) {
     this.api = api;
-
-    if (isBrowser()) {
-      // load Stripe.js
-      loadScript('https://js.stripe.com/v2/').then(() => {
-        Stripe.setPublishableKey(this.api.stripe_key);
-      });
-    }
   }
 
   // @method list(): Promise<CreditCardsResponse>
