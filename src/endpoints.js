@@ -15,6 +15,7 @@ export const search = `/search/products_catalog_view/_search?size=${MAX_RESULTS}
 // cart endpoints
 export const cart = '/v1/my/cart';
 export const cartCheckout = '/v1/my/cart/checkout';
+export const applePayCheckout = '/v1/my/cart/apple-pay-checkout'; // POST
 export const shippingMethods = '/v1/my/cart/shipping-methods';
 export const shippingMethod = '/v1/my/cart/shipping-method';
 export const shippingAddress = '/v1/my/cart/shipping-address';
@@ -46,6 +47,7 @@ export const creditCardDefault = creditCardId => `${creditCard(creditCardId)}/de
 export const storeCredit = storeCreditId => `/v1/my/payment-methods/store-credits/${storeCreditId}`;
 export const storeCreditTotals = `/v1/my/payment-methods/store-credits/totals`;
 export const storeCredits = `/search/store_credits_search_view/_search`;
+export const applePay = `/v1/my/payment-methods/apple-pay`; // POST, stripeToken - body
 
 // account endpoints
 export const account = '/v1/my/account';
@@ -69,3 +71,7 @@ export const crossSellRelated = '/v1/public/recommend/prod-prod/';
 export const crossSellRelatedFull = '/v1/public/recommend/prod-prod/full/';
 export const crossSellCustomerRelated = '/v1/public/recommend/cust-prod/';
 export const crossSellCustomerRelatedFull = '/v1/public/recommend/cust-prod/full/';
+
+// countries & regions endpoints
+export const countries = '/v1/public/countries';
+export const countryById = id => `/v1/public/countries/${id}`;
