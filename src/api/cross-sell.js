@@ -80,12 +80,13 @@ export default class CrossSell {
   }
 
   /**
-   * @method crossSellRelatedFull(productId: Int, channelId: Int): Promise
+   * @method crossSellRelatedFull(productId: Int, channelId: Int, size: Int): Promise
    * @param {Int} productId 
    * @param {Int} channelId 
+   * @param {Int} size 
    * 
    * Returns JSON of what products are similar to the productId in the query params.
-   * { "products": [ RelatedProduct ] }
+   * { "products": [ RelatedProductFull ] }
    * 
    * Score == 1 means these products were purchased by the exact same set of customers. 
    * Score == 0 means no customer has purchased both of these
