@@ -78,6 +78,66 @@ export default class CrossSell {
     const url = `${endpoints.crossSellRelated}${productId}${query}`;
     return this.api.get(url);
   }
+
+  /**
+   * @method crossSellRelatedFull(productId: Int, channelId: Int, size: Int): Promise
+   * @param {Int} productId 
+   * @param {Int} channelId 
+   * @param {Int} size 
+   * 
+   * Returns JSON of what products are similar to the productId in the query params.
+   * { "products": [ RelatedProductFull ] }
+   * 
+   * Score == 1 means these products were purchased by the exact same set of customers. 
+   * Score == 0 means no customer has purchased both of these
+   * 
+   * @example Request
+   * 
+   * /v1/public/recommend/prod-prod/3?channel=2
+   * 
+   * @example Response
+   * 
+   * ```
+   * {
+   *   "products": [
+   *   {
+   *     "product": {
+   *        "id": 300,
+   *        "productId": 60727,
+   *        "scope": "1",
+   *        "albums": [ { "images": [...], "name": "default" } ],
+   *        "context": "default",
+   *        "currency": "USD",
+   *        "description": "...",
+   *        "retailPrice": "8500",
+   *        "salePrice": "8500",
+   *        "skus": [ "AB9403_310", "AB9403_330", "AB9403_350", "AB9403_370" ],
+   *        "slug": "dynamo-away-replica-jersey",
+   *        "tags": [ "Apparel", "Soccer" ],
+   *        "taxonomies": [
+   *          { "taxonomy": "brand", "taxons": [ [ "Performance" ] ] },
+   *          { "taxonomy": "category", "taxons": [ [ "Apparel" ] ] },
+   *          { "taxonomy": "color", "taxons": [ [ "Black" ], [ "Light Orange" ] ] },
+   *        ],
+   *        "title": "Dynamo Away Replica Jersey"
+   *      },
+   *      "score": 0.129*9944487358058
+   *   },
+   *   {
+   *     "product": {
+   *        ... 
+   *     },
+   *     "score": 0.07715167498104597
+   *   }
+   *  ]
+   *}
+   * ```
+   */
+  crossSellRelatedFull(productId, channelId, size) {
+    const query = `?channel=${channelId}&size=${size}`;
+    const url = `${endpoints.crossSellRelatedFull}${productId}${query}`;
+    return this.api.get(url);
+  }
 }
 
 // @miniclass Point (CrossSell)

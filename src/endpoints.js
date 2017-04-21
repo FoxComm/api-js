@@ -61,3 +61,4 @@ export const hal = '/v1/hal';
 // cross-sell endpoints
 export const crossSellTrain = '/v1/public/recommend/prod-prod/train';
 export const crossSellRelated = '/v1/public/recommend/prod-prod/';
+export const crossSellRelatedFull = '/v1/public/recommend/prod-prod/full/';
