@@ -1830,13 +1830,17 @@ creates new password</td>
 	<tr id='cart-addgiftcard'>
 		<td><code><b>addGiftCard</b>(<nobr>&lt;<a href='#giftcardpaymentpayload'>GiftCardPaymentPayload</a>&gt;</nobr> <i>giftCardPayload</i>)</nobr></code></td>
 		<td><code>Promise&lt;<a href='#fullorder'>FullOrder</a>&gt;</code></td>
-		<td>Adds a gift card as payment method for the cart.
-<p>Creates payment method with a given amount using store credit.</p></td>
+		<td>Adds a gift card as payment method for the cart.</td>
 	</tr>
 	<tr id='cart-removegiftcard'>
 		<td><code><b>removeGiftCard</b>(<nobr>&lt;string&gt;</nobr> <i>giftCardCode</i>)</nobr></code></td>
 		<td><code>Promise&lt;<a href='#fullorder'>FullOrder</a>&gt;</code></td>
 		<td>Removes gift card with provided code payment method from the cart.</td>
+	</tr>
+	<tr id='cart-addstorecredit'>
+		<td><code><b>addStoreCredit</b>(<nobr>&lt;Number&gt;</nobr> <i>amount</i>)</nobr></code></td>
+		<td><code>Promise&lt;<a href='#fullorder'>FullOrder</a>&gt;</code></td>
+		<td>Adds store credit of specified amount to the cart.</td>
 	</tr>
 	<tr id='cart-removestorecredits'>
 		<td><code><b>removeStoreCredits</b>()</nobr></code></td>
@@ -3246,7 +3250,8 @@ Available values:
    ]
 }
 </code></pre>
-<p>/v1/public/recommend/prod-prod/3?channel=2</p>
+<p>/v1/public/recommend/prod-prod/3?channel=2
+/v1/public/recommend/prod-prod/3?channel=2</p>
 
 <pre><code>{
    &quot;products&quot;: [
@@ -3263,6 +3268,39 @@ Available values:
        &quot;score&quot;: 0
      }
    ]
+}
+</code></pre><pre><code>{
+  &quot;products&quot;: [
+  {
+    &quot;product&quot;: {
+       &quot;id&quot;: 300,
+       &quot;productId&quot;: 60727,
+       &quot;scope&quot;: &quot;1&quot;,
+       &quot;albums&quot;: [ { &quot;images&quot;: [...], &quot;name&quot;: &quot;default&quot; } ],
+       &quot;context&quot;: &quot;default&quot;,
+       &quot;currency&quot;: &quot;USD&quot;,
+       &quot;description&quot;: &quot;...&quot;,
+       &quot;retailPrice&quot;: &quot;8500&quot;,
+       &quot;salePrice&quot;: &quot;8500&quot;,
+       &quot;skus&quot;: [ &quot;AB9403_310&quot;, &quot;AB9403_330&quot;, &quot;AB9403_350&quot;, &quot;AB9403_370&quot; ],
+       &quot;slug&quot;: &quot;dynamo-away-replica-jersey&quot;,
+       &quot;tags&quot;: [ &quot;Apparel&quot;, &quot;Soccer&quot; ],
+       &quot;taxonomies&quot;: [
+         { &quot;taxonomy&quot;: &quot;brand&quot;, &quot;taxons&quot;: [ [ &quot;Performance&quot; ] ] },
+         { &quot;taxonomy&quot;: &quot;category&quot;, &quot;taxons&quot;: [ [ &quot;Apparel&quot; ] ] },
+         { &quot;taxonomy&quot;: &quot;color&quot;, &quot;taxons&quot;: [ [ &quot;Black&quot; ], [ &quot;Light Orange&quot; ] ] },
+       ],
+       &quot;title&quot;: &quot;Dynamo Away Replica Jersey&quot;
+     },
+     &quot;score&quot;: 0.129*9944487358058
+  },
+  {
+    &quot;product&quot;: {
+       ... 
+    },
+    &quot;score&quot;: 0.07715167498104597
+  }
+ ]
 }
 </code></pre>
 
@@ -3299,6 +3337,14 @@ This method is intended for Admin use only.</td>
 		<td><code>Promise</code></td>
 		<td>Returns JSON of what products are similar to the productId in the query params.
 { &quot;products&quot;: [ RelatedProduct ] }
+Score == 1 means these products were purchased by the exact same set of customers. 
+Score == 0 means no customer has purchased both of these</td>
+	</tr>
+	<tr id='crosssell-crosssellrelatedfull'>
+		<td><code><b>crossSellRelatedFull</b>(<nobr>&lt;Int&gt;</nobr> <i>productId</i>, <nobr>&lt;Int&gt;</nobr> <i>channelId</i>, <nobr>&lt;Int&gt;</nobr> <i>size</i>, <i>{Int} productId</i>, <i>{Int} channelId</i>, <i>{Int} size</i>)</nobr></code></td>
+		<td><code>Promise</code></td>
+		<td>Returns JSON of what products are similar to the productId in the query params.
+{ &quot;products&quot;: [ RelatedProductFull ] }
 Score == 1 means these products were purchased by the exact same set of customers. 
 Score == 0 means no customer has purchased both of these</td>
 	</tr>
