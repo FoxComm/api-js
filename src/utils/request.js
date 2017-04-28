@@ -82,7 +82,8 @@ export default function request(method, uri, data, options) {
           return response.body;
         },
         err => {
-          if (err.statusCode === 401) {
+          const statusCode = err.response ? err.response.statusCode : err.status || err.statusCode;
+          if (statusCode === 401) {
             options.unauthorizedHandler();
           }
 
