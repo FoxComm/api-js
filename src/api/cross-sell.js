@@ -11,15 +11,14 @@ export default class CrossSell {
   /**
    * @private
    * @method crossSellTrain(pointsObj: object): Promise
-   * @param {Object} pointsObj
+   * @param {Object} purchaseObj
    *
-   * Sends a collection of "points" to populate a sparse matrix for cross-sell
-   * analytics and related product tracking. The POST body is an object with a "points" key
-   * and value filled with an array of "Point" objects.
-   *
+   * Sends a purchase event object to populate a sparse matrix for cross-sell
+   * analytics and related product tracking. The POST body is an object with a
+   * customer ID, channel ID, and a list of product ID's purchased by the customer.
    * This method is intended for Admin use only.
    *
-   * @example pointsObj
+   * @example purchaseObj
    *
    * ```
    * {
