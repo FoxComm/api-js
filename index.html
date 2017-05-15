@@ -3239,29 +3239,23 @@ Available values:
 
 <div class='section-comments'></div>
 
-
+<p>Example training payload</p>
 <pre><code>{
-   &quot;points&quot;: [
-     {
-       &quot;custID&quot;: 1,
-       &quot;prodID&quot;: 4,
-       &quot;chanID&quot;: 2,
-     } 
-   ]
+    &quot;cust_id&quot;: 1,
+    &quot;channel_id&quot;: 1,
+    &quot;prod_ids&quot;: [1, 2, 3, 4]
 }
 </code></pre>
-<p>/v1/public/recommend/prod-prod/3?channel=2
-/v1/public/recommend/prod-prod/3?channel=2</p>
-
+<p>Example related products response</p>
 <pre><code>{
    &quot;products&quot;: [
      {
-       &quot;id&quot;: 2,
-       &quot;score&quot;: 0
-     },
-     {
        &quot;id&quot;: 1,
        &quot;score&quot;: 1
+     },
+     {
+       &quot;id&quot;: 2,
+       &quot;score&quot;: 0
      },
      {
        &quot;id&quot;: 0,
@@ -3269,7 +3263,9 @@ Available values:
      }
    ]
 }
-</code></pre><pre><code>{
+</code></pre>
+<p>Example full related products response</p>
+<pre><code>{
   &quot;products&quot;: [
   {
     &quot;product&quot;: {
@@ -3296,7 +3292,7 @@ Available values:
   },
   {
     &quot;product&quot;: {
-       ... 
+       ...
     },
     &quot;score&quot;: 0.07715167498104597
   }
@@ -3333,19 +3329,35 @@ and value filled with an array of &quot;Point&quot; objects.
 This method is intended for Admin use only.</td>
 	</tr>
 	<tr id='crosssell-crosssellrelated'>
-		<td><code><b>crossSellRelated</b>(<nobr>&lt;Int&gt;</nobr> <i>productId</i>, <nobr>&lt;Int&gt;</nobr> <i>channelId</i>, <i>{Int} productId</i>, <i>{Int} channelId</i>)</nobr></code></td>
+		<td><code><b>crossSellRelated</b>(<nobr>&lt;Int&gt;</nobr> <i>productId</i>, <nobr>&lt;Int&gt;</nobr> <i>channelId</i>)</nobr></code></td>
 		<td><code>Promise</code></td>
 		<td>Returns JSON of what products are similar to the productId in the query params.
 { &quot;products&quot;: [ RelatedProduct ] }
-Score == 1 means these products were purchased by the exact same set of customers. 
+Score == 1 means these products were purchased by the exact same set of customers.
 Score == 0 means no customer has purchased both of these</td>
 	</tr>
 	<tr id='crosssell-crosssellrelatedfull'>
-		<td><code><b>crossSellRelatedFull</b>(<nobr>&lt;Int&gt;</nobr> <i>productId</i>, <nobr>&lt;Int&gt;</nobr> <i>channelId</i>, <nobr>&lt;Int&gt;</nobr> <i>size</i>, <i>{Int} productId</i>, <i>{Int} channelId</i>, <i>{Int} size</i>)</nobr></code></td>
+		<td><code><b>crossSellRelatedFull</b>(<nobr>&lt;Int&gt;</nobr> <i>productId</i>, <nobr>&lt;Int&gt;</nobr> <i>channelId</i>, <nobr>&lt;Int&gt;</nobr> <i>size</i>)</nobr></code></td>
 		<td><code>Promise</code></td>
 		<td>Returns JSON of what products are similar to the productId in the query params.
 { &quot;products&quot;: [ RelatedProductFull ] }
-Score == 1 means these products were purchased by the exact same set of customers. 
+Score == 1 means these products were purchased by the exact same set of customers.
+Score == 0 means no customer has purchased both of these</td>
+	</tr>
+	<tr id='crosssell-crosssellcustomerrelated'>
+		<td><code><b>crossSellCustomerRelated</b>(<nobr>&lt;Int&gt;</nobr> <i>customerId</i>, <nobr>&lt;Int&gt;</nobr> <i>channelId</i>)</nobr></code></td>
+		<td><code>Promise</code></td>
+		<td>Returns JSON of what products are similar to the products purchased by the customer in the query params.
+{ &quot;products&quot;: [ RelatedProduct ] }
+Score == 1 means these products were purchased by the exact same set of customers.
+Score == 0 means no customer has purchased both of these</td>
+	</tr>
+	<tr id='crosssell-crosssellrelatedfull'>
+		<td><code><b>crossSellRelatedFull</b>(<nobr>&lt;Int&gt;</nobr> <i>customerId</i>, <nobr>&lt;Int&gt;</nobr> <i>channelId</i>, <nobr>&lt;Int&gt;</nobr> <i>size</i>)</nobr></code></td>
+		<td><code>Promise</code></td>
+		<td>Returns JSON of what products are similar to the products purchased by the customer in the query params.
+{ &quot;products&quot;: [ RelatedProductFull ] }
+Score == 1 means these products were purchased by the exact same set of customers.
 Score == 0 means no customer has purchased both of these</td>
 	</tr>
 </tbody></table>
