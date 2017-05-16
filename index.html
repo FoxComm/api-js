@@ -3228,86 +3228,8 @@ Available values:
 </section>
 <span id='creditcardsresponse'></span>
 
-<h2 id='crosssell'>CrossSell</h2><p>Accessible via <a href="#foxapi-analytics">analytics</a> property of <a href="#foxapi">FoxApi</a> instance.</p>
+<h2 id='crosssell'>CrossSell</h2><p>Accessible via <a href="#foxapi-crosssell">cross-sell</a> property of <a href="#foxapi">FoxApi</a> instance.</p>
 
-<section>
-<h3 id='crosssell-example'>Usage example</h3>
-
-<section >
-
-
-
-<div class='section-comments'></div>
-
-
-<pre><code>{
-   &quot;points&quot;: [
-     {
-       &quot;custID&quot;: 1,
-       &quot;prodID&quot;: 4,
-       &quot;chanID&quot;: 2,
-     } 
-   ]
-}
-</code></pre>
-<p>/v1/public/recommend/prod-prod/3?channel=2
-/v1/public/recommend/prod-prod/3?channel=2</p>
-
-<pre><code>{
-   &quot;products&quot;: [
-     {
-       &quot;id&quot;: 2,
-       &quot;score&quot;: 0
-     },
-     {
-       &quot;id&quot;: 1,
-       &quot;score&quot;: 1
-     },
-     {
-       &quot;id&quot;: 0,
-       &quot;score&quot;: 0
-     }
-   ]
-}
-</code></pre><pre><code>{
-  &quot;products&quot;: [
-  {
-    &quot;product&quot;: {
-       &quot;id&quot;: 300,
-       &quot;productId&quot;: 60727,
-       &quot;scope&quot;: &quot;1&quot;,
-       &quot;albums&quot;: [ { &quot;images&quot;: [...], &quot;name&quot;: &quot;default&quot; } ],
-       &quot;context&quot;: &quot;default&quot;,
-       &quot;currency&quot;: &quot;USD&quot;,
-       &quot;description&quot;: &quot;...&quot;,
-       &quot;retailPrice&quot;: &quot;8500&quot;,
-       &quot;salePrice&quot;: &quot;8500&quot;,
-       &quot;skus&quot;: [ &quot;AB9403_310&quot;, &quot;AB9403_330&quot;, &quot;AB9403_350&quot;, &quot;AB9403_370&quot; ],
-       &quot;slug&quot;: &quot;dynamo-away-replica-jersey&quot;,
-       &quot;tags&quot;: [ &quot;Apparel&quot;, &quot;Soccer&quot; ],
-       &quot;taxonomies&quot;: [
-         { &quot;taxonomy&quot;: &quot;brand&quot;, &quot;taxons&quot;: [ [ &quot;Performance&quot; ] ] },
-         { &quot;taxonomy&quot;: &quot;category&quot;, &quot;taxons&quot;: [ [ &quot;Apparel&quot; ] ] },
-         { &quot;taxonomy&quot;: &quot;color&quot;, &quot;taxons&quot;: [ [ &quot;Black&quot; ], [ &quot;Light Orange&quot; ] ] },
-       ],
-       &quot;title&quot;: &quot;Dynamo Away Replica Jersey&quot;
-     },
-     &quot;score&quot;: 0.129*9944487358058
-  },
-  {
-    &quot;product&quot;: {
-       ... 
-    },
-    &quot;score&quot;: 0.07715167498104597
-  }
- ]
-}
-</code></pre>
-
-
-</section>
-
-</section>
 <section>
 <h3 id='crosssell-method'>Methods</h3>
 
@@ -3325,27 +3247,45 @@ Available values:
 	</tr>
 	</thead><tbody>
 	<tr id='crosssell-crossselltrain'>
-		<td><code><b>crossSellTrain</b>(<nobr>&lt;object&gt;</nobr> <i>pointsObj</i>, <i>{Object} pointsObj</i>)</nobr></code></td>
+		<td><code><b>crossSellTrain</b>(<nobr>&lt;<a href='#purchaseeventobject'>PurchaseEventObject</a>&gt;</nobr> <i>purchaseEvent</i>)</nobr></code></td>
 		<td><code>Promise</code></td>
-		<td>Sends a collection of &quot;points&quot; to populate a sparse matrix for cross-sell
-analytics and related product tracking. The POST body is an object with a &quot;points&quot; key
-and value filled with an array of &quot;Point&quot; objects.
+		<td>Sends a purchase event object to populate a sparse matrix for cross-sell
+analytics and related product tracking. The POST body is an object with a
+customer ID, channel ID, and a list of product ID&#39;s purchased by the customer.
 This method is intended for Admin use only.</td>
 	</tr>
 	<tr id='crosssell-crosssellrelated'>
-		<td><code><b>crossSellRelated</b>(<nobr>&lt;Int&gt;</nobr> <i>productId</i>, <nobr>&lt;Int&gt;</nobr> <i>channelId</i>, <i>{Int} productId</i>, <i>{Int} channelId</i>)</nobr></code></td>
+		<td><code><b>crossSellRelated</b>(<nobr>&lt;Number&gt;</nobr> <i>productId</i>, <nobr>&lt;Number&gt;</nobr> <i>channelId</i>)</nobr></code></td>
 		<td><code>Promise</code></td>
 		<td>Returns JSON of what products are similar to the productId in the query params.
 { &quot;products&quot;: [ RelatedProduct ] }
-Score == 1 means these products were purchased by the exact same set of customers. 
+Score == 1 means these products were purchased by the exact same set of customers.
 Score == 0 means no customer has purchased both of these</td>
 	</tr>
 	<tr id='crosssell-crosssellrelatedfull'>
-		<td><code><b>crossSellRelatedFull</b>(<nobr>&lt;Int&gt;</nobr> <i>productId</i>, <nobr>&lt;Int&gt;</nobr> <i>channelId</i>, <nobr>&lt;Int&gt;</nobr> <i>size</i>, <i>{Int} productId</i>, <i>{Int} channelId</i>, <i>{Int} size</i>)</nobr></code></td>
+		<td><code><b>crossSellRelatedFull</b>(<nobr>&lt;Number&gt;</nobr> <i>productId</i>, <nobr>&lt;Number&gt;</nobr> <i>channelId</i>, <nobr>&lt;Number&gt;</nobr> <i>size</i>)</nobr></code></td>
 		<td><code>Promise</code></td>
 		<td>Returns JSON of what products are similar to the productId in the query params.
 { &quot;products&quot;: [ RelatedProductFull ] }
-Score == 1 means these products were purchased by the exact same set of customers. 
+Score == 1 means these products were purchased by the exact same set of customers.
+Score == 0 means no customer has purchased both of these</td>
+	</tr>
+	<tr id='crosssell-crosssellcustomerrelated'>
+		<td><code><b>crossSellCustomerRelated</b>(<nobr>&lt;Number&gt;</nobr> <i>customerId</i>, <nobr>&lt;Number&gt;</nobr> <i>channelId</i>)</nobr></code></td>
+		<td><code>Promise</code></td>
+		<td>Returns JSON of what products are similar to the products purchased by the
+customer in the query params.
+{ &quot;products&quot;: [ RelatedProduct ] }
+Score == 1 means these products were purchased by the exact same set of customers.
+Score == 0 means no customer has purchased both of these</td>
+	</tr>
+	<tr id='crosssell-crosssellcustomerrelatedfull'>
+		<td><code><b>crossSellCustomerRelatedFull</b>(<nobr>&lt;Number&gt;</nobr> <i>customerId</i>, <nobr>&lt;Number&gt;</nobr> <i>channelId</i>, <nobr>&lt;Number&gt;</nobr> <i>size</i>)</nobr></code></td>
+		<td><code>Promise</code></td>
+		<td>Returns JSON of what products are similar to the products purchased by the
+customer in the query params.
+{ &quot;products&quot;: [ RelatedProductFull ] }
+Score == 1 means these products were purchased by the exact same set of customers.
 Score == 0 means no customer has purchased both of these</td>
 	</tr>
 </tbody></table>
@@ -3353,10 +3293,10 @@ Score == 0 means no customer has purchased both of these</td>
 </section>
 
 </section>
-<span id='point'></span>
+<span id='purchaseeventobject'></span>
 
 <section>
-<h3 id='point-field'>Point</h3>
+<h3 id='purchaseeventobject-field'>PurchaseEventObject</h3>
 
 <section >
 
@@ -3373,66 +3313,26 @@ Score == 0 means no customer has purchased both of these</td>
     <th>Description</th>
 </tr>
 </thead><tbody>
-    <tr id='point-custid'>
-        <td><code><b>custID</b></code></td>
+    <tr id='purchaseeventobject-cust_id'>
+        <td><code><b>cust_id</b></code></td>
         <td><code>Number</code>
         <td><div data-icon="ei-check"></div></td>
         <td></td>
         <td>CustomerID number</td>
     </tr>
-    <tr id='point-prodid'>
-        <td><code><b>prodID</b></code></td>
-        <td><code>Number</code>
+    <tr id='purchaseeventobject-prod_ids'>
+        <td><code><b>prod_ids</b></code></td>
+        <td><code>Array&lt;Number&gt;</code>
         <td><div data-icon="ei-check"></div></td>
         <td></td>
-        <td>ProductID number</td>
+        <td>ProductID numbers</td>
     </tr>
-    <tr id='point-chanid'>
-        <td><code><b>chanID</b></code></td>
+    <tr id='purchaseeventobject-channel_id'>
+        <td><code><b>channel_id</b></code></td>
         <td><code>Number</code>
         <td><div data-icon="ei-check"></div></td>
         <td></td>
         <td>Unique Channel ID number</td>
-    </tr>
-</tbody></table>
-
-
-</section>
-
-</section>
-<span id='relatedproduct'></span>
-
-<section>
-<h3 id='relatedproduct-field'>RelatedProduct</h3>
-
-<section >
-
-
-
-<div class='section-comments'></div>
-
-<table><thead>
-<tr>
-    <th>Field</th>
-    <th>Type</th>
-    <th>Required</th>
-    <th>Example</th>
-    <th>Description</th>
-</tr>
-</thead><tbody>
-    <tr id='relatedproduct-id'>
-        <td><code><b>id</b></code></td>
-        <td><code>Number</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td></td>
-        <td>RelatedProduct ID number</td>
-    </tr>
-    <tr id='relatedproduct-score'>
-        <td><code><b>score</b></code></td>
-        <td><code>Number</code>
-        <td><div data-icon="ei-check"></div></td>
-        <td></td>
-        <td>RelatedProduct Similarity score</td>
     </tr>
 </tbody></table>
 
