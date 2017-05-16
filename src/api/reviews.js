@@ -26,4 +26,10 @@ export default class Reviews {
   delete(reviewId) {
     return this.api.delete(endpoints.review(reviewId));
   }
+
+  // @method search(query: Object, size: Number): Promise
+  // Uses `query` to search product reviews.
+  search(query, size) {
+    return this.api.post(endpoints.reviewSearch(size), query);
+  }
 }

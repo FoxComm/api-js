@@ -58,6 +58,7 @@ export const order = referenceNumber => `/v1/my/orders/${referenceNumber}`;
 // review endpoints
 export const reviews = '/v1/my/review';
 export const review = reviewId = `/v1/my/review/${reviewId}`;
+export const reviewSearch = `/search/public/product_reviews_search_view/_search?size=${size}`;
 
 // analytics endpoints
 export const hal = '/v1/hal';
