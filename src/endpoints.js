@@ -55,6 +55,11 @@ export const changePassword = '/v1/my/account/change-password';
 export const orders = '/v1/my/orders';
 export const order = referenceNumber => `/v1/my/orders/${referenceNumber}`;
 
+// review endpoints
+export const reviews = '/v1/my/review';
+export const review = reviewId => `/v1/my/review/${reviewId}`;
+export const reviewSearch = (size, from) => `/search/public/product_reviews_search_view/_search?size=${size}&from=${from}`;
+
 // analytics endpoints
 export const hal = '/v1/hal';
 

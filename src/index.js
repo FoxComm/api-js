@@ -19,6 +19,7 @@ import StoreCredits from './api/store-credits';
 import Cart from './api/cart';
 import Account from './api/account';
 import Orders from './api/orders';
+import Reviews from './api/reviews';
 import jwtDecode from 'jwt-decode';
 import Analytics from './api/analytics';
 import CrossSell from './api/cross-sell';
@@ -64,6 +65,10 @@ export default class Api {
     // @property orders: Orders
     // Orders instance
     this.orders = new Orders(this);
+
+    // @property reviews: Reviews
+    // Reviews instance
+    this.reviews = new Reviews(this);
 
     // @property analytics: Analytics
     // Analytics instance

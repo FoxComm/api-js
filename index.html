@@ -228,6 +228,11 @@ You can define jwt string via <code>addAuth</code> method, if there is no jwt st
 		<td><code><a href='#orders'>Orders</a></code></td>
 		<td>Orders instance</td>
 	</tr>
+	<tr id='foxapi-reviews'>
+		<td><code><b>reviews</b>
+		<td><code><a href='#reviews'>Reviews</a></code></td>
+		<td>Reviews instance</td>
+	</tr>
 	<tr id='foxapi-analytics'>
 		<td><code><b>analytics</b>
 		<td><code><a href='#analytics'>Analytics</a></code></td>
@@ -3366,6 +3371,49 @@ Score == 0 means no customer has purchased both of these</td>
 		<td><code><b>get</b>(<nobr>&lt;string&gt;</nobr> <i>referenceNumber</i>)</nobr></code></td>
 		<td><code>Promise</code></td>
 		<td></td>
+	</tr>
+</tbody></table>
+
+</section>
+
+</section>
+<h2 id='reviews'>Reviews</h2><p>Accessible via <a href="#foxapi-reviews">reviews</a> property of <a href="#foxapi">FoxApi</a> instance.</p>
+
+<section>
+<h3 id='reviews-method'>Methods</h3>
+
+<section >
+
+
+
+<div class='section-comments'></div>
+
+<table><thead>
+	<tr>
+		<th>Method</th>
+		<th>Returns</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='reviews-add'>
+		<td><code><b>add</b>(<nobr>&lt;ReviewPayload&gt;</nobr> <i>review</i>)</nobr></code></td>
+		<td><code>Promise&lt;Review&gt;</code></td>
+		<td>Adds a new product review.</td>
+	</tr>
+	<tr id='reviews-update'>
+		<td><code><b>update</b>(<nobr>&lt;Number&gt;</nobr> <i>reviewId</i>, <nobr>&lt;ReviewPayload&gt;</nobr> <i>review</i>)</nobr></code></td>
+		<td><code>Promise&lt;Review&gt;</code></td>
+		<td>Updates the selected product review.</td>
+	</tr>
+	<tr id='reviews-delete'>
+		<td><code><b>delete</b>(<nobr>&lt;Number&gt;</nobr> <i>reviewId</i>)</nobr></code></td>
+		<td><code>Promise</code></td>
+		<td>Deletes the selected product review.</td>
+	</tr>
+	<tr id='reviews-search'>
+		<td><code><b>search</b>(<nobr>&lt;Object&gt;</nobr> <i>query</i>, <nobr>&lt;Number&gt;</nobr> <i>size</i>, <nobr>&lt;Number&gt;</nobr> <i>from</i>)</nobr></code></td>
+		<td><code>Promise</code></td>
+		<td>Uses <code>query</code> to search product reviews.</td>
 	</tr>
 </tbody></table>
 
