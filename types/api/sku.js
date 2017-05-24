@@ -11,5 +11,5 @@ export type Sku = {
     salePrice: Currency,
     retailPrice: Currency,
   },
-  albums: Array<Album>
+  albums: Array<Album>,
 };

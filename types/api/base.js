@@ -5,4 +5,4 @@ export type Context = {|
     lang: string,
     modality: string,
   }
-|}
+|};

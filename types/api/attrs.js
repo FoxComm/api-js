@@ -5,9 +5,9 @@ export type Currency = {|
     currency: string,
     value: number
   }
-|}
+|};
 
 export type String = {|
   t: 'string',
   v: string
-|}
+|};

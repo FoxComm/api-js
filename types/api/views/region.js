@@ -4,4 +4,4 @@ export type Region = {
   name: string,
   abbreviation: string,
   countryId: number,
-}
+};

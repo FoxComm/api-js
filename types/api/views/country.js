@@ -10,4 +10,4 @@ export type Country = {
   uses_postal_code: boolean,
   is_billable: boolean,
   is_shippable: boolean,
-}
+};

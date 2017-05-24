@@ -9,14 +9,14 @@ export type VariantValue = {
   name: string,
   swatch: string,
   skuCodes: Array<string>,
-}
+};
 
 export type Variant = {
   attributes: {
     name: String,
   },
   values: Array<VariantValue>,
-}
+};
 
 export type Product = {
   id: number,
@@ -28,4 +28,4 @@ export type Product = {
     description: String,
   },
   variants: Array<Variant>,
-}
+};

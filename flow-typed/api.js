@@ -1,11 +1,10 @@
 
 declare module '@foxcomm/api-js' {
-
   declare type StringDict = {[name: string]: string};
 
-  type AbortablePromise = Promise & {
+  declare type AbortablePromise = Promise & {
     abort(): void;
-  }
+  };
 
   declare type AgentLike = AbortablePromise & {
     get(url: string): AgentLike;
@@ -15,13 +14,13 @@ declare module '@foxcomm/api-js' {
 
     set(headers: StringDict): AgentLike;
     withCredentials(): AgentLike;
-  }
+  };
 
   declare type RequestOptions = {
     headers?: StringDict,
     credentials?: string,
     agent?: AgentLike;
-  }
+  };
 
   // @TODO: add subclasses
   declare class ApiClass {
