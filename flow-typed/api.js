@@ -1,8 +1,7 @@
-
 declare module '@foxcomm/api-js' {
   declare type StringDict = {[name: string]: string};
 
-  declare type AbortablePromise = Promise & {
+  declare type AbortablePromise = Promise<*> & {
     abort(): void;
   };
 
