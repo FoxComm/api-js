@@ -10,7 +10,8 @@
     "test": "mocha test",
     "build": "babel src -d lib",
     "docs": "APIARY_DOCS_PATH=../phoenix-scala/docs/api/docs/objects node ./bin/import-docs.js && node ./bin/make-docs.js",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "flow": "./node_modules/.bin/flow check"
   },
   "repository": {
     "type": "git",
@@ -39,6 +40,7 @@
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-stage-1": "^6.5.0",
     "escape-html": "^1.0.3",
+    "flow-bin": "^0.46.0",
     "leafdoc": "github:anru/Leafdoc#v1.1",
     "mkdirp": "^0.5.1",
     "mocha": "^2.5.2",
