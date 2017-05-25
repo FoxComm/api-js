@@ -7,7 +7,8 @@ build:
 	yarn build
 
 clean:
-	rm -rf ./node_modules && rm -rf ./lib/*
+	rm -rf ./node_modules
+	rm -rf ./lib/*
 
 test: build
 	yarn flow
