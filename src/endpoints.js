@@ -48,7 +48,7 @@ export const creditCardDefault = creditCardId => `${creditCard(creditCardId)}/de
 export const storeCredit = storeCreditId => `/v1/my/payment-methods/store-credits/${storeCreditId}`;
 export const storeCreditTotals = `/v1/my/payment-methods/store-credits/totals`;
 export const storeCredits = `/search/store_credits_search_view/_search`;
-export const applePay = `/v1/my/payment-methods/apple-pay`;
+
 
 // account endpoints
 export const account = '/v1/my/account';
