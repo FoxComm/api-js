@@ -199,6 +199,12 @@ export default class Api {
     return this.request('patch', ...args);
   }
 
+  // @method put(uri: String, data?: Object, options?: Object): Promise
+  // Makes PUT http request
+  put(...args) {
+    return this.request('put', ...args);
+  }
+
   // @method delete(uri: String, data?: Object, options?: Object): Promise
   // Makes DELETE http request
   delete(...args) {

@@ -18,6 +18,7 @@ export const cartCheckout = '/v1/my/cart/checkout';
 export const applePayCheckout = '/v1/my/cart/apple-pay-checkout'; // POST
 export const shippingMethods = '/v1/my/cart/shipping-methods';
 export const shippingMethod = '/v1/my/cart/shipping-method';
+export const shippingMethodsByCountry = countryCode => `/v1/my/cart/shipping-methods/${countryCode}`;
 export const shippingAddress = '/v1/my/cart/shipping-address';
 export const shippingAddressId = id => `${shippingAddress}/${id}`;
 export const cartLineItems = '/v1/my/cart/line-items';
@@ -75,3 +76,4 @@ export const crossSellCustomerRelatedFull = '/v1/public/recommend/cust-prod/full
 // countries & regions endpoints
 export const countries = '/v1/public/countries';
 export const countryById = id => `/v1/public/countries/${id}`;
+export const regionIdByCode = code => `/v1/public/regions/${code}`
