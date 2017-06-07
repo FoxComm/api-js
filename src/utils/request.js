@@ -86,6 +86,7 @@ export default function request(method, uri, data, options) {
           if (statusCode === 401) {
             options.unauthorizedHandler();
           }
+
           const error = createError(err);
           const message = `${method.toUpperCase()} ${uri} responded with ${err.statusCode}`;
 

@@ -1,15 +1,18 @@
+/* @flow */
+
 import * as endpoints from '../endpoints';
 import _ from 'lodash';
 
-// @method parseAmount(amount: Number): Number
+// @method parseAmount(amount: String): Number
 // parses the stripe.js format into apple-pay acceptable format
-export const parseAmount = (amount) => {
-  return parseFloat(amount / 100).toFixed(2);
+export const parseAmount = (amount: string): number => {
+  const result = (parseFloat(amount) / 100).toFixed(2);
+  return parseFloat(result);
 };
 
 // @method shippingAddressToPayload(contact: Object, api: Object)
 // Parses the data sent from Apple into the server-accepted format
-export const shippingAddressToPayload = (contact, api) => {
+export const shippingAddressToPayload = (contact: Object, api: Object): Promise<*> => {
   return new Promise((resolve, reject) => {
     const {
       givenName,
@@ -49,7 +52,7 @@ export const shippingAddressToPayload = (contact, api) => {
 
 // @method shippingMethodsToPayload(methods: Array<Object>)
 // Parses the server-sent shipping methods into Apple format payload
-export const shippingMethodsToPayload = (methods) => {
+export const shippingMethodsToPayload = (methods: Array<Object>): Array<Object> => {
   return _.map(methods, (method) => {
     return {
       label: method.code,
@@ -62,7 +65,7 @@ export const shippingMethodsToPayload = (methods) => {
 
 // @methods getLineItems(lineItems: Object, shippingCost: Number)
 // Parses additional costs into Apple accepted format
-export const getLineItems = (lineItems, shippingCost) => {
+export const getLineItems = (lineItems: Object, shippingCost: string): Array<Object> => {
   const { taxes, promotion } = lineItems;
   const items = [
     {
@@ -93,7 +96,11 @@ export const getLineItems = (lineItems, shippingCost) => {
 
 // @method failurePayload(paymentRequest: Object, status: Number, isShippingMethod: Boolean)
 // Assembles the correct payload to send to the callback function when payment fails
-export const failurePayload = (paymentRequest, status, isShippingMethod = false) => {
+export const failurePayload = (
+  paymentRequest: Object,
+  status: number,
+  isShippingMethod: boolean = false
+): Array<mixed> => {
   if (isShippingMethod) {
     return [
       status,

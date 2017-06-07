@@ -3,14 +3,14 @@
 setup: clean
 	yarn --pure-lockfile
 
-build:
+build: check
 	yarn build
 
 clean:
 	rm -rf ./node_modules
 	rm -rf ./lib/*
 
-test: build
+check:
 	yarn flow
 
-.PHONY: setup build clean test
+.PHONY: setup build clean check

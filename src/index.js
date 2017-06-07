@@ -23,7 +23,6 @@ import Cart from './api/cart';
 import Account from './api/account';
 import Orders from './api/orders';
 import Reviews from './api/reviews';
-import jwtDecode from 'jwt-decode';
 import Analytics from './api/analytics';
 import CrossSell from './api/cross-sell';
 import ApplePay from './api/apple-pay';

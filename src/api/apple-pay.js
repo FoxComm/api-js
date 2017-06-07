@@ -1,3 +1,5 @@
+/* @flow */
+
 import * as endpoints from '../endpoints';
 import _ from 'lodash';
 import {
@@ -10,14 +12,16 @@ import {
 import { parseError } from '../index';
 
 export default class ApplePay {
-  constructor(api, stripe) {
+  constructor(api: any, stripe: Promise<*>) {
     this.api = api;
     this.stripe = stripe;
   }
+  api: any;
+  stripe: Promise<*>;
 
   // @method available(): Promise
   // check if payment with apple pay is possible
-  available() {
+  available(): Promise<*> {
     return this.stripe.then(() => {
       return new Promise((resolve, reject) => {
         Stripe.applePay.checkAvailability((available) => {
@@ -29,7 +33,7 @@ export default class ApplePay {
 
   // @method beginApplePay(): Promise
   // Starts the apple pay process
-  beginApplePay(paymentRequest, lineItems) {
+  beginApplePay(paymentRequest: Object, lineItems: Object): Promise<*> {
     return new Promise((resolve, reject) => {
       const session = Stripe.applePay.buildSession(paymentRequest,
         (result, completion) => {
@@ -59,7 +63,7 @@ export default class ApplePay {
         });
 
         // this method will be called when a shipping address has been chosen
-        session.onshippingcontactselected = (event) => {
+        session.onshippingcontactselected = (event: Object) => {
           const shippingAddr = event.shippingContact;
           shippingAddressToPayload(shippingAddr, this.api).then((shippingAddress) => {
             this.api.put(endpoints.shippingAddress, shippingAddress).then((resp) => {
@@ -108,7 +112,7 @@ export default class ApplePay {
           };
 
           // this method will be called when a shipping method has been chosen
-          session.onshippingmethodselected = (event) => {
+          session.onshippingmethodselected = (event: Object) => {
             const shippingMethodId = parseInt(event.shippingMethod.identifier);
             this.api.patch(endpoints.shippingMethod, { shippingMethodId }).then((resp) => {
               const response = resp.result;
