@@ -38,20 +38,12 @@ export default class ApplePay {
       const session = Stripe.applePay.buildSession(paymentRequest,
         (result, completion) => {
           shippingAddressToPayload(result.shippingContact, this.api).then((shippingAddress) => {
-            this.api.put(endpoints.shippingAddress, shippingAddress).then((resp) => {
-              this.api.post(endpoints.applePayCheckout, { stripeToken: result.token.id }).then((resp) => {
-                completion(ApplePaySession.STATUS_SUCCESS);
-                resolve(resp);
-              })
-              .catch((err) => {
-                completion(ApplePaySession.STATUS_FAILURE);
-                reject(err);
-              });
-            })
-            .catch((err) => {
-              completion(ApplePaySession.STATUS_FAILURE);
-              reject(err);
-            });
+            return this.api.put(endpoints.shippingAddress, shippingAddress);
+          }).then((resp) => {
+            return this.api.post(endpoints.applePayCheckout, { stripeToken: result.token.id });
+          }).then((resp) => {
+            completion(ApplePaySession.STATUS_SUCCESS);
+            resolve(resp);
           })
           .catch((err) => {
             completion(ApplePaySession.STATUS_FAILURE);
@@ -65,51 +57,43 @@ export default class ApplePay {
         // this method will be called when a shipping address has been chosen
         session.onshippingcontactselected = (event: Object) => {
           const shippingAddr = event.shippingContact;
-          shippingAddressToPayload(shippingAddr, this.api).then((shippingAddress) => {
-            this.api.put(endpoints.shippingAddress, shippingAddress).then((resp) => {
-              this.api.get(endpoints.shippingMethodsByCountry(paymentRequest.countryCode)).then((methods) => {
-                const newShippingMethods = shippingMethodsToPayload(methods);
-                const shippingMethodId = methods[0].id;
-
-                this.api.patch(endpoints.shippingMethod, { shippingMethodId }).then((resp) => {
-                  const response = resp.result;
-                  const status = ApplePaySession.STATUS_SUCCESS;
-                  const taxPromotion = {
-                    taxes: response.totals.taxes,
-                    promotion: response.totals.adjustments,
-                  };
-                  const newLineItems = getLineItems(taxPromotion, response.totals.shipping);
-                  const newTotal = {
-                    label: paymentRequest.total.label,
-                    amount: parseAmount(response.totals.total),
-                  };
-
-                  session.completeShippingContactSelection(status, newShippingMethods, newTotal, newLineItems);
-                })
-                .catch((err) => {
-                  const args = failurePayload(paymentRequest, ApplePaySession.STATUS_INVALID_SHIPPING_POSTAL_ADDRESS);
-                  session.completeShippingContactSelection(...args);
-                  throw new Error(parseError(err));
-                });
-              })
-              .catch((err) => {
-                const args = failurePayload(paymentRequest, ApplePaySession.STATUS_INVALID_SHIPPING_POSTAL_ADDRESS);
-                session.completeShippingContactSelection(...args);
-                throw new Error(parseError(err));
-              });
+          const addresses = shippingAddressToPayload(shippingAddr, this.api)
+            .then((shippingAddress) => {
+              return this.api.put(endpoints.shippingAddress, shippingAddress);
             })
-            .catch((err) => {
-              const args = failurePayload(paymentRequest, ApplePaySession.STATUS_INVALID_SHIPPING_POSTAL_ADDRESS);
-              session.completeShippingContactSelection(...args);
-              throw new Error(parseError(err));
+            .then((resp) => {
+              return this.api.get(endpoints.shippingMethodsByCountry(paymentRequest.countryCode));
             });
+
+          const methods = addresses.then((methods) => {
+              const shippingMethodId = methods[0].id;
+
+              return this.api.patch(endpoints.shippingMethod, { shippingMethodId });
+            });
+
+          Promise.all([addresses, methods]).then((results) => {
+            const methods = results[0];
+            const cart = results[1].result;
+            const newShippingMethods = shippingMethodsToPayload(methods);
+            const status = ApplePaySession.STATUS_SUCCESS;
+            const taxPromotion = {
+              taxes: cart.totals.taxes,
+              promotion: cart.totals.adjustments,
+            };
+            const newLineItems = getLineItems(taxPromotion, cart.totals.shipping);
+            const newTotal = {
+              label: paymentRequest.total.label,
+              amount: parseAmount(cart.totals.total),
+            };
+
+            session.completeShippingContactSelection(status, newShippingMethods, newTotal, newLineItems);
           })
-            .catch((err) => {
-              const args = failurePayload(paymentRequest, ApplePaySession.STATUS_INVALID_SHIPPING_POSTAL_ADDRESS);
-              session.completeShippingContactSelection(...args);
-              throw new Error(parseError(err));
-            });
-          };
+          .catch((err) => {
+            const args = failurePayload(paymentRequest, ApplePaySession.STATUS_INVALID_SHIPPING_POSTAL_ADDRESS);
+            session.completeShippingContactSelection(...args);
+            throw new Error(parseError(err));
+          });
+        };
 
           // this method will be called when a shipping method has been chosen
           session.onshippingmethodselected = (event: Object) => {
