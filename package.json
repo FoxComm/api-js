@@ -12,7 +12,8 @@
     "docs": "APIARY_DOCS_PATH=../phoenix-scala/docs/api/docs/objects node ./bin/import-docs.js && node ./bin/make-docs.js",
     "prepublish": "npm run build",
     "flow": "./node_modules/.bin/flow check",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "fix-lint": "eslint . --fix"
   },
   "repository": {
     "type": "git",
@@ -53,6 +54,7 @@
     "leafdoc": "github:anru/Leafdoc#v1.1",
     "mkdirp": "^0.5.1",
     "mocha": "^2.5.2",
-    "nock": "^8.0.0"
+    "nock": "^8.0.0",
+    "prettier": "^1.4.4"
   }
 }
