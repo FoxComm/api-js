@@ -12,7 +12,7 @@ export const parseAmount = (amount: string): number => {
 
 // @method shippingAddressToPayload(contact: Object, api: Object)
 // Parses the data sent from Apple into the server-accepted format
-export const shippingAddressToPayload = (contact: Object, api: Object): Promise<*> => {
+export function shippingAddressToPayload(contact: Object, api: Object): Promise<*> {
   return new Promise((resolve, reject) => {
     const { givenName, familyName, addressLines, locality, postalCode, phoneNumber, administrativeArea } = contact;
 
@@ -42,11 +42,11 @@ export const shippingAddressToPayload = (contact: Object, api: Object): Promise<
         reject(err);
       });
   });
-};
+}
 
 // @method shippingMethodsToPayload(methods: Array<Object>)
 // Parses the server-sent shipping methods into Apple format payload
-export const shippingMethodsToPayload = (methods: Array<Object>): Array<Object> => {
+export function shippingMethodsToPayload(methods: Array<Object>): Array<Object> {
   return _.map(methods, (method) => {
     return {
       label: method.code,
@@ -55,11 +55,11 @@ export const shippingMethodsToPayload = (methods: Array<Object>): Array<Object> 
       identifier: method.id,
     };
   });
-};
+}
 
 // @methods getLineItems(lineItems: Object, shippingCost: Number)
 // Parses additional costs into Apple accepted format
-export const getLineItems = (lineItems: Object, shippingCost: string): Array<Object> => {
+export function getLineItems(lineItems: Object, shippingCost: string): Array<Object> {
   const { taxes, promotion } = lineItems;
   const items = [
     {
@@ -86,15 +86,15 @@ export const getLineItems = (lineItems: Object, shippingCost: string): Array<Obj
   }
 
   return items;
-};
+}
 
 // @method failurePayload(paymentRequest: Object, status: Number, isShippingMethod: Boolean)
 // Assembles the correct payload to send to the callback function when payment fails
-export const failurePayload = (
+export function failurePayload(
   paymentRequest: Object,
   status: number,
   isShippingMethod: boolean = false
-): Array<mixed> => {
+): Array<mixed> {
   if (isShippingMethod) {
     return [
       status,
@@ -115,4 +115,4 @@ export const failurePayload = (
     },
     [],
   ];
-};
+}
