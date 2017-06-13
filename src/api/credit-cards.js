@@ -58,8 +58,8 @@ export default class CreditCards {
           reject([response.error.message]);
         } else {
           return this.createCardFromStripeToken(response, billingAddress, addressIsNew)
-          .then(resp => resolve(resp))
-          .catch(err => reject(err));
+            .then(resp => resolve(resp))
+            .catch(err => reject(err));
         }
       });
     });
@@ -69,12 +69,10 @@ export default class CreditCards {
     return new Promise((resolve, reject) => {
       const payload = creditCardFromStripePayload(token, billingAddress, addressIsNew);
 
-      return this.api.post(endpoints.creditCards, payload)
-            .then(response => resolve(response))
-            .catch((err) => {
-              const error = err.responseJson.errors ? err.responseJson.errors : [err.message];
-              reject(error);
-            });
+      return this.api.post(endpoints.creditCards, payload).then(response => resolve(response)).catch((err) => {
+        const error = err.responseJson.errors ? err.responseJson.errors : [err.message];
+        reject(error);
+      });
     });
   }
 

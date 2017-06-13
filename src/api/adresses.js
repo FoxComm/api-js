@@ -1,4 +1,3 @@
-
 // @class Addresses
 // Accessible via [addresses](#foxapi-addresses) property of [FoxApi](#foxapi) instance.
 

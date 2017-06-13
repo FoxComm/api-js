@@ -1,4 +1,3 @@
-
 // @class StoreCredits
 // Accessible via [storeCredits](#foxapi-storecredits) property of [FoxApi](#foxapi) instance.
 
@@ -36,4 +35,3 @@ export default class StoreCredits {
 // @miniclass StoreCreditsResponse (StoreCredits)
 // @inherits ResultMetadata
 // @field result: Array<StoreCredit>
-

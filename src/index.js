@@ -35,7 +35,11 @@ export default class Api {
 
     // @option stripe_key: String
     // Required option. Should contain Stripe.js publishable key. https://stripe.com/docs/stripe.js#setting-publishable-key
-    if (!args.stripe_key) throw new Error('You must specify stripe publishable key. See https://stripe.com/docs/stripe.js#setting-publishable-key');
+    if (!args.stripe_key) {
+      throw new Error(
+        'You must specify stripe publishable key. See https://stripe.com/docs/stripe.js#setting-publishable-key'
+      );
+    }
 
     this.api_url = args.api_url.replace(/\/?$/, ''); // ensure no trailing slash
     this.stripe_key = args.stripe_key;

@@ -196,7 +196,6 @@ export default class Cart {
     return this.api.delete(endpoints.cartPaymentStoreCredit).then(normalizeResponse);
   }
 
-
   /**
    * @method addCoupon(code: Number): Promise<FullOrder>
    * Adds coupon code to the cart.

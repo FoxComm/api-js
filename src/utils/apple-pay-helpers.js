@@ -14,39 +14,33 @@ export const parseAmount = (amount: string): number => {
 // Parses the data sent from Apple into the server-accepted format
 export const shippingAddressToPayload = (contact: Object, api: Object): Promise<*> => {
   return new Promise((resolve, reject) => {
-    const {
-      givenName,
-      familyName,
-      addressLines,
-      locality,
-      postalCode,
-      phoneNumber,
-      administrativeArea,
-    } = contact;
+    const { givenName, familyName, addressLines, locality, postalCode, phoneNumber, administrativeArea } = contact;
 
-    api.get(endpoints.regionIdByCode(administrativeArea)).then((resp) => {
-      const firstName = givenName || 'Default';
-      const lastName = familyName || 'Name';
-      const address1 = addressLines ? addressLines[0] : 'Default Street';
-      const phone = phoneNumber ? phoneNumber.replace(/[^\d]/g, '') : '8888888888';
-      const address2 = addressLines ? addressLines[1] : '';
+    api
+      .get(endpoints.regionIdByCode(administrativeArea))
+      .then((resp) => {
+        const firstName = givenName || 'Default';
+        const lastName = familyName || 'Name';
+        const address1 = addressLines ? addressLines[0] : 'Default Street';
+        const phone = phoneNumber ? phoneNumber.replace(/[^\d]/g, '') : '8888888888';
+        const address2 = addressLines ? addressLines[1] : '';
 
-      const payload = {
-        name: `${firstName} ${lastName}`,
-        regionId: resp.id,
-        address1,
-        address2: _.isEmpty(address2) ? '' : address2,
-        city: locality,
-        zip: postalCode,
-        phoneNumber: phone,
-        isDefault: false,
-      };
+        const payload = {
+          name: `${firstName} ${lastName}`,
+          regionId: resp.id,
+          address1,
+          address2: _.isEmpty(address2) ? '' : address2,
+          city: locality,
+          zip: postalCode,
+          phoneNumber: phone,
+          isDefault: false,
+        };
 
-      resolve(payload);
-    })
-    .catch((err) => {
-      reject(err);
-    });
+        resolve(payload);
+      })
+      .catch((err) => {
+        reject(err);
+      });
   });
 };
 
@@ -87,7 +81,7 @@ export const getLineItems = (lineItems: Object, shippingCost: string): Array<Obj
     items.push({
       label: 'Promotion',
       type: 'final',
-      amount: parseAmount(promotion) * (-1),
+      amount: parseAmount(promotion) * -1,
     });
   }
 

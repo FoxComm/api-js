@@ -16,7 +16,6 @@
  * Url for redirection.
  */
 
-
 // @class Auth
 // Accessible via [auth](#foxapi-auth) property of [FoxApi](#foxapi) instance.
 
@@ -30,34 +29,35 @@ export default class Auth {
 
   _processJWT(promise, jwt) {
     let newJwt = jwt;
-    return promise.then(
-      (response) => {
-        newJwt = response.header.jwt;
+    return promise
+      .then(
+        (response) => {
+          newJwt = response.header.jwt;
 
-        return response.body;
-      },
-      (err) => {
-        const error = createError(err);
+          return response.body;
+        },
+        (err) => {
+          const error = createError(err);
 
-        throw error;
-      }
-    )
-    .then((data) => {
-      if (data.email) {
-        return {
-          user: data,
-          jwt: newJwt,
-        };
-      }
+          throw error;
+        }
+      )
+      .then((data) => {
+        if (data.email) {
+          return {
+            user: data,
+            jwt: newJwt,
+          };
+        }
 
-      if (data.errors) {
-        const error = new Error(data.errors[0]);
-        error.responseJson = data;
-        throw error;
-      }
+        if (data.errors) {
+          const error = new Error(data.errors[0]);
+          error.responseJson = data;
+          throw error;
+        }
 
-      throw new Error('Server error, try again later. Sorry for inconvenience :(');
-    });
+        throw new Error('Server error, try again later. Sorry for inconvenience :(');
+      });
   }
 
   // @method signup(email: String, name: String, password: String): Promise
@@ -67,7 +67,7 @@ export default class Auth {
 
     const signupPromise = this.api.post(
       endpoints.signup,
-      {email, name, password},
+      { email, name, password },
       {
         credentials: 'same-origin',
         handleResponse: false,
@@ -85,7 +85,7 @@ export default class Auth {
 
     const loginPromise = this.api.post(
       endpoints.login,
-      {email, password, org},
+      { email, password, org },
       {
         credentials: 'same-origin',
         handleResponse: false,

@@ -1,4 +1,3 @@
-
 // @class Account
 
 import * as endpoints from '../endpoints';
