@@ -15,9 +15,9 @@ export default class StoreCredits {
     return this.api.post(endpoints.storeCredits, {
       query: {
         term: {
-          customerId: this.api.getCustomerId()
-        }
-      }
+          customerId: this.api.getCustomerId(),
+        },
+      },
     });
   }
 

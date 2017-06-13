@@ -21,12 +21,12 @@ export const shippingAddressToPayload = (contact: Object, api: Object): Promise<
       locality,
       postalCode,
       phoneNumber,
-      administrativeArea
+      administrativeArea,
     } = contact;
 
     api.get(endpoints.regionIdByCode(administrativeArea)).then((resp) => {
-      const firstName = givenName ? givenName : 'Default';
-      const lastName = familyName ? familyName : 'Name';
+      const firstName = givenName || 'Default';
+      const lastName = familyName || 'Name';
       const address1 = addressLines ? addressLines[0] : 'Default Street';
       const phone = phoneNumber ? phoneNumber.replace(/[^\d]/g, '') : '8888888888';
       const address2 = addressLines ? addressLines[1] : '';

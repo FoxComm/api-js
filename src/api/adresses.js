@@ -40,7 +40,7 @@ export default class Addresses {
   // @method add(address: CreateAddressPayload): Promise<Address>
   // Adds new address.
   add(address) {
-    return this.api.post(endpoints.addresses, address)
+    return this.api.post(endpoints.addresses, address);
   }
 
   // @method update(addressId: Number, address: UpdateAddressPayload): Promise<Address>

@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import superagent from 'superagent';
 import makeDebug from 'debug';
 import createError from './create-error';
@@ -16,15 +17,18 @@ export function appendQueryString(url, queryString) {
 
 function serialize(data) {
   const params = [];
-  for (const param in data) {
-    if (data.hasOwnProperty(param)) {
+  const keys = Object.keys(data);
+  _.forEach(keys, (param) => {
+    const hasProperty = Object.prototype.hasOwnProperty.call(data, param);
+    if (hasProperty) {
       const value = data[param];
       if (value != null) {
         const asString = typeof value != 'string' ? JSON.stringify(value) : value;
         params.push(`${encodeURIComponent(param)}'='${encodeURIComponent(asString)}`);
       }
     }
-  }
+  });
+
   return params.join('&');
 }
 
@@ -34,7 +38,7 @@ export default function request(method, uri, data, options) {
     'Content-Type': 'application/json;charset=UTF-8',
   };
 
-  options = {
+  const requestOptions = {
     unauthorizedHandler() {
       if (typeof window != 'undefined') {
         window.location.href = '/login';
@@ -49,10 +53,10 @@ export default function request(method, uri, data, options) {
     },
   };
 
-  const agent = options.agent || superagent;
+  const agent = requestOptions.agent || superagent;
   const requestPromise =
     agent[method.toLowerCase()](uri)
-    .set(options.headers)
+    .set(requestOptions.headers)
     .withCredentials();
 
   if (data) {
@@ -73,18 +77,18 @@ export default function request(method, uri, data, options) {
     debug(JSON.stringify(data));
   }
 
-  if (options.handleResponse !== false) {
+  if (requestOptions.handleResponse !== false) {
     const chained = requestPromise
       .then(
-        response => {
+        (response) => {
           debug(`${response.status} ${method.toUpperCase()} ${uri}`);
 
           return response.body;
         },
-        err => {
+        (err) => {
           const statusCode = err.response ? err.response.statusCode : err.status || err.statusCode;
           if (statusCode === 401) {
-            options.unauthorizedHandler();
+            requestOptions.unauthorizedHandler();
           }
 
           const error = createError(err);

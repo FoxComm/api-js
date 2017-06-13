@@ -1,5 +1,3 @@
-
-const assert = require('assert');
 const nock = require('nock');
 const Api = require('../lib/index').default;
 

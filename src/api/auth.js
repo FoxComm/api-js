@@ -29,23 +29,24 @@ export default class Auth {
   }
 
   _processJWT(promise, jwt) {
+    let newJwt = jwt;
     return promise.then(
-      response => {
-        jwt = response.header.jwt;
+      (response) => {
+        newJwt = response.header.jwt;
 
         return response.body;
       },
-      err => {
+      (err) => {
         const error = createError(err);
 
         throw error;
       }
     )
-    .then(data => {
+    .then((data) => {
       if (data.email) {
         return {
           user: data,
-          jwt,
+          jwt: newJwt,
         };
       }
 
@@ -62,14 +63,14 @@ export default class Auth {
   // @method signup(email: String, name: String, password: String): Promise
   // Register new user
   signup(email, name, password) {
-    let jwt = null;
+    const jwt = null;
 
     const signupPromise = this.api.post(
       endpoints.signup,
       {email, name, password},
       {
         credentials: 'same-origin',
-        handleResponse: false
+        handleResponse: false,
       }
     );
 
@@ -80,14 +81,14 @@ export default class Auth {
   // Authenticate user by username and password.
   // `org` is the name of the organization you want to log in under
   login(email, password, org) {
-    let jwt = null;
+    const jwt = null;
 
     const loginPromise = this.api.post(
       endpoints.login,
       {email, password, org},
       {
         credentials: 'same-origin',
-        handleResponse: false
+        handleResponse: false,
       }
     );
 
@@ -95,7 +96,7 @@ export default class Auth {
   }
 
   // @method googleSignin(): Promise<GoogleSigninResponse>
-  googleSignin(){
+  googleSignin() {
     return this.api.get(endpoints.googleSignin);
   }
 

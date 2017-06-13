@@ -7,7 +7,7 @@ type ApplePay = {
   ) => Object,
 };
 
-type StripeT =  {
+type StripeT = {
   setPublishableKey: (key: string) => void;
   applePay: ApplePay;
 };

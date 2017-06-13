@@ -3,7 +3,7 @@ const MAX_RESULTS = 1000;
 
 // auth endpoints
 export const login = '/v1/public/login';
-export const signup ='/v1/public/registrations/new';
+export const signup = '/v1/public/registrations/new';
 export const googleSignin = '/v1/public/signin/google/customer';
 export const logout = '/v1/public/logout';
 export const sendRestPassword = '/v1/public/send-password-reset';
@@ -46,8 +46,8 @@ export const creditCardDefault = creditCardId => `${creditCard(creditCardId)}/de
 
 // payment methods, store credits
 export const storeCredit = storeCreditId => `/v1/my/payment-methods/store-credits/${storeCreditId}`;
-export const storeCreditTotals = `/v1/my/payment-methods/store-credits/totals`;
-export const storeCredits = `/search/store_credits_search_view/_search`;
+export const storeCreditTotals = '/v1/my/payment-methods/store-credits/totals';
+export const storeCredits = '/search/store_credits_search_view/_search';
 
 
 // account endpoints
@@ -61,7 +61,9 @@ export const order = referenceNumber => `/v1/my/orders/${referenceNumber}`;
 // review endpoints
 export const reviews = '/v1/my/review';
 export const review = reviewId => `/v1/my/review/${reviewId}`;
-export const reviewSearch = (size, from) => `/search/public/product_reviews_search_view/_search?size=${size}&from=${from}`;
+export const reviewSearch = (size, from) => {
+  return `/search/public/product_reviews_search_view/_search?size=${size}&from=${from}`;
+};
 
 // analytics endpoints
 export const hal = '/v1/hal';
@@ -76,4 +78,4 @@ export const crossSellCustomerRelatedFull = '/v1/public/recommend/cust-prod/full
 // countries & regions endpoints
 export const countries = '/v1/public/countries';
 export const countryById = id => `/v1/public/countries/${id}`;
-export const regionIdByCode = code => `/v1/public/regions/${code}`
+export const regionIdByCode = code => `/v1/public/regions/${code}`;

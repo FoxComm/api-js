@@ -9,16 +9,18 @@ import * as endpoints from '../endpoints';
 // reduce SKU list
 function collectLineItems(skus) {
   return _.map(skus, (l) => {
-    l.totalPrice = l.quantity * l.price;
-    return l;
+    const sku = l;
+    sku.totalPrice = l.quantity * l.price;
+    return sku;
   });
 }
 
 function normalizeResponse(payload) {
+  const p = payload;
   if (payload && payload.lineItems) {
-    payload.lineItems.skus = collectLineItems(payload.lineItems.skus);
+    p.lineItems.skus = collectLineItems(payload.lineItems.skus);
   }
-  return payload;
+  return p;
 }
 
 export default class Cart {
@@ -55,7 +57,7 @@ export default class Cart {
    * Creates shipping address for the cart by a given address payload.
    */
   setShippingAddress(shippingAddress) {
-    return this.api.post(endpoints.shippingAddress, shippingAddress).then(normalizeResponse)
+    return this.api.post(endpoints.shippingAddress, shippingAddress).then(normalizeResponse);
   }
 
   /**
@@ -121,7 +123,7 @@ export default class Cart {
       [sku]: {
         attributes,
         quantity,
-      }
+      },
     });
   }
 
@@ -130,7 +132,7 @@ export default class Cart {
    * Adds sku by defined quantity in the cart.
    */
   addSku(sku, quantity, attributes = {}) {
-    return this.get().then(cart => {
+    return this.get().then((cart) => {
       const skuData = _.find(_.get(cart, 'lineItems.skus', []), { sku });
       const existsQuantity = skuData ? skuData.quantity : 0;
 

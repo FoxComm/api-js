@@ -1,10 +1,16 @@
 import _ from 'lodash';
 
-export const isBrowser = new Function("try {return this===window;}catch(e){ return false;}");
+export const isBrowser = () => {
+  try {
+    return this === window;
+  } catch (e) {
+    return false;
+  }
+};
 
 const scriptExists = (path) => {
   const scripts = document.getElementsByTagName('script');
-  return _.some(scripts, (script) => script.src === path);
+  return _.some(scripts, script => script.src === path);
 };
 
 export const loadScript = (path) => {

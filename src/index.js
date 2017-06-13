@@ -47,7 +47,7 @@ export default class Api {
     let stripeLoaded = Promise.resolve();
 
     if (isBrowser()) {
-    stripeLoaded = loadScript('https://js.stripe.com/v2/').then(() => {
+      stripeLoaded = loadScript('https://js.stripe.com/v2/').then(() => {
         Stripe.setPublishableKey(this.stripe_key);
       });
     }
@@ -125,7 +125,9 @@ export default class Api {
     if (this._jwt) {
       try {
         return jwtDecode(this._jwt).id;
-      } catch (ex) {}
+      } catch (e) {
+        return null; // no error handling?
+      }
     }
     return null;
   }
@@ -147,17 +149,19 @@ export default class Api {
   // @method uri(uri: String): String
   // Prepares and returns final url which will be used in request.
   uri(uri) {
-    return `${this.api_url}${uri}`
+    return `${this.api_url}${uri}`;
   }
 
   idOrSlugToArgs(id) {
-    return Number.isInteger(id) ? { id: id } : { slug: id }
+    return Number.isInteger(id) ? { id } : { slug: id };
   }
 
   queryStringToObject(q) {
     // convoluted 1-liner instead of forloop [probably less performant too, but for loops kill me]
     return q.split('&').reduce(function(acc, n) {
-      return n = n.split('='), acc[n[0]] = n[1], acc;
+      const lines = n.split('=');
+      acc[lines[0]] = lines[1];
+      return acc;
     }, {});
   }
 
@@ -168,16 +172,17 @@ export default class Api {
   // - headers: headers to sent
   request(method, uri, data, options = {}) {
     const finalUrl = this.uri(uri);
+    const requestOptions = options;
     if (this.headers) {
-      options.headers = { // eslint-disable-line no-param-reassign
+      requestOptions.headers = {
         ...this.headers,
         ...(options.headers || {}),
       };
     }
 
-    options.agent = this.agent;
+    requestOptions.agent = this.agent;
 
-    return request(method, finalUrl, data, options);
+    return request(method, finalUrl, data, requestOptions);
   }
 
   // @method get(uri: String, data?: Object, options?: Object): Promise
