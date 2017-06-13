@@ -11,6 +11,7 @@ clean:
 	rm -rf ./lib/*
 
 test:
+	yarn lint
 	yarn flow
 
 .PHONY: setup build clean test
