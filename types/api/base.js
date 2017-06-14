@@ -6,3 +6,7 @@ export type Context = {|
     modality: string,
   }
 |};
+
+export type Attributes = {
+  [name: string]: any,
+};
