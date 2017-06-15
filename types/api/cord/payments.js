@@ -1,4 +1,3 @@
-
 import type { Address } from '../address';
 
 export type CreditCardPayment = {|

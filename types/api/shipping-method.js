@@ -1,4 +1,3 @@
-
 export type ShippingMethod = {
   id: number,
   name: string,

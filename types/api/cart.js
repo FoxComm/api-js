@@ -1,4 +1,3 @@
-
 import type { Address } from './address';
 import type { Customer } from './customer';
 import type { Promotion } from './promotion';

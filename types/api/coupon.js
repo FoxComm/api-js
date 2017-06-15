@@ -1,4 +1,3 @@
-
 import type { Context, Attributes } from './base';
 
 export type Coupon = {
