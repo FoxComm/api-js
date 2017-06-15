@@ -50,7 +50,7 @@ export default class Api {
     // add the stripe.js script if in the browser
     let stripeLoaded = Promise.resolve();
 
-    if (isBrowser()) {
+    if (isBrowser) {
       stripeLoaded = loadScript('https://js.stripe.com/v2/').then(() => {
         Stripe.setPublishableKey(this.stripe_key);
       });

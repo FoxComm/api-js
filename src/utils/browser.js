@@ -1,12 +1,6 @@
 import _ from 'lodash';
 
-export function isBrowser() {
-  try {
-    return window;
-  } catch (e) {
-    return false;
-  }
-}
+export const isBrowser = typeof window != 'undefined';
 
 function scriptExists(path) {
   const scripts = document.getElementsByTagName('script');
