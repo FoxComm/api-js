@@ -23,13 +23,21 @@ Principles:
 - As a rule of thumb, `.then()` should be left to the implementation of the library [ie. not in this codebase].
   Possible exception here is Auth section, storage of `jwt` tokens, handling oAuth redirects etc.
 
-### debugging
+### Debugging
 
 You can log requests via settings [DEBUG](https://www.npmjs.com/package/debug) env variable to `foxapi`:
 
 ```
 DEBUG=foxapi npm test
 ```
+### Developers
+
+Before submitting your PR:
+- make sure flow and lint have no complaints. Run `make test`
+- to conform with our code style, run `make fmt`. This will prettify your code and fix any light-weight lint problems.
+**Note:** don't forget to commit the changes made by prettier
+
+To facilitate lint fixing, consider running `yarn fix-lint`
 
 # Usage
 
