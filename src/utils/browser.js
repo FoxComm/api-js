@@ -1,15 +1,21 @@
-export const isBrowser = new Function("try {return this===window;}catch(e){ return false;}");
+import _ from 'lodash';
+
+export const isBrowser = typeof window != 'undefined';
+
+function scriptExists(path) {
+  const scripts = document.getElementsByTagName('script');
+  return _.some(scripts, script => script.src === path);
+}
 
 export function loadScript(path) {
   return new Promise((resolve, reject) => {
-    if (document === void 0) {
+    if (document === void 0 || scriptExists(path)) {
       return;
     }
 
     const script = document.createElement('script');
     script.onload = resolve;
     script.onerror = reject;
-
     script.src = path;
     document.getElementsByTagName('head')[0].appendChild(script);
   });

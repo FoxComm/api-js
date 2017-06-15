@@ -16,7 +16,6 @@
  * Url for redirection.
  */
 
-
 // @class Auth
 // Accessible via [auth](#foxapi-auth) property of [FoxApi](#foxapi) instance.
 
@@ -29,47 +28,49 @@ export default class Auth {
   }
 
   _processJWT(promise, jwt) {
-    return promise.then(
-      response => {
-        jwt = response.header.jwt;
+    let newJwt = jwt;
+    return promise
+      .then(
+        (response) => {
+          newJwt = response.header.jwt;
 
-        return response.body;
-      },
-      err => {
-        const error = createError(err);
+          return response.body;
+        },
+        (err) => {
+          const error = createError(err);
 
-        throw error;
-      }
-    )
-    .then(data => {
-      if (data.email) {
-        return {
-          user: data,
-          jwt,
-        };
-      }
+          throw error;
+        }
+      )
+      .then((data) => {
+        if (data.email) {
+          return {
+            user: data,
+            jwt: newJwt,
+          };
+        }
 
-      if (data.errors) {
-        const error = new Error(data.errors[0]);
-        error.responseJson = data;
-        throw error;
-      }
+        if (data.errors) {
+          const error = new Error(data.errors[0]);
+          error.responseJson = data;
+          throw error;
+        }
 
-      throw new Error('Server error, try again later. Sorry for inconvenience :(');
-    });
+        throw new Error('Server error, try again later. Sorry for inconvenience :(');
+      });
   }
 
   // @method signup(email: String, name: String, password: String): Promise
   // Register new user
   signup(email, name, password) {
-    let jwt = null;
+    const jwt = null;
 
     const signupPromise = this.api.post(
       endpoints.signup,
-      {email, name, password},
+      { email, name, password },
       {
         credentials: 'same-origin',
-        handleResponse: false
+        handleResponse: false,
       }
     );
 
@@ -80,14 +81,14 @@ export default class Auth {
   // Authenticate user by username and password.
   // `org` is the name of the organization you want to log in under
   login(email, password, org) {
-    let jwt = null;
+    const jwt = null;
 
     const loginPromise = this.api.post(
       endpoints.login,
-      {email, password, org},
+      { email, password, org },
       {
         credentials: 'same-origin',
-        handleResponse: false
+        handleResponse: false,
       }
     );
 
@@ -95,7 +96,7 @@ export default class Auth {
   }
 
   // @method googleSignin(): Promise<GoogleSigninResponse>
-  googleSignin(){
+  googleSignin() {
     return this.api.get(endpoints.googleSignin);
   }
 

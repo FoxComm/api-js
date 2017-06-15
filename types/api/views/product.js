@@ -1,4 +1,3 @@
-
 import type { Album } from './album';
 import type { Taxonomy } from './taxonomy';
 

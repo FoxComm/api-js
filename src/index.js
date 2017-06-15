@@ -12,6 +12,9 @@
 
 import _ from 'lodash';
 import request from './utils/request';
+import jwtDecode from 'jwt-decode';
+import { isBrowser, loadScript } from './utils/browser';
+
 import Addresses from './api/adresses';
 import Auth from './api/auth';
 import CreditCards from './api/credit-cards';
@@ -20,18 +23,23 @@ import Cart from './api/cart';
 import Account from './api/account';
 import Orders from './api/orders';
 import Reviews from './api/reviews';
-import jwtDecode from 'jwt-decode';
 import Analytics from './api/analytics';
 import CrossSell from './api/cross-sell';
+import ApplePay from './api/apple-pay';
 
 export default class Api {
   constructor(args) {
     // @option api_url: String
     // Required option. Should point to phoenix backend.
     if (!args.api_url) throw new Error('You must specify an API URL');
+
     // @option stripe_key: String
     // Required option. Should contain Stripe.js publishable key. https://stripe.com/docs/stripe.js#setting-publishable-key
-    if (!args.stripe_key) throw new Error('You must specify stripe publishable key. See https://stripe.com/docs/stripe.js#setting-publishable-key');
+    if (!args.stripe_key) {
+      throw new Error(
+        'You must specify stripe publishable key. See https://stripe.com/docs/stripe.js#setting-publishable-key'
+      );
+    }
 
     this.api_url = args.api_url.replace(/\/?$/, ''); // ensure no trailing slash
     this.stripe_key = args.stripe_key;
@@ -39,20 +47,34 @@ export default class Api {
     // could be passed superagent or supertest instance
     this.agent = args.agent || require('superagent');
 
+    // add the stripe.js script if in the browser
+    let stripeLoaded = Promise.resolve();
+
+    if (isBrowser) {
+      stripeLoaded = loadScript('https://js.stripe.com/v2/').then(() => {
+        Stripe.setPublishableKey(this.stripe_key);
+      });
+    }
+
     // @property addresses: Addresses
     // Addresses instance
     this.addresses = new Addresses(this);
+
     // @property auth: Auth
     // Auth instance
     this.auth = new Auth(this);
 
-    // @property creditCards: CreditCards
-    // CreditCards instance
-    this.creditCards = new CreditCards(this);
+    // @property applePay: ApplePay
+    // ApplePay instance
+    this.applePay = new ApplePay(this, stripeLoaded);
 
     // @property storeCredits: StoreCredits
     // StoreCredits instance
     this.storeCredits = new StoreCredits(this);
+
+    // @property creditCards: CreditCards
+    // CreditCards instance
+    this.creditCards = new CreditCards(this);
 
     // @property cart: Cart
     // Cart instance
@@ -107,7 +129,9 @@ export default class Api {
     if (this._jwt) {
       try {
         return jwtDecode(this._jwt).id;
-      } catch (ex) {}
+      } catch (e) {
+        return null; // no error handling?
+      }
     }
     return null;
   }
@@ -129,17 +153,19 @@ export default class Api {
   // @method uri(uri: String): String
   // Prepares and returns final url which will be used in request.
   uri(uri) {
-    return `${this.api_url}${uri}`
+    return `${this.api_url}${uri}`;
   }
 
   idOrSlugToArgs(id) {
-    return Number.isInteger(id) ? { id: id } : { slug: id }
+    return Number.isInteger(id) ? { id } : { slug: id };
   }
 
   queryStringToObject(q) {
     // convoluted 1-liner instead of forloop [probably less performant too, but for loops kill me]
     return q.split('&').reduce(function(acc, n) {
-      return n = n.split('='), acc[n[0]] = n[1], acc;
+      const lines = n.split('=');
+      acc[lines[0]] = lines[1];
+      return acc;
     }, {});
   }
 
@@ -150,16 +176,17 @@ export default class Api {
   // - headers: headers to sent
   request(method, uri, data, options = {}) {
     const finalUrl = this.uri(uri);
+    const requestOptions = options;
     if (this.headers) {
-      options.headers = { // eslint-disable-line no-param-reassign
+      requestOptions.headers = {
         ...this.headers,
         ...(options.headers || {}),
       };
     }
 
-    options.agent = this.agent;
+    requestOptions.agent = this.agent;
 
-    return request(method, finalUrl, data, options);
+    return request(method, finalUrl, data, requestOptions);
   }
 
   // @method get(uri: String, data?: Object, options?: Object): Promise
@@ -178,6 +205,12 @@ export default class Api {
   // Makes PATCH http request
   patch(...args) {
     return this.request('patch', ...args);
+  }
+
+  // @method put(uri: String, data?: Object, options?: Object): Promise
+  // Makes PUT http request
+  put(...args) {
+    return this.request('put', ...args);
   }
 
   // @method delete(uri: String, data?: Object, options?: Object): Promise

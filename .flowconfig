@@ -9,6 +9,9 @@
 [include]
 src
 
+[libs]
+types/
+
 [options]
 esproposal.decorators=ignore
 esproposal.class_static_fields=enable

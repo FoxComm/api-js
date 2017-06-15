@@ -1,4 +1,3 @@
-
 export type Customer = {
   id: number,
   createdAt: string,

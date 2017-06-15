@@ -2,18 +2,39 @@
 // Accessible via [creditCards](#foxapi-creditcards) property of [FoxApi](#foxapi) instance.
 
 import * as endpoints from '../endpoints';
-import { isBrowser, loadScript } from '../utils/browser';
+
+function creditCardForStripePayload(creditCard, billingAddress) {
+  return {
+    name: creditCard.holderName,
+    number: creditCard.number,
+    cvc: creditCard.cvc,
+    exp_month: creditCard.expMonth,
+    exp_year: creditCard.expYear,
+    address_line1: billingAddress.address1,
+    address_line2: billingAddress.address2,
+    address_zip: billingAddress.zip,
+    address_city: billingAddress.city,
+    address_state: billingAddress.state,
+    address_country: billingAddress.country,
+  };
+}
+
+function creditCardFromStripePayload(stripeResponse, billingAddress, addressIsNew) {
+  return {
+    token: stripeResponse.id,
+    holderName: stripeResponse.card.name,
+    lastFour: stripeResponse.card.last4,
+    expMonth: stripeResponse.card.exp_month,
+    expYear: stripeResponse.card.exp_year,
+    brand: stripeResponse.card.brand,
+    addressIsNew,
+    billingAddress,
+  };
+}
 
 export default class CreditCards {
   constructor(api) {
     this.api = api;
-
-    if (isBrowser()) {
-      // load Stripe.js
-      loadScript('https://js.stripe.com/v2/').then(() => {
-        Stripe.setPublishableKey(this.api.stripe_key);
-      });
-    }
   }
 
   // @method list(): Promise<CreditCardsResponse>
@@ -37,8 +58,8 @@ export default class CreditCards {
           reject([response.error.message]);
         } else {
           return this.createCardFromStripeToken(response, billingAddress, addressIsNew)
-          .then(response => resolve(response))
-          .catch(err => reject(err));
+            .then(resp => resolve(resp))
+            .catch(err => reject(err));
         }
       });
     });
@@ -46,11 +67,12 @@ export default class CreditCards {
 
   createCardFromStripeToken(token, billingAddress, addressIsNew) {
     return new Promise((resolve, reject) => {
-          var payload = creditCardFromStripePayload(token, billingAddress, addressIsNew);
+      const payload = creditCardFromStripePayload(token, billingAddress, addressIsNew);
 
-          return this.api.post(endpoints.creditCards, payload)
-            .then(response => resolve(response))
-            .catch(err => !!err.responseJson.errors ? reject(err.responseJson.errors) : reject([err.message]));
+      return this.api.post(endpoints.creditCards, payload).then(response => resolve(response)).catch((err) => {
+        const error = err.responseJson.errors ? err.responseJson.errors : [err.message];
+        reject(error);
+      });
     });
   }
 
@@ -63,7 +85,7 @@ export default class CreditCards {
   // @method setAsDefault(creditCardId: Number): Promise<CreditCard>
   // Sets selected credit card as default.
   setAsDefault(creditCardId, isDefault = true) {
-    return this.api.post(endpoints.creditCardDefault(creditCardId), { isDefault: isDefault });
+    return this.api.post(endpoints.creditCardDefault(creditCardId), { isDefault });
   }
 
   // @method delete(creditCardId: Number): Promise
@@ -94,34 +116,5 @@ export default class CreditCards {
   // Check if credit card's valid thru date is valid
   validateExpiry(month = '', year = '') {
     return Stripe.card.validateExpiry(month, year);
-  }
-}
-
-function creditCardForStripePayload(creditCard, billingAddress) {
-  return {
-    name: creditCard.holderName,
-    number: creditCard.number,
-    cvc: creditCard.cvc,
-    exp_month: creditCard.expMonth,
-    exp_year: creditCard.expYear,
-    address_line1: billingAddress.address1,
-    address_line2: billingAddress.address2,
-    address_zip: billingAddress.zip,
-    address_city: billingAddress.city,
-    address_state: billingAddress.state,
-    address_country: billingAddress.country,
-  }
-}
-
-function creditCardFromStripePayload(stripeResponse, billingAddress, addressIsNew) {
-  return {
-    token: stripeResponse.id,
-    holderName: stripeResponse.card.name,
-    lastFour: stripeResponse.card.last4,
-    expMonth: stripeResponse.card.exp_month,
-    expYear: stripeResponse.card.exp_year,
-    brand: stripeResponse.card.brand,
-    addressIsNew: addressIsNew,
-    billingAddress,
   }
 }

@@ -1,4 +1,3 @@
-
 import type { Address } from './address';
 import type { Customer } from './customer';
 import type { Promotion } from './promotion';
@@ -15,7 +14,7 @@ export type Order = {
   referenceNumber: string,
   paymentState: PaymentState,
   lineItems: {
-    skus: Array<LineItem>
+    skus: Array<LineItem>,
   },
   lineItemAdjustments: Array<LineItemAdjustment>,
   promotion?: Promotion,

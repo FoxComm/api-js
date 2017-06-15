@@ -1,4 +1,3 @@
-
 export type Region = {
   id: number,
   countryId: number,

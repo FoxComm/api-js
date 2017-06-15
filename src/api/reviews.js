@@ -1,4 +1,3 @@
-
 // @class Reviews
 // Accessible via [reviews](#foxapi-reviews) property of [FoxApi](#foxapi) instance.
 

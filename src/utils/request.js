@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import superagent from 'superagent';
 import makeDebug from 'debug';
 import createError from './create-error';
@@ -13,47 +14,45 @@ export function appendQueryString(url, queryString) {
   return `${url}${joinWith}${queryString}`;
 }
 
-
 function serialize(data) {
   const params = [];
-  for (const param in data) {
-    if (data.hasOwnProperty(param)) {
+  const keys = Object.keys(data);
+  _.forEach(keys, (param) => {
+    const hasProperty = Object.prototype.hasOwnProperty.call(data, param);
+    if (hasProperty) {
       const value = data[param];
       if (value != null) {
         const asString = typeof value != 'string' ? JSON.stringify(value) : value;
         params.push(`${encodeURIComponent(param)}'='${encodeURIComponent(asString)}`);
       }
     }
-  }
+  });
+
   return params.join('&');
 }
-
 
 export default function request(method, uri, data, options) {
   const defaultHeaders = {
     'Content-Type': 'application/json;charset=UTF-8',
   };
 
-  options = {
+  const requestOptions = {
     unauthorizedHandler() {
       if (typeof window != 'undefined') {
         window.location.href = '/login';
       }
     },
     credentials: 'same-origin',
-    ...options || {},
+    ...(options || {}),
     method: method.toUpperCase(),
     headers: {
       ...defaultHeaders,
-      ...(options && options.headers || {}),
+      ...((options && options.headers) || {}),
     },
   };
 
-  const agent = options.agent || superagent;
-  const requestPromise =
-    agent[method.toLowerCase()](uri)
-    .set(options.headers)
-    .withCredentials();
+  const agent = requestOptions.agent || superagent;
+  const requestPromise = agent[method.toLowerCase()](uri).set(requestOptions.headers).withCredentials();
 
   if (data) {
     if (method.toUpperCase() === 'GET') {
@@ -73,33 +72,30 @@ export default function request(method, uri, data, options) {
     debug(JSON.stringify(data));
   }
 
-  if (options.handleResponse !== false) {
-    const chained = requestPromise
-      .then(
-        response => {
-          debug(`${response.status} ${method.toUpperCase()} ${uri}`);
+  if (requestOptions.handleResponse !== false) {
+    const chained = requestPromise.then(
+      (response) => {
+        debug(`${response.status} ${method.toUpperCase()} ${uri}`);
 
-          return response.body;
-        },
-        err => {
-          const statusCode = err.response ? err.response.statusCode : err.status || err.statusCode;
-          if (statusCode === 401) {
-            options.unauthorizedHandler();
-          }
-
-          const error = createError(err);
-          const message = `${method.toUpperCase()} ${uri} responded with ${err.statusCode}`;
-
-          debug(message);
-
-          throw error;
+        return response.body;
+      },
+      (err) => {
+        const statusCode = err.response ? err.response.statusCode : err.status || err.statusCode;
+        if (statusCode === 401) {
+          requestOptions.unauthorizedHandler();
         }
-      );
+
+        const error = createError(err);
+        const message = `${method.toUpperCase()} ${uri} responded with ${err.statusCode}`;
+
+        debug(message);
+
+        throw error;
+      }
+    );
     chained.abort = () => requestPromise.abort();
     return chained;
   }
 
   return requestPromise;
 }
-
-
